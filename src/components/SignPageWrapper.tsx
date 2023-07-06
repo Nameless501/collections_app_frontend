@@ -16,8 +16,8 @@ const SignPageWrapper: FC<SignPageWrapperPropsType> = ({ children, type }) => {
         >
             <Stack
                 spacing={4}
-                bgcolor={({ palette }) => palette.common.white}
-                sx={{ px: 5, py: 4, alignItems: 'center', minWidth: '500px' }}
+                bgcolor={({ palette }) => palette.background.default}
+                sx={{ px: 5, py: 4, alignItems: 'center', minWidth: '500px', borderRadius: 2 }}
             >
                 <Typography variant="h4">
                     {signPageConfig[type].title}

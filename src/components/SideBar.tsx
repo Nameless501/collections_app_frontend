@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Drawer, Box, Toolbar, Divider } from '@mui/material';
 import Navigation from './Navigation';
+import { ColorThemeToggle } from '../features/theme';
 import {
     signNavigationConfig,
     mainNavigationConfig,
@@ -18,6 +19,8 @@ const Sidebar: FC = () => {
         >
             <Toolbar />
             <Box sx={{ overflow: 'auto', py: 3 }}>
+                <ColorThemeToggle />
+                <Divider />
                 <Navigation linksList={mainNavigationConfig} />
                 <Divider />
                 <Navigation linksList={signNavigationConfig} />
