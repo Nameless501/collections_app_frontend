@@ -1,8 +1,15 @@
 import { FC } from 'react';
-import { AppBar, Container, Box, Toolbar, Typography, InputBase, Avatar } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search'
+import {
+    AppBar,
+    Container,
+    Box,
+    Toolbar,
+    Typography,
+    InputBase,
+    Avatar,
+} from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
-
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -49,10 +56,21 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Header: FC = () => {
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+            <AppBar
+                position="fixed"
+                sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            >
                 <Container maxWidth="xl">
-                    <Toolbar sx={{ display: "flex", justifyContent: 'space-between' }}>
-                        <Typography variant="h5" sx={{ display: { xs: "none", sm: "block" } }}>
+                    <Toolbar
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                        }}
+                    >
+                        <Typography
+                            variant="h5"
+                            sx={{ display: { xs: 'none', sm: 'block' } }}
+                        >
                             Project
                         </Typography>
                         <Search>
@@ -64,10 +82,14 @@ const Header: FC = () => {
                                 inputProps={{ 'aria-label': 'search' }}
                             />
                         </Search>
-                        <Box sx={{display: 'flex', gap: 2, alignItems: "center"}}>
-                            <Typography variant="h6">
-                                Username
-                            </Typography>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                gap: 2,
+                                alignItems: 'center',
+                            }}
+                        >
+                            <Typography variant="h6">Username</Typography>
                             <Avatar />
                         </Box>
                     </Toolbar>
@@ -75,6 +97,6 @@ const Header: FC = () => {
             </AppBar>
         </Box>
     );
-}
+};
 
 export default Header;

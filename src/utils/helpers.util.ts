@@ -1,17 +1,20 @@
-import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
+import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 
-export const handleFetchBaseQueryError = (error: unknown, callback: (msg: string) => unknown): void => {
+export const handleFetchBaseQueryError = (
+    error: unknown,
+    callback: (msg: string) => unknown
+): void => {
     if (isFetchBaseQueryError(error)) {
-        if(isErrorWithMessage(error.data)) {
+        if (isErrorWithMessage(error.data)) {
             callback(error.data.message);
         }
     }
-}
+};
 
 export function isFetchBaseQueryError(
     error: unknown
 ): error is FetchBaseQueryError {
-    return typeof error === 'object' && error != null && 'status' in error
+    return typeof error === 'object' && error != null && 'status' in error;
 }
 
 export function isErrorWithMessage(
@@ -22,5 +25,5 @@ export function isErrorWithMessage(
         error != null &&
         'message' in error &&
         typeof (error as any).message === 'string'
-    )
+    );
 }

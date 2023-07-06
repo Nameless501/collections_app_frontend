@@ -10,15 +10,34 @@ import { appRoutes } from './configs/routes.config';
 
 const App: FC = () => {
     return (
-        <Box bgcolor={"background.default"} color={"text.primary"} display="flex" flexDirection="column">
+        <Box
+            bgcolor={'background.default'}
+            color={'text.primary'}
+            display="flex"
+            flexDirection="column"
+        >
             <Header />
-            <Container maxWidth="xl" sx={{bgcolor: ({ palette }) => palette.grey[200]}}>
-                <Stack direction='row' spacing={1} justifyContent="space-between" sx={{ pt: 10,  minHeight: '100vh' }}>
+            <Container
+                maxWidth="xl"
+                sx={{ bgcolor: ({ palette }) => palette.grey[200] }}
+            >
+                <Stack
+                    direction="row"
+                    spacing={1}
+                    justifyContent="space-between"
+                    sx={{ pt: 10, minHeight: '100vh' }}
+                >
                     <Sidebar />
                     <Routes>
                         <Route path={appRoutes.main} element={<MainPage />} />
-                        <Route path={appRoutes.signIn} element={<SignInPage />} />
-                        <Route path={appRoutes.singUp} element={<SignUnPage />} />
+                        <Route
+                            path={appRoutes.signIn}
+                            element={<SignInPage />}
+                        />
+                        <Route
+                            path={appRoutes.singUp}
+                            element={<SignUnPage />}
+                        />
                         <Route
                             path="*"
                             element={<Navigate to={appRoutes.main} replace />}
@@ -27,7 +46,7 @@ const App: FC = () => {
                 </Stack>
             </Container>
         </Box>
-    )
-}
+    );
+};
 
 export default App;

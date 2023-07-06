@@ -1,10 +1,7 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 const MainPage: FC = () => {
-    return (
-        <>
-        </>
-    );
-}
+    return <></>;
+};
 
 export default MainPage;

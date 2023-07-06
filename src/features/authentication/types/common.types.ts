@@ -1,6 +1,6 @@
-import { BaseSyntheticEvent, ReactNode } from "react";
-import { UseFormRegister, FieldError } from "react-hook-form";
-import { SignFormInputs, SignFormTypes } from "../configs/enums.config";
+import { BaseSyntheticEvent, ReactNode } from 'react';
+import { UseFormRegister, FieldError } from 'react-hook-form';
+import { SignFormInputs, SignFormTypes } from '../configs/enums.config';
 
 export type FormInputType = {
     [SignFormInputs.email]: string;
@@ -11,21 +11,21 @@ export type FormInputType = {
 export type SignInputsType<T> = Array<{
     name: T;
     label: string;
-}>
+}>;
 
 export type SignInputsConfigType<T> = {
-    [key in SignFormTypes]: SignInputsType<T>
-}
+    [key in SignFormTypes]: SignInputsType<T>;
+};
 
 export type InputPropsType = {
     label: string;
     error?: FieldError;
     name: SignFormInputs;
-    register: UseFormRegister<FormInputType>
-}
+    register: UseFormRegister<FormInputType>;
+};
 
 export type FormPropsType = {
-    type: SignFormTypes
+    type: SignFormTypes;
 };
 
 export type FormWrapperPropsType = {

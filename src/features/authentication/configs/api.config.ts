@@ -1,6 +1,9 @@
-import { ApiMethods, ApiRoutes } from "../../../configs/api.config";
-import { SignInCredentialsType, SignUpCredentialsType } from "../types/common.types";
-import { SignFormTypes } from "./enums.config";
+import { ApiMethods, ApiRoutes } from '../../../configs/api.config';
+import {
+    SignInCredentialsType,
+    SignUpCredentialsType,
+} from '../types/common.types';
+import { SignFormTypes } from './enums.config';
 
 const signMethodsConfig = {
     [SignFormTypes.signIn]: ApiMethods.post,
@@ -12,7 +15,10 @@ const signPathConfig = {
     [SignFormTypes.signUp]: ApiRoutes.signUp,
 };
 
-export const getSignQueryOptions = (type: SignFormTypes, credentials?: SignInCredentialsType | SignUpCredentialsType) => ({
+export const getSignQueryOptions = (
+    type: SignFormTypes,
+    credentials?: SignInCredentialsType | SignUpCredentialsType
+) => ({
     url: signPathConfig[type],
     method: signMethodsConfig[type],
     body: { ...credentials },

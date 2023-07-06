@@ -1,5 +1,5 @@
-import { SignInputsType, SignInputsConfigType } from "../types/common.types";
-import { SignFormInputs, SignFormTypes } from "./enums.config";
+import { SignInputsType, SignInputsConfigType } from '../types/common.types';
+import { SignFormInputs, SignFormTypes } from './enums.config';
 
 const signInInputs: SignInputsType<SignFormInputs> = [
     {
@@ -23,4 +23,4 @@ const signUpInputs: SignInputsType<SignFormInputs> = [
 export const signInputsConfig: SignInputsConfigType<SignFormInputs> = {
     [SignFormTypes.signIn]: signInInputs,
     [SignFormTypes.signUp]: signUpInputs,
-}
+};

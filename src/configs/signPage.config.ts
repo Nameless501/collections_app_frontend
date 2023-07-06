@@ -1,5 +1,5 @@
-import { SignFormTypes } from "../features/authentication";
-import { appRoutes } from "./routes.config";
+import { SignFormTypes } from '../features/authentication';
+import { appRoutes } from './routes.config';
 
 export const signPageConfig = {
     [SignFormTypes.signIn]: {
@@ -8,7 +8,7 @@ export const signPageConfig = {
             text: "Don't have an account?",
             name: 'Register',
             route: appRoutes.singUp,
-        }
+        },
     },
     [SignFormTypes.signUp]: {
         title: 'Register',
@@ -16,6 +16,6 @@ export const signPageConfig = {
             text: 'Already have an account?',
             name: 'Log in',
             route: appRoutes.signIn,
-        }
-    }
+        },
+    },
 };
