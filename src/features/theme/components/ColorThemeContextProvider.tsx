@@ -5,14 +5,18 @@ import { ChildrenPropsType } from '../../../types/common.types';
 import { ColorThemes } from '../configs/theme.config';
 import { getCurrentTheme } from '../configs/theme.config';
 
-export const ColorThemeContextProvider: FC<ChildrenPropsType> = ({ children }) => {
+export const ColorThemeContextProvider: FC<ChildrenPropsType> = ({
+    children,
+}) => {
     const [colorTheme, setColorTheme] = useState(() => {
         const cache = localStorage.getItem('mode');
-        return cache ? cache as ColorThemes : ColorThemes.light;
+        return cache ? (cache as ColorThemes) : ColorThemes.light;
     });
 
     const toggleColorMode = (): void => {
-        setColorTheme((cur) => cur === ColorThemes.light ? ColorThemes.dark : ColorThemes.light)
+        setColorTheme((cur) =>
+            cur === ColorThemes.light ? ColorThemes.dark : ColorThemes.light
+        );
     };
 
     useEffect(() => {
@@ -20,12 +24,10 @@ export const ColorThemeContextProvider: FC<ChildrenPropsType> = ({ children }) =
     }, [colorTheme]);
 
     return (
-        <ColorThemeContext.Provider
-            value={{ toggleColorMode, colorTheme }}
-        >
+        <ColorThemeContext.Provider value={{ toggleColorMode, colorTheme }}>
             <ThemeProvider theme={getCurrentTheme(colorTheme)}>
                 {children}
             </ThemeProvider>
         </ColorThemeContext.Provider>
     );
-}
+};

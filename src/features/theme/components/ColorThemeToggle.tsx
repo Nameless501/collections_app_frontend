@@ -9,9 +9,26 @@ export const ColorThemeToggle: FC = () => {
     const { toggleColorMode, colorTheme } = useColorThemeContext();
 
     return (
-        <Box component='label' sx={{ my: 1, px: 2, display: 'flex', gap: 2, alignItems: 'center', '&:hover': { cursor: 'pointer', bgcolor: ({ palette }) => palette.action.hover }}}>
-            {colorTheme === ColorThemes.light && <LightModeIcon color="action" />}
-            {colorTheme === ColorThemes.dark && <ModeNightIcon color="action" />}
+        <Box
+            component="label"
+            sx={{
+                my: 1,
+                px: 2,
+                display: 'flex',
+                gap: 2,
+                alignItems: 'center',
+                '&:hover': {
+                    cursor: 'pointer',
+                    bgcolor: ({ palette }) => palette.action.hover,
+                },
+            }}
+        >
+            {colorTheme === ColorThemes.light && (
+                <LightModeIcon color="action" />
+            )}
+            {colorTheme === ColorThemes.dark && (
+                <ModeNightIcon color="action" />
+            )}
             <Switch
                 checked={colorTheme === ColorThemes.light}
                 onChange={toggleColorMode}

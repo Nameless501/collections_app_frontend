@@ -4,5 +4,5 @@ import { ColorContextValueType } from '../types/theme.types';
 
 export const useColorThemeContext = (): ColorContextValueType => {
     const contextValue = useContext(ColorThemeContext);
-    return { ...contextValue as ColorContextValueType };
-}
+    return { ...(contextValue as ColorContextValueType) };
+};

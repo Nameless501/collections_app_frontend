@@ -1,13 +1,13 @@
 import { FC } from 'react';
-import SignPageWrapper from '../components/SignPageWrapper';
+import SignFormWrapper from '../components/SignFormWrapper';
 import SignForm from '../features/authentication';
 import { SignFormTypes } from '../features/authentication';
 
 const SignUpPage: FC = () => {
     return (
-        <SignPageWrapper type={SignFormTypes.signUp}>
+        <SignFormWrapper type={SignFormTypes.signUp}>
             <SignForm type={SignFormTypes.signUp} />
-        </SignPageWrapper>
+        </SignFormWrapper>
     );
 };
 

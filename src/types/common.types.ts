@@ -21,3 +21,7 @@ export type NavigationPropsType = {
 export type SignPageWrapperPropsType = {
     type: SignFormTypes;
 } & ChildrenPropsType;
+
+export type SideBarWrapperPropsType = {
+    anchor: 'left' | 'right';
+} & ChildrenPropsType;

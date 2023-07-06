@@ -1,4 +1,4 @@
-import { ColorThemes } from "../configs/theme.config";
+import { ColorThemes } from '../configs/theme.config';
 
 declare module '@mui/material/styles' {
     interface Theme {
@@ -9,12 +9,12 @@ declare module '@mui/material/styles' {
 
     interface ThemeOptions {
         custom: {
-                background: string;
-        }
+            background: string;
+        };
     }
 }
 
 export type ColorContextValueType = {
     toggleColorMode: () => void;
     colorTheme: ColorThemes;
-}
+};

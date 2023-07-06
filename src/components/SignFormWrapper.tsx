@@ -4,7 +4,7 @@ import { Box, Stack, Typography, Link } from '@mui/material';
 import { SignPageWrapperPropsType } from '../types/common.types';
 import { signPageConfig } from '../configs/signPage.config';
 
-const SignPageWrapper: FC<SignPageWrapperPropsType> = ({ children, type }) => {
+const SignFormWrapper: FC<SignPageWrapperPropsType> = ({ children, type }) => {
     return (
         <Box
             sx={{
@@ -17,7 +17,13 @@ const SignPageWrapper: FC<SignPageWrapperPropsType> = ({ children, type }) => {
             <Stack
                 spacing={4}
                 bgcolor={({ palette }) => palette.background.default}
-                sx={{ px: 5, py: 4, alignItems: 'center', minWidth: '500px', borderRadius: 2 }}
+                sx={{
+                    px: 5,
+                    py: 4,
+                    alignItems: 'center',
+                    minWidth: '500px',
+                    borderRadius: 2,
+                }}
             >
                 <Typography variant="h4">
                     {signPageConfig[type].title}
@@ -40,4 +46,4 @@ const SignPageWrapper: FC<SignPageWrapperPropsType> = ({ children, type }) => {
     );
 };
 
-export default SignPageWrapper;
+export default SignFormWrapper;
