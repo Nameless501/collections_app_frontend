@@ -1,59 +1,18 @@
 import { FC } from 'react';
-import {
-    AppBar,
-    Container,
-    Box,
-    Toolbar,
-    Typography,
-    InputBase,
-    Avatar,
-} from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-import { styled, alpha } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { AppBar, Container, Box, Toolbar, IconButton } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import Logo from './Logo';
+import ProfileInfo from './ProfileInfo';
+import SearchBar from './SearchBar';
+import { HeaderPropsType } from '../types/props.types';
 
-const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(1),
-        width: 'auto',
-    },
-}));
+const Header: FC<HeaderPropsType> = ({ toggleSideBar }) => {
+    const theme = useTheme();
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-}));
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-    '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            width: '12ch',
-            '&:focus': {
-                width: '20ch',
-            },
-        },
-    },
-}));
-
-const Header: FC = () => {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar
@@ -65,32 +24,30 @@ const Header: FC = () => {
                         sx={{
                             display: 'flex',
                             justifyContent: 'space-between',
+                            gap: { xs: 2, sm: 3, md: 6 },
                         }}
                     >
-                        <Typography
-                            variant="h5"
-                            sx={{ display: { xs: 'none', sm: 'block' } }}
-                        >
-                            Project
-                        </Typography>
-                        <Search>
-                            <SearchIconWrapper>
-                                <SearchIcon />
-                            </SearchIconWrapper>
-                            <StyledInputBase
-                                placeholder="Search…"
-                                inputProps={{ 'aria-label': 'search' }}
-                            />
-                        </Search>
+                        <Logo />
                         <Box
                             sx={{
+                                width: '100%',
                                 display: 'flex',
-                                gap: 2,
-                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                                gap: 1,
                             }}
                         >
-                            <Typography variant="h6">Username</Typography>
-                            <Avatar />
+                            <SearchBar />
+                            {isMobile ? (
+                                <IconButton
+                                    color="inherit"
+                                    edge="end"
+                                    onClick={toggleSideBar}
+                                >
+                                    <MenuIcon />
+                                </IconButton>
+                            ) : (
+                                <ProfileInfo />
+                            )}
                         </Box>
                     </Toolbar>
                 </Container>

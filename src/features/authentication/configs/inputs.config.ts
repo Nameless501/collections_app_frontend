@@ -9,6 +9,7 @@ const signInInputs: SignInputsType<SignFormInputs> = [
     {
         name: SignFormInputs.password,
         label: 'Password',
+        type: 'password',
     },
 ];
 

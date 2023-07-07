@@ -1,23 +1,30 @@
 import { FC } from 'react';
 import { Divider } from '@mui/material';
-import SideBarWrapper from './SideBarWrapper';
+import { useTypedSelector } from '../store/store';
 import Navigation from './Navigation';
 import { ColorThemeToggle } from '../features/theme';
 import {
     signNavigationConfig,
     mainNavigationConfig,
+    userNavigationConfig,
 } from '../configs/navigation.config';
 
-const SideBarLeft: FC = () => {
+const SideBarMenu: FC = () => {
+    const { isAuthorized } = useTypedSelector((state) => state.user);
+
     return (
-        <SideBarWrapper anchor="left">
+        <>
             <ColorThemeToggle />
             <Divider />
             <Navigation linksList={mainNavigationConfig} />
             <Divider />
-            <Navigation linksList={signNavigationConfig} />
-        </SideBarWrapper>
+            <Navigation
+                linksList={
+                    isAuthorized ? userNavigationConfig : signNavigationConfig
+                }
+            />
+        </>
     );
 };
 
-export default SideBarLeft;
+export default SideBarMenu;

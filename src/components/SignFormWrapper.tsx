@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Box, Stack, Typography, Link } from '@mui/material';
-import { SignPageWrapperPropsType } from '../types/common.types';
+import { SignPageWrapperPropsType } from '../types/props.types';
 import { signPageConfig } from '../configs/signPage.config';
 
 const SignFormWrapper: FC<SignPageWrapperPropsType> = ({ children, type }) => {

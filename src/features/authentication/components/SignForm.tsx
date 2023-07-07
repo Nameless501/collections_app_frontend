@@ -1,7 +1,10 @@
 import { FC, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useTypedDispatch } from '../../../store/store';
+import { setUserData } from '../../../store/user/userSlice';
 import { FormInputType, FormPropsType } from '../types/common.types';
+import { SignFormTypes } from '../configs/enums.config';
 import FormInput from './FormInput';
 import SignFormWrapper from './SignFormWrapper';
 import { signInputsConfig } from '../configs/inputs.config';
@@ -15,6 +18,8 @@ const SignForm: FC<FormPropsType> = ({ type }) => {
 
     const location = useLocation();
 
+    const dispatch = useTypedDispatch();
+
     const [apiError, seApiError] = useState('');
 
     const {
@@ -27,17 +32,32 @@ const SignForm: FC<FormPropsType> = ({ type }) => {
 
     const [authenticate, { isLoading }] = useAuthenticationMutation();
 
+    const setCurrentUser = (user: unknown): void => {
+        if (type === SignFormTypes.signIn) {
+            dispatch(setUserData(user));
+        }
+    };
+
+    const handleRedirect = (user: unknown): void => {
+        const options = { state: {} };
+        if (typeof user === 'object' && user != null && 'email' in user) {
+            options.state = { email: user.email };
+        }
+        navigate(SignRedirectionConfig[type], options);
+    };
+
     const handleAuthentication = async (data: FormInputType): Promise<void> => {
         seApiError('');
-        const user = await authenticate({ type, data }).unwrap();
-        navigate(SignRedirectionConfig[type], { state: { email: user.email } });
+        return await authenticate({ type, data }).unwrap();
     };
 
     const onSubmit: SubmitHandler<FormInputType> = async (
         data
     ): Promise<void> => {
         try {
-            await handleAuthentication(data);
+            const user = await handleAuthentication(data);
+            setCurrentUser(user);
+            handleRedirect(user);
         } catch (err) {
             handleFetchBaseQueryError(err, (msg) => seApiError(msg));
         }

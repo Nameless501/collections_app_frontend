@@ -1,16 +1,24 @@
 import { FC } from 'react';
 import { Drawer, Box, Toolbar } from '@mui/material';
-import { SideBarWrapperPropsType } from '../types/common.types';
+import { SideBarWrapperPropsType } from '../types/props.types';
 
-const SideBarWrapper: FC<SideBarWrapperPropsType> = ({ anchor, children }) => {
+const SideBarWrapper: FC<SideBarWrapperPropsType> = ({
+    anchor,
+    open,
+    permanent,
+    handleClose,
+    children,
+}) => {
     return (
         <Drawer
-            variant="permanent"
+            variant={permanent ? 'permanent' : 'temporary'}
             anchor={anchor}
+            open={open}
+            onClose={handleClose}
             sx={{
-                width: 185,
+                width: 200,
                 flexShrink: 0,
-                [`& .MuiDrawer-paper`]: { width: 185, boxSizing: 'border-box' },
+                [`& .MuiDrawer-paper`]: { width: 200, boxSizing: 'border-box' },
             }}
         >
             <Toolbar />

@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import ColorThemeContext from '../context/ColorThemeContext';
-import { ChildrenPropsType } from '../../../types/common.types';
+import { ChildrenPropsType } from '../../../types/props.types';
 import { ColorThemes } from '../configs/theme.config';
 import { getCurrentTheme } from '../configs/theme.config';
 

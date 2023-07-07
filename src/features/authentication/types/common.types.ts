@@ -11,6 +11,7 @@ export type FormInputType = {
 export type SignInputsType<T> = Array<{
     name: T;
     label: string;
+    type?: string;
 }>;
 
 export type SignInputsConfigType<T> = {
@@ -22,6 +23,7 @@ export type InputPropsType = {
     error?: FieldError;
     name: SignFormInputs;
     register: UseFormRegister<FormInputType>;
+    type?: string;
 };
 
 export type FormPropsType = {

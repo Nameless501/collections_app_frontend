@@ -7,7 +7,7 @@ import {
     ListItemIcon,
     ListItemText,
 } from '@mui/material';
-import { NavigationPropsType } from '../types/common.types';
+import { NavigationPropsType } from '../types/props.types';
 
 const Navigation: FC<NavigationPropsType> = ({ linksList }) => {
     return (
