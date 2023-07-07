@@ -1,6 +1,8 @@
 import { FC, useState, useRef } from 'react';
-import { Box, Typography, Avatar } from '@mui/material';
+import { Box, Typography, Avatar, ListItem } from '@mui/material';
 import ProfileMenu from './ProfileMenu';
+import LinksList from './LinksList';
+import SignOutButton from './SignOutButton';
 import { useTypedSelector } from '../store/store';
 import {
     signNavigationConfig,
@@ -37,10 +39,24 @@ const ProfileInfo: FC = () => {
                 isOpen={menuIsOpen}
                 handleClose={() => setMenuState(false)}
                 anchorEl={anchorRef.current}
-                linksList={
-                    isAuthorized ? userNavigationConfig : signNavigationConfig
+            >
+                <LinksList
+                    linksList={
+                        isAuthorized ? userNavigationConfig : signNavigationConfig
+                    }
+                    fontSize={14}
+                    iconWidth='25px'
+                />
+                {
+                    isAuthorized &&
+                    <ListItem disablePadding>
+                        <SignOutButton
+                            fontSize={14}
+                            iconWidth='25px'
+                        />
+                    </ListItem>
                 }
-            />
+            </ProfileMenu>
         </>
     );
 };

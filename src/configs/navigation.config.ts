@@ -4,6 +4,7 @@ import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import CollectionsIcon from '@mui/icons-material/Collections';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { NavigationListType } from '../types/common.types';
 
 export const mainNavigationConfig: NavigationListType = [
@@ -39,3 +40,10 @@ export const userNavigationConfig: NavigationListType = [
         icon: CollectionsIcon,
     },
 ];
+
+export const signOutButtonConfig = {
+    title: 'Sign out',
+    icon: LogoutIcon,
+};
+
+

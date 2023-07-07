@@ -6,15 +6,21 @@ export type ChildrenPropsType = {
     children: ReactNode;
 };
 
-export type NavigationPropsType = {
-    linksList: NavigationListType;
-};
-
 export type ProfileMenuPropsType = {
-    linksList: NavigationListType;
     isOpen: boolean;
     anchorEl: HTMLDivElement | null;
     handleClose: () => void;
+} & ChildrenPropsType;
+
+export type LinksListPropsType = {
+    linksList: NavigationListType;
+    fontSize?: number;
+    iconWidth?: string;
+};
+
+export type SignOutButtonPropsType = {
+    fontSize?: number;
+    iconWidth?: string;
 };
 
 export type SignPageWrapperPropsType = {

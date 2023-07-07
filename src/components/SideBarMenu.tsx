@@ -1,7 +1,8 @@
 import { FC } from 'react';
-import { Divider } from '@mui/material';
+import { List, Divider, ListItem } from '@mui/material';
 import { useTypedSelector } from '../store/store';
-import Navigation from './Navigation';
+import LinksList from './LinksList';
+import SignOutButton from './SignOutButton';
 import { ColorThemeToggle } from '../features/theme';
 import {
     signNavigationConfig,
@@ -16,13 +17,25 @@ const SideBarMenu: FC = () => {
         <>
             <ColorThemeToggle />
             <Divider />
-            <Navigation linksList={mainNavigationConfig} />
+            <List component="nav">
+                <LinksList
+                    linksList={mainNavigationConfig}
+                />
+            </List>
             <Divider />
-            <Navigation
-                linksList={
-                    isAuthorized ? userNavigationConfig : signNavigationConfig
+            <List component="nav">
+                <LinksList
+                    linksList={
+                        isAuthorized ? userNavigationConfig : signNavigationConfig
+                    }
+                />
+                {
+                    isAuthorized &&
+                    <ListItem disablePadding>
+                        <SignOutButton />
+                    </ListItem>
                 }
-            />
+            </List>
         </>
     );
 };
