@@ -1,5 +1,8 @@
 import { apiSlice } from '../../api';
-import { authorizationQueryOptions, singOutQueryOptions } from '../configs/api.config';
+import {
+    authorizationQueryOptions,
+    singOutQueryOptions,
+} from '../configs/api.config';
 
 export const authorizationSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
@@ -12,4 +15,5 @@ export const authorizationSlice = apiSlice.injectEndpoints({
     }),
 });
 
-export const { useAuthorizationMutation, useSignOutMutation } = authorizationSlice;
+export const { useAuthorizationMutation, useSignOutMutation } =
+    authorizationSlice;

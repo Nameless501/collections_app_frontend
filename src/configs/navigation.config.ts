@@ -45,5 +45,3 @@ export const signOutButtonConfig = {
     title: 'Sign out',
     icon: LogoutIcon,
 };
-
-

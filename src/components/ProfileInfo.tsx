@@ -42,20 +42,18 @@ const ProfileInfo: FC = () => {
             >
                 <LinksList
                     linksList={
-                        isAuthorized ? userNavigationConfig : signNavigationConfig
+                        isAuthorized
+                            ? userNavigationConfig
+                            : signNavigationConfig
                     }
                     fontSize={14}
-                    iconWidth='25px'
+                    iconWidth="25px"
                 />
-                {
-                    isAuthorized &&
+                {isAuthorized && (
                     <ListItem disablePadding>
-                        <SignOutButton
-                            fontSize={14}
-                            iconWidth='25px'
-                        />
+                        <SignOutButton fontSize={14} iconWidth="25px" />
                     </ListItem>
-                }
+                )}
             </ProfileMenu>
         </>
     );

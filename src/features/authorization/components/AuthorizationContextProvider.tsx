@@ -1,7 +1,10 @@
 import { FC, useEffect } from 'react';
 import AuthorizationContext from '../context/AuthorizationContext';
 import { useTypedDispatch } from '../../../store/store';
-import { useAuthorizationMutation, useSignOutMutation } from '../store/authorization.slice';
+import {
+    useAuthorizationMutation,
+    useSignOutMutation,
+} from '../store/authorization.slice';
 import { setUserData, clearUserData } from '../../../store/user/userSlice';
 import { ChildrenPropsType } from '../../../types/props.types';
 
@@ -21,11 +24,12 @@ export const AuthorizationContextProvider: FC<ChildrenPropsType> = ({
         } catch (err) {
             console.log(err);
         }
-    }
+    };
 
     useEffect(() => {
-        authorize({}).unwrap()
-            .then(user => dispatch(setUserData(user)))
+        authorize({})
+            .unwrap()
+            .then((user) => dispatch(setUserData(user)))
             .catch((err) => console.log(err));
     }, [authorize, dispatch]);
 

@@ -8,5 +8,5 @@ export const authorizationQueryOptions = {
 export const singOutQueryOptions = {
     url: ApiRoutes.signOut,
     method: ApiMethods.post,
-    body: {}
+    body: {},
 };

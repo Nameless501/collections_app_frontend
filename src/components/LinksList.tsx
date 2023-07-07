@@ -1,6 +1,11 @@
 import { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { ListItemIcon, ListItemText, ListItem, ListItemButton } from '@mui/material';
+import {
+    ListItemIcon,
+    ListItemText,
+    ListItem,
+    ListItemButton,
+} from '@mui/material';
 import { LinksListPropsType } from '../types/props.types';
 
 const LinksList: FC<LinksListPropsType> = ({
@@ -16,7 +21,10 @@ const LinksList: FC<LinksListPropsType> = ({
                         <ListItemIcon sx={{ minWidth: iconWidth }}>
                             <Icon sx={{ fontSize }} />
                         </ListItemIcon>
-                        <ListItemText primary={title} primaryTypographyProps={{ fontSize }} />
+                        <ListItemText
+                            primary={title}
+                            primaryTypographyProps={{ fontSize }}
+                        />
                     </ListItemButton>
                 </ListItem>
             ))}

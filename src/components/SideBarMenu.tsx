@@ -18,23 +18,22 @@ const SideBarMenu: FC = () => {
             <ColorThemeToggle />
             <Divider />
             <List component="nav">
-                <LinksList
-                    linksList={mainNavigationConfig}
-                />
+                <LinksList linksList={mainNavigationConfig} />
             </List>
             <Divider />
             <List component="nav">
                 <LinksList
                     linksList={
-                        isAuthorized ? userNavigationConfig : signNavigationConfig
+                        isAuthorized
+                            ? userNavigationConfig
+                            : signNavigationConfig
                     }
                 />
-                {
-                    isAuthorized &&
+                {isAuthorized && (
                     <ListItem disablePadding>
                         <SignOutButton />
                     </ListItem>
-                }
+                )}
             </List>
         </>
     );

@@ -15,8 +15,14 @@ const App: FC = () => {
                 <PageWrapper>
                     <Routes>
                         <Route path={appRoutes.main} element={<MainPage />} />
-                        <Route path={appRoutes.signIn} element={<SignInPage />} />
-                        <Route path={appRoutes.singUp} element={<SignUnPage />} />
+                        <Route
+                            path={appRoutes.signIn}
+                            element={<SignInPage />}
+                        />
+                        <Route
+                            path={appRoutes.singUp}
+                            element={<SignUnPage />}
+                        />
                         <Route
                             path="*"
                             element={<Navigate to={appRoutes.main} replace />}
