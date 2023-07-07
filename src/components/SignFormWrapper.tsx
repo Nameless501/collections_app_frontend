@@ -21,7 +21,8 @@ const SignFormWrapper: FC<SignPageWrapperPropsType> = ({ children, type }) => {
                     px: 5,
                     py: 4,
                     alignItems: 'center',
-                    minWidth: '500px',
+                    width: '90%',
+                    maxWidth: '500px',
                     borderRadius: 2,
                 }}
             >
