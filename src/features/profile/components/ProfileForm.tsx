@@ -7,7 +7,7 @@ import ProfileFormWrapper from './ProfileFormWrapper';
 import UserAvatar from '../../../components/UserAvatar';
 import ProfileFormInputs from './ProfileFormInputs';
 import { InputsType } from '../types/common.types';
-import { getHookFormConfig } from '../configs/hookForm.cong';
+import { getHookFormConfig } from '../configs/hookForm.config';
 import { handleFetchBaseQueryError } from '../../../utils/helpers.util';
 import { updateUserData } from '../../../store/user/userSlice';
 

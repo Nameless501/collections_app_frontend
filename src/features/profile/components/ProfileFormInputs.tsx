@@ -17,6 +17,8 @@ const ProfileFormInputs: FC<ProfileFormInputsPropsType> = ({
                     type={type}
                     variant="standard"
                     fullWidth
+                    error={errors[name] ? true : false}
+                    helperText={errors[name]?.message}
                 />
             ))}
         </>

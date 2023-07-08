@@ -6,7 +6,7 @@ import { InputsType } from '../types/common.types';
 export const getHookFormConfig = (
     defaultValues: DefaultValues<InputsType>
 ): UseFormProps<InputsType> => ({
-    resolver: yupResolver(profileValidationConfig),
+    resolver: yupResolver<InputsType>(profileValidationConfig),
     mode: 'all',
     defaultValues,
 });
