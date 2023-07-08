@@ -20,7 +20,7 @@ const SignForm: FC<FormPropsType> = ({ type }) => {
 
     const dispatch = useTypedDispatch();
 
-    const [apiError, seApiError] = useState('');
+    const [apiError, setApiError] = useState('');
 
     const {
         register,
@@ -47,7 +47,7 @@ const SignForm: FC<FormPropsType> = ({ type }) => {
     };
 
     const handleAuthentication = async (data: FormInputType): Promise<void> => {
-        seApiError('');
+        setApiError('');
         return await authenticate({ type, data }).unwrap();
     };
 
@@ -59,7 +59,7 @@ const SignForm: FC<FormPropsType> = ({ type }) => {
             setCurrentUser(user);
             handleRedirect(user);
         } catch (err) {
-            handleFetchBaseQueryError(err, (msg) => seApiError(msg));
+            handleFetchBaseQueryError(err, (msg) => setApiError(msg));
         }
     };
 

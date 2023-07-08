@@ -11,4 +11,5 @@ export enum ApiRoutes {
     signUp = '/authentication/sign-up',
     signOut = '/authentication/sign-out',
     currentUser = '/users/me',
+    updateUser = '/users/',
 }

@@ -18,6 +18,13 @@ export type LinksListPropsType = {
     iconWidth?: string;
 };
 
+export type UserAvatarPropsType = {
+    isAdmin?: boolean;
+    size?: number;
+    fontSize?: number;
+    name?: string;
+};
+
 export type SignOutButtonPropsType = {
     fontSize?: number;
     iconWidth?: string;

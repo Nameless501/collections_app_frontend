@@ -5,7 +5,11 @@ import {
     useAuthorizationMutation,
     useSignOutMutation,
 } from '../store/authorization.slice';
-import { setUserData, clearUserData } from '../../../store/user/userSlice';
+import {
+    setUserData,
+    clearUserData,
+    setIsLoading,
+} from '../../../store/user/userSlice';
 import { ChildrenPropsType } from '../../../types/props.types';
 
 export const AuthorizationContextProvider: FC<ChildrenPropsType> = ({
@@ -13,7 +17,7 @@ export const AuthorizationContextProvider: FC<ChildrenPropsType> = ({
 }) => {
     const dispatch = useTypedDispatch();
 
-    const [authorize] = useAuthorizationMutation();
+    const [authorize, { isLoading, requestId }] = useAuthorizationMutation();
 
     const [signOut] = useSignOutMutation();
 
@@ -32,6 +36,12 @@ export const AuthorizationContextProvider: FC<ChildrenPropsType> = ({
             .then((user) => dispatch(setUserData(user)))
             .catch((err) => console.log(err));
     }, [authorize, dispatch]);
+
+    useEffect(() => {
+        if (requestId) {
+            dispatch(setIsLoading(isLoading));
+        }
+    }, [isLoading, dispatch, requestId]);
 
     return (
         <AuthorizationContext.Provider value={{ handleSignOut }}>

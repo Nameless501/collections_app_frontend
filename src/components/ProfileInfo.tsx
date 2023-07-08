@@ -1,8 +1,9 @@
 import { FC, useState, useRef } from 'react';
-import { Box, Typography, Avatar, ListItem } from '@mui/material';
+import { Box, Typography, ListItem } from '@mui/material';
 import ProfileMenu from './ProfileMenu';
 import LinksList from './LinksList';
 import SignOutButton from './SignOutButton';
+import UserAvatar from './UserAvatar';
 import { useTypedSelector } from '../store/store';
 import {
     signNavigationConfig,
@@ -33,7 +34,7 @@ const ProfileInfo: FC = () => {
                 {isAuthorized && (
                     <Typography variant="h6">{data.name}</Typography>
                 )}
-                <Avatar />
+                <UserAvatar name={data.name} />
             </Box>
             <ProfileMenu
                 isOpen={menuIsOpen}

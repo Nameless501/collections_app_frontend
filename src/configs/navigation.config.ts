@@ -31,12 +31,12 @@ export const signNavigationConfig: NavigationListType = [
 export const userNavigationConfig: NavigationListType = [
     {
         title: 'Profile',
-        route: appRoutes.signIn,
+        route: appRoutes.currentUser,
         icon: AccountBoxIcon,
     },
     {
         title: 'My collections',
-        route: appRoutes.singUp,
+        route: appRoutes.userCollections,
         icon: CollectionsIcon,
     },
 ];
