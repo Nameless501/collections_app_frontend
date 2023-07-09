@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { userInitialState } from '../../configs/slices.config';
-import { UserStateCredentialsType } from '../../types/slices.types';
+import { IUser } from '../../types/slices.types';
 
 export const userSlice = createSlice({
     name: 'user',
@@ -18,9 +18,7 @@ export const userSlice = createSlice({
         },
         updateUserData: (
             state,
-            {
-                payload: { email, name },
-            }: PayloadAction<UserStateCredentialsType>
+            { payload: { email, name } }: PayloadAction<IUser>
         ) => {
             state.data.email = email;
             state.data.name = name;

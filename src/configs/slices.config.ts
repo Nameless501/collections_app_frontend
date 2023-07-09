@@ -1,6 +1,6 @@
-import { UserStateType } from '../types/slices.types';
+import { IUserState } from '../types/slices.types';
 
-export const userInitialState: UserStateType = {
+export const userInitialState: IUserState = {
     data: {},
     isAuthorized: false,
     isLoading: true,

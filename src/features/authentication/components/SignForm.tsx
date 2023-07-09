@@ -8,10 +8,11 @@ import { SignFormTypes } from '../configs/enums.config';
 import FormInput from './FormInput';
 import SignFormWrapper from './SignFormWrapper';
 import { signInputsConfig } from '../configs/inputs.config';
-import { getHookFormConfig } from '../configs/hookForm.cong';
 import { useAuthenticationMutation } from '../store/authentication.slice';
 import { SignRedirectionConfig } from '../configs/common.config';
 import { handleFetchBaseQueryError } from '../../../utils/helpers.util';
+import { getHookFormConfig } from '../../../configs/hookForm.config';
+import { signValidationSchema } from '../configs/validation.config';
 
 const SignForm: FC<FormPropsType> = ({ type }) => {
     const navigate = useNavigate();
@@ -27,7 +28,9 @@ const SignForm: FC<FormPropsType> = ({ type }) => {
         handleSubmit,
         formState: { errors, isValid },
     } = useForm<FormInputType>(
-        getHookFormConfig(type, { email: location.state?.email })
+        getHookFormConfig<FormInputType>(signValidationSchema[type], {
+            email: location.state?.email,
+        })
     );
 
     const [authenticate, { isLoading }] = useAuthenticationMutation();

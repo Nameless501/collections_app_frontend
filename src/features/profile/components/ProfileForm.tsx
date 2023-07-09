@@ -7,9 +7,10 @@ import ProfileFormWrapper from './ProfileFormWrapper';
 import UserAvatar from '../../../components/UserAvatar';
 import ProfileFormInputs from './ProfileFormInputs';
 import { InputsType } from '../types/common.types';
-import { getHookFormConfig } from '../configs/hookForm.config';
 import { handleFetchBaseQueryError } from '../../../utils/helpers.util';
 import { updateUserData } from '../../../store/user/userSlice';
+import { getHookFormConfig } from '../../../configs/hookForm.config';
+import { profileValidationSchema } from '../configs/validation.config';
 
 export const ProfileForm: FC = () => {
     const [apiError, setApiError] = useState<string>('');
@@ -29,7 +30,9 @@ export const ProfileForm: FC = () => {
         handleSubmit,
         formState: { errors, isValid, defaultValues },
         control,
-    } = useForm<InputsType>(getHookFormConfig({ name, email }));
+    } = useForm<InputsType>(
+        getHookFormConfig<InputsType>(profileValidationSchema, { name, email })
+    );
 
     const watch = useWatch({ control });
 

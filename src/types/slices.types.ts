@@ -1,12 +1,12 @@
-export type UserStateCredentialsType = {
+export interface IUser {
     id?: number;
     email?: string;
     name?: string;
     isAdmin?: boolean;
-};
+}
 
-export type UserStateType = {
+export interface IUserState {
     isAuthorized: boolean;
     isLoading: boolean;
-    data: UserStateCredentialsType;
-};
+    data: IUser;
+}

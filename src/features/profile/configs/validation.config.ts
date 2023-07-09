@@ -1,10 +1,11 @@
-import * as yup from 'yup';
-import { ProfileFormInputs } from './enums.config';
+import { ValidationOptions } from '../../../configs/validation.config';
+import {
+    getResolvedValidationSchema,
+    getValidationOption,
+} from '../../../utils/validation.util';
 
-export const profileValidationConfig = yup
-    .object({
-        [ProfileFormInputs.name]: yup.string(),
-        [ProfileFormInputs.email]: yup.string().email(),
-        [ProfileFormInputs.password]: yup.string(),
-    })
-    .required();
+export const profileValidationSchema = getResolvedValidationSchema({
+    name: getValidationOption(ValidationOptions.string, true),
+    email: getValidationOption(ValidationOptions.email, true),
+    password: getValidationOption(ValidationOptions.string),
+});
