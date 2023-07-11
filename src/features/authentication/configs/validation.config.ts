@@ -7,12 +7,12 @@ import {
 
 export const signValidationSchema = {
     [SignFormTypes.signIn]: getResolvedValidationSchema({
-        email: getValidationOption(ValidationOptions.email),
-        password: getValidationOption(ValidationOptions.string),
+        email: getValidationOption(ValidationOptions.email, true),
+        password: getValidationOption(ValidationOptions.string, true),
     }),
     [SignFormTypes.signUp]: getResolvedValidationSchema({
-        name: getValidationOption(ValidationOptions.string),
-        email: getValidationOption(ValidationOptions.email),
-        password: getValidationOption(ValidationOptions.string),
+        name: getValidationOption(ValidationOptions.string, true),
+        email: getValidationOption(ValidationOptions.email, true),
+        password: getValidationOption(ValidationOptions.string, true),
     }),
 };

@@ -8,10 +8,14 @@ import {
     signNavigationConfig,
     mainNavigationConfig,
     userNavigationConfig,
+    adminNavigationConfig,
 } from '../configs/navigation.config';
 
 const SideBarMenu: FC = () => {
-    const { isAuthorized } = useTypedSelector((state) => state.user);
+    const {
+        data: { isAdmin },
+        isAuthorized,
+    } = useTypedSelector((state) => state.user);
 
     return (
         <>
@@ -20,6 +24,14 @@ const SideBarMenu: FC = () => {
             <List component="nav">
                 <LinksList linksList={mainNavigationConfig} />
             </List>
+            {isAdmin && (
+                <>
+                    <Divider />
+                    <List component="nav">
+                        <LinksList linksList={adminNavigationConfig} />
+                    </List>
+                </>
+            )}
             <Divider />
             <List component="nav">
                 <LinksList

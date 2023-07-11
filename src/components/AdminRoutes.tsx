@@ -4,20 +4,22 @@ import { useTypedSelector } from '../store/store';
 import { AppRoutes } from '../configs/routes.config';
 import Loader from './Loader';
 
-function PrivateRoutes() {
+function AdminRoutes() {
     const [isAllowed, setIsAllowed] = useState<boolean | null>(null);
 
-    const { isAuthorized, isLoading } = useTypedSelector((state) => state.user);
+    const { data, isAuthorized, isLoading } = useTypedSelector(
+        (state) => state.user
+    );
 
     useEffect(() => {
         if (!isLoading) {
-            setIsAllowed(isAuthorized);
+            setIsAllowed(isAuthorized && data.isAdmin);
         }
-    }, [isAuthorized, isLoading]);
+    }, [data, isAuthorized, isLoading]);
 
     if (isAllowed === null) return <Loader />;
 
-    return isAllowed ? <Outlet /> : <Navigate to={AppRoutes.signIn} />;
+    return isAllowed ? <Outlet /> : <Navigate to={AppRoutes.main} />;
 }
 
-export default PrivateRoutes;
+export default AdminRoutes;

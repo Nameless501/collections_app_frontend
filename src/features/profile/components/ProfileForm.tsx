@@ -1,37 +1,39 @@
-import { FC, useState, useEffect, useCallback } from 'react';
+import { FC, useState, useEffect, useCallback, useMemo } from 'react';
 import { useForm, SubmitHandler, useWatch } from 'react-hook-form';
 import { Box, Stack } from '@mui/material';
-import { useTypedSelector, useTypedDispatch } from '../../../store/store';
 import { useUpdateUserMutation } from '../store/profile.slice';
 import ProfileFormWrapper from './ProfileFormWrapper';
 import UserAvatar from '../../../components/UserAvatar';
 import ProfileFormInputs from './ProfileFormInputs';
 import { InputsType } from '../types/common.types';
 import { handleFetchBaseQueryError } from '../../../utils/helpers.util';
-import { updateUserData } from '../../../store/user/userSlice';
 import { getHookFormConfig } from '../../../configs/hookForm.config';
 import { profileValidationSchema } from '../configs/validation.config';
+import { ProfileFormPropsType } from '../types/common.types';
 
-export const ProfileForm: FC = () => {
+export const ProfileForm: FC<ProfileFormPropsType> = ({
+    user,
+    handleStateUpdate,
+}) => {
     const [apiError, setApiError] = useState<string>('');
 
     const [isChanged, setIsChanged] = useState<boolean>(false);
 
-    const dispatch = useTypedDispatch();
-
     const [updateUser, { isLoading }] = useUpdateUserMutation();
 
-    const {
-        data: { name, email, isAdmin, id },
-    } = useTypedSelector((state) => state.user);
+    const defaultValues = useMemo<InputsType>(
+        () => ({ name: user.name, email: user.email }),
+        [user]
+    );
 
     const {
         register,
         handleSubmit,
-        formState: { errors, isValid, defaultValues },
+        formState: { errors, isValid },
         control,
+        setValue,
     } = useForm<InputsType>(
-        getHookFormConfig<InputsType>(profileValidationSchema, { name, email })
+        getHookFormConfig<InputsType>(profileValidationSchema, {})
     );
 
     const watch = useWatch({ control });
@@ -64,8 +66,8 @@ export const ProfileForm: FC = () => {
     const onSubmit: SubmitHandler<InputsType> = async (data): Promise<void> => {
         try {
             const updatedFields = filterDefaultValues(filterEmptyFields(data));
-            await updateUser({ id, data: updatedFields }).unwrap();
-            dispatch(updateUserData(updatedFields));
+            await updateUser({ id: user.id, data: updatedFields }).unwrap();
+            handleStateUpdate({ ...user, ...updatedFields });
         } catch (err) {
             handleFetchBaseQueryError(err, (msg) => setApiError(msg));
         }
@@ -77,6 +79,12 @@ export const ProfileForm: FC = () => {
         setIsChanged(!isDefault);
     }, [watch, filterDefaultValues, filterEmptyFields]);
 
+    useEffect(() => {
+        Object.entries(defaultValues).forEach(([key, value]) =>
+            setValue(key as keyof InputsType, value)
+        );
+    }, [defaultValues, setValue]);
+
     return (
         <ProfileFormWrapper
             handleSubmit={handleSubmit(onSubmit)}
@@ -85,10 +93,10 @@ export const ProfileForm: FC = () => {
         >
             <Box sx={{ mt: -5 }}>
                 <UserAvatar
-                    name={name}
+                    name={user.name}
                     size={120}
                     fontSize={60}
-                    isAdmin={isAdmin}
+                    isAdmin={user.isAdmin}
                 />
             </Box>
             <Stack direction="column" gap={4} sx={{ width: '100%' }}>

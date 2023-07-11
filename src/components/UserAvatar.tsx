@@ -20,7 +20,7 @@ const UserAvatar: FC<UserAvatarPropsType> = ({
             invisible={!isAdmin}
         >
             <Avatar sx={{ width: size, height: size, fontSize }}>
-                {name && name[0].toUpperCase()}
+                {name ? name[0].toUpperCase() : null}
             </Avatar>
         </Badge>
     );

@@ -1,4 +1,5 @@
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
+import { AppRoutes } from '../configs/routes.config';
 
 export const handleFetchBaseQueryError = (
     error: unknown,
@@ -27,3 +28,6 @@ export function isErrorWithMessage(
         typeof (error as any).message === 'string'
     );
 }
+
+export const setRouteParam = (route: AppRoutes, id: number): string =>
+    route.replace(':id', `${id}`);

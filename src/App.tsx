@@ -2,13 +2,16 @@ import { FC } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import PageWrapper from './components/PageWrapper';
 import PrivateRoutes from './components/PrivateRoutes';
+import AdminRoutes from './components/AdminRoutes';
 import MainPage from './pages/Main.page';
 import ProfilePage from './pages/Profile.page';
-import SignInPage from './pages/SignIn.page';
-import SignUnPage from './pages/SignUp.page';
+import AdminPanelPage from './pages/AdminPanel.page';
+import SignPage from './pages/Sign.page';
 import { ColorThemeContextProvider } from './features/theme';
 import { AuthorizationContextProvider } from './features/authorization';
-import { appRoutes } from './configs/routes.config';
+import { AppRoutes } from './configs/routes.config';
+import { SignFormTypes } from './features/authentication';
+import { ProfileFormTypes } from './features/profile';
 
 const App: FC = () => {
     return (
@@ -16,24 +19,42 @@ const App: FC = () => {
             <ColorThemeContextProvider>
                 <PageWrapper>
                     <Routes>
-                        <Route path={appRoutes.main} element={<MainPage />} />
+                        <Route path={AppRoutes.main} element={<MainPage />} />
                         <Route element={<PrivateRoutes />}>
                             <Route
-                                path={appRoutes.currentUser}
-                                element={<ProfilePage />}
+                                path={AppRoutes.currentUser}
+                                element={
+                                    <ProfilePage
+                                        type={ProfileFormTypes.selfProfile}
+                                    />
+                                }
+                            />
+                        </Route>
+                        <Route element={<AdminRoutes />}>
+                            <Route
+                                path={AppRoutes.adminPanel}
+                                element={<AdminPanelPage />}
+                            />
+                            <Route
+                                path={AppRoutes.userData}
+                                element={
+                                    <ProfilePage
+                                        type={ProfileFormTypes.otherUserProfile}
+                                    />
+                                }
                             />
                         </Route>
                         <Route
-                            path={appRoutes.signIn}
-                            element={<SignInPage />}
+                            path={AppRoutes.signIn}
+                            element={<SignPage type={SignFormTypes.signIn} />}
                         />
                         <Route
-                            path={appRoutes.singUp}
-                            element={<SignUnPage />}
+                            path={AppRoutes.singUp}
+                            element={<SignPage type={SignFormTypes.signUp} />}
                         />
                         <Route
                             path="*"
-                            element={<Navigate to={appRoutes.main} replace />}
+                            element={<Navigate to={AppRoutes.main} replace />}
                         />
                     </Routes>
                 </PageWrapper>

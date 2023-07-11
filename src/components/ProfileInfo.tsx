@@ -15,7 +15,10 @@ const ProfileInfo: FC = () => {
 
     const [menuIsOpen, setMenuState] = useState<boolean>(false);
 
-    const { data, isAuthorized } = useTypedSelector((state) => state.user);
+    const {
+        data: { name },
+        isAuthorized,
+    } = useTypedSelector((state) => state.user);
 
     return (
         <>
@@ -31,10 +34,8 @@ const ProfileInfo: FC = () => {
                 }}
                 ref={anchorRef}
             >
-                {isAuthorized && (
-                    <Typography variant="h6">{data.name}</Typography>
-                )}
-                <UserAvatar name={data.name} />
+                {isAuthorized && <Typography variant="h6">{name}</Typography>}
+                <UserAvatar name={name} />
             </Box>
             <ProfileMenu
                 isOpen={menuIsOpen}

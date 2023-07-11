@@ -3,3 +3,8 @@ export enum ProfileFormInputs {
     email = 'email',
     password = 'password',
 }
+
+export enum ProfileFormTypes {
+    selfProfile,
+    otherUserProfile,
+}

@@ -1,11 +1,24 @@
-import { BaseSyntheticEvent, ReactNode } from 'react';
+import { BaseSyntheticEvent } from 'react';
 import { UseFormRegister, FieldError } from 'react-hook-form';
 import { SignFormInputs, SignFormTypes } from '../configs/enums.config';
+import { ChildrenPropsType } from '../../../types/props.types';
+import { AppRoutes } from '../../../configs/routes.config';
 
 export type FormInputType = {
     [SignFormInputs.email]: string;
     [SignFormInputs.password]: string;
     [SignFormInputs.name]?: string;
+};
+
+export type FormLinkConfigType = {
+    route: AppRoutes;
+    text: string;
+    name: string;
+};
+
+export type SignFormConfigType = {
+    title: string;
+    link: FormLinkConfigType;
 };
 
 export type SignInputsType<T> = Array<{
@@ -34,7 +47,11 @@ export type FormWrapperPropsType = {
     isValid: boolean;
     handleSubmit: (e: BaseSyntheticEvent) => void;
     error?: string;
-    children: ReactNode;
+    config: SignFormConfigType;
+} & ChildrenPropsType;
+
+export type FormLinkPropsType = {
+    config: FormLinkConfigType;
 };
 
 export type SignInCredentialsType = {

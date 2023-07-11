@@ -1,7 +1,18 @@
-import { IUserState } from '../types/slices.types';
+import { IUserState, IAllUsersState, IUser } from '../types/slices.types';
+
+export const initialUserData: IUser = {
+    name: '',
+    email: '',
+    isAdmin: false,
+    id: 0,
+};
 
 export const userInitialState: IUserState = {
-    data: {},
     isAuthorized: false,
     isLoading: true,
+    data: initialUserData,
+};
+
+export const allUsersInitialState: IAllUsersState = {
+    users: [],
 };

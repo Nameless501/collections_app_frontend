@@ -5,11 +5,6 @@ import {
 } from '../types/common.types';
 import { SignFormTypes } from './enums.config';
 
-const signMethodsConfig = {
-    [SignFormTypes.signIn]: ApiMethods.post,
-    [SignFormTypes.signUp]: ApiMethods.post,
-};
-
 const signPathConfig = {
     [SignFormTypes.signIn]: ApiRoutes.signIn,
     [SignFormTypes.signUp]: ApiRoutes.signUp,
@@ -20,6 +15,6 @@ export const getSignQueryOptions = (
     credentials?: SignInCredentialsType | SignUpCredentialsType
 ) => ({
     url: signPathConfig[type],
-    method: signMethodsConfig[type],
+    method: ApiMethods.post,
     body: { ...credentials },
 });

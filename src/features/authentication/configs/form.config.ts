@@ -1,13 +1,16 @@
-import { SignFormTypes } from '../features/authentication';
-import { appRoutes } from './routes.config';
+import { SignFormTypes } from './enums.config';
+import { AppRoutes } from '../../../configs/routes.config';
+import { SignFormConfigType } from '../types/common.types';
 
-export const signPageConfig = {
+export const signFormConfig: {
+    [key in SignFormTypes]: SignFormConfigType;
+} = {
     [SignFormTypes.signIn]: {
         title: 'Login',
         link: {
             text: "Don't have an account?",
             name: 'Register',
-            route: appRoutes.singUp,
+            route: AppRoutes.singUp,
         },
     },
     [SignFormTypes.signUp]: {
@@ -15,7 +18,7 @@ export const signPageConfig = {
         link: {
             text: 'Already have an account?',
             name: 'Log in',
-            route: appRoutes.signIn,
+            route: AppRoutes.signIn,
         },
     },
 };

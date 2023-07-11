@@ -2,6 +2,7 @@ import { BaseSyntheticEvent } from 'react';
 import { UseFormRegister, FieldErrors } from 'react-hook-form';
 import { ProfileFormInputs } from '../configs/enums.config';
 import { ChildrenPropsType } from '../../../types/props.types';
+import { IUser } from '../../../types/slices.types';
 
 export type ProfileInputsType = Array<{
     name: ProfileFormInputs;
@@ -23,3 +24,8 @@ export type ProfileFormWrapperPropsType = {
     disabled: boolean;
     error?: string;
 } & ChildrenPropsType;
+
+export type ProfileFormPropsType = {
+    user: IUser;
+    handleStateUpdate: (data: IUser) => void;
+};

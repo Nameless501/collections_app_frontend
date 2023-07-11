@@ -1,6 +1,7 @@
-import { ReactNode } from 'react';
+import { ReactNode, ElementType } from 'react';
 import { NavigationListType } from './common.types';
 import { SignFormTypes } from '../features/authentication';
+import { ProfileFormTypes } from '../features/profile';
 
 export type ChildrenPropsType = {
     children: ReactNode;
@@ -30,10 +31,6 @@ export type SignOutButtonPropsType = {
     iconWidth?: string;
 };
 
-export type SignPageWrapperPropsType = {
-    type: SignFormTypes;
-} & ChildrenPropsType;
-
 export type SideBarWrapperPropsType = {
     anchor: 'left' | 'right';
     open: boolean;
@@ -43,4 +40,22 @@ export type SideBarWrapperPropsType = {
 
 export type HeaderPropsType = {
     toggleSideBar: () => void;
+};
+
+export type SignPagePropsType = {
+    type: SignFormTypes;
+};
+
+export type ProfilePagePropsType = {
+    type: ProfileFormTypes;
+};
+
+export type ButtonWithIconProps = {
+    tooltip?: string;
+    icon: ElementType;
+    isLink?: boolean;
+    link?: string;
+    handleClick?: (param: unknown) => unknown;
+    disabled?: boolean;
+    large?: boolean;
 };

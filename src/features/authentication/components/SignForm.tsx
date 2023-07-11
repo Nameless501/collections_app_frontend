@@ -1,10 +1,10 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useTypedDispatch } from '../../../store/store';
 import { setUserData } from '../../../store/user/userSlice';
 import { FormInputType, FormPropsType } from '../types/common.types';
-import { SignFormTypes } from '../configs/enums.config';
+import { SignFormInputs, SignFormTypes } from '../configs/enums.config';
 import FormInput from './FormInput';
 import SignFormWrapper from './SignFormWrapper';
 import { signInputsConfig } from '../configs/inputs.config';
@@ -13,8 +13,10 @@ import { SignRedirectionConfig } from '../configs/common.config';
 import { handleFetchBaseQueryError } from '../../../utils/helpers.util';
 import { getHookFormConfig } from '../../../configs/hookForm.config';
 import { signValidationSchema } from '../configs/validation.config';
+import { signFormConfig } from '../configs/form.config';
+import { AppRoutes } from '../../../configs/routes.config';
 
-const SignForm: FC<FormPropsType> = ({ type }) => {
+export const SignForm: FC<FormPropsType> = ({ type }) => {
     const navigate = useNavigate();
 
     const location = useLocation();
@@ -27,10 +29,11 @@ const SignForm: FC<FormPropsType> = ({ type }) => {
         register,
         handleSubmit,
         formState: { errors, isValid },
+        clearErrors,
+        reset,
+        setValue,
     } = useForm<FormInputType>(
-        getHookFormConfig<FormInputType>(signValidationSchema[type], {
-            email: location.state?.email,
-        })
+        getHookFormConfig<FormInputType>(signValidationSchema[type], {})
     );
 
     const [authenticate, { isLoading }] = useAuthenticationMutation();
@@ -66,11 +69,20 @@ const SignForm: FC<FormPropsType> = ({ type }) => {
         }
     };
 
+    useEffect(() => {
+        clearErrors();
+        reset();
+        if (location.pathname === AppRoutes.signIn) {
+            setValue(SignFormInputs.email, location.state?.email);
+        }
+    }, [clearErrors, reset, location, setValue]);
+
     return (
         <SignFormWrapper
             handleSubmit={handleSubmit(onSubmit)}
             isValid={isValid && !isLoading}
             error={apiError}
+            config={signFormConfig[type]}
         >
             {signInputsConfig[type].map((input, index) => (
                 <FormInput
@@ -83,5 +95,3 @@ const SignForm: FC<FormPropsType> = ({ type }) => {
         </SignFormWrapper>
     );
 };
-
-export default SignForm;

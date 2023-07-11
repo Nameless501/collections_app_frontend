@@ -1,7 +1,7 @@
-import { appRoutes } from '../../../configs/routes.config';
+import { AppRoutes } from '../../../configs/routes.config';
 import { SignFormTypes } from './enums.config';
 
 export const SignRedirectionConfig = {
-    [SignFormTypes.signIn]: appRoutes.main,
-    [SignFormTypes.signUp]: appRoutes.signIn,
+    [SignFormTypes.signIn]: AppRoutes.main,
+    [SignFormTypes.signUp]: AppRoutes.signIn,
 };
