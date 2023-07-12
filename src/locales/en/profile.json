@@ -1,0 +1,10 @@
+{
+    "inputs": {
+        "labels": {
+            "name": "Name",
+            "email": "Email",
+            "password": "New password"
+        }
+    },
+    "button": "Update"
+}

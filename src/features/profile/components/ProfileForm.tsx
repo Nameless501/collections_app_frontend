@@ -6,16 +6,18 @@ import ProfileFormWrapper from './ProfileFormWrapper';
 import UserAvatar from '../../../components/UserAvatar';
 import ProfileFormInputs from './ProfileFormInputs';
 import { InputsType } from '../types/common.types';
-import { handleFetchBaseQueryError } from '../../../utils/helpers.util';
+import useBaseQueryError from '../../../hooks/useBaseQueryError';
 import { getHookFormConfig } from '../../../configs/hookForm.config';
 import { profileValidationSchema } from '../configs/validation.config';
+import { errorsConfig } from '../configs/common.config';
 import { ProfileFormPropsType } from '../types/common.types';
 
 export const ProfileForm: FC<ProfileFormPropsType> = ({
     user,
     handleStateUpdate,
 }) => {
-    const [apiError, setApiError] = useState<string>('');
+    const { apiError, handleBaseQueryError, resetApiError } =
+        useBaseQueryError(errorsConfig);
 
     const [isChanged, setIsChanged] = useState<boolean>(false);
 
@@ -65,11 +67,12 @@ export const ProfileForm: FC<ProfileFormPropsType> = ({
 
     const onSubmit: SubmitHandler<InputsType> = async (data): Promise<void> => {
         try {
+            resetApiError();
             const updatedFields = filterDefaultValues(filterEmptyFields(data));
             await updateUser({ id: user.id, data: updatedFields }).unwrap();
             handleStateUpdate({ ...user, ...updatedFields });
         } catch (err) {
-            handleFetchBaseQueryError(err, (msg) => setApiError(msg));
+            handleBaseQueryError(err);
         }
     };
 

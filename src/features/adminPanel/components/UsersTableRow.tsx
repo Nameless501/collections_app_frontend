@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { TableCell, TableRow, Checkbox } from '@mui/material';
 import { UsersTableRowProps } from '../types/common.types';
 import LaunchIcon from '@mui/icons-material/Launch';
@@ -11,6 +12,8 @@ const UsersTableRow: FC<UsersTableRowProps> = ({
     handleClick,
     isSelected,
 }) => {
+    const { t } = useTranslation();
+
     return (
         <TableRow
             hover
@@ -36,13 +39,17 @@ const UsersTableRow: FC<UsersTableRowProps> = ({
                 }
                 padding="checkbox"
             >
-                {user.isAdmin ? 'Yes' : 'No'}
+                {t(
+                    user.isAdmin
+                        ? 'admin:users.isAdmin.yes'
+                        : 'admin:users.isAdmin.no'
+                )}
             </TableCell>
             <TableCell padding="checkbox">
                 <ButtonWithIcon
                     icon={LaunchIcon}
                     isLink={true}
-                    tooltip="Edit profile"
+                    tooltip={t('admin:tooltips:link')}
                     link={setRouteParam(AppRoutes.userData, user.id)}
                 />
             </TableCell>

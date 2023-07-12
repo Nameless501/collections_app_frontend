@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { TextField } from '@mui/material';
 import { InputPropsType } from '../types/common.types';
 
@@ -9,13 +10,15 @@ const FormInput: FC<InputPropsType> = ({
     type,
     error,
 }) => {
+    const { t } = useTranslation();
+
     return (
         <TextField
             {...register(name)}
             fullWidth
-            label={label}
+            label={t(label)}
             error={error ? true : false}
-            helperText={error?.message}
+            helperText={t(error?.message)}
             type={type}
         />
     );

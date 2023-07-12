@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
 import {
     ListItemIcon,
@@ -13,16 +14,18 @@ const LinksList: FC<LinksListPropsType> = ({
     fontSize,
     iconWidth,
 }) => {
+    const { t } = useTranslation();
+
     return (
         <>
-            {linksList.map(({ title, route, icon: Icon }, index) => (
-                <ListItem key={title + index} disablePadding>
+            {linksList.map(({ text, route, icon: Icon }, index) => (
+                <ListItem key={text + index} disablePadding>
                     <ListItemButton component={RouterLink} to={route}>
                         <ListItemIcon sx={{ minWidth: iconWidth }}>
                             <Icon sx={{ fontSize }} />
                         </ListItemIcon>
                         <ListItemText
-                            primary={title}
+                            primary={t(text)}
                             primaryTypographyProps={{ fontSize }}
                         />
                     </ListItemButton>

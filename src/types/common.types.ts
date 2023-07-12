@@ -3,7 +3,7 @@ import { SvgIconTypeMap } from '@mui/material';
 import { AppRoutes } from '../configs/routes.config';
 
 export type NavigationListType = Array<{
-    title: string;
+    text: string;
     route: AppRoutes;
     icon: OverridableComponent<SvgIconTypeMap>;
 }>;

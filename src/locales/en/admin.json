@@ -1,0 +1,21 @@
+{
+    "users": {
+        "columns": {
+            "id": "ID",
+            "name": "Name",
+            "email": "Email",
+            "admin": "Admin"
+        },
+        "isAdmin": {
+            "yes": "Yes",
+            "no": "No"
+        }
+    },
+    "tooltips": {
+        "delete": "Delete users",
+        "adminRole": "Give admin role",
+        "userRole": "Take admin role",
+        "link": "Edit profile"
+    },
+    "select": "{{count}} selected"
+}

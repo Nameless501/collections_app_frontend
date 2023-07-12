@@ -1,12 +1,15 @@
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
 import { Typography, Link } from '@mui/material';
 import { FormLinkPropsType } from '../types/common.types';
 
 const FormLink: FC<FormLinkPropsType> = ({ config }) => {
+    const { t } = useTranslation();
+
     return (
         <Typography color="text.secondary" variant="body2">
-            {config.text}
+            {t(config.text)}
             &nbsp;
             <Link
                 component={RouterLink}
@@ -14,7 +17,7 @@ const FormLink: FC<FormLinkPropsType> = ({ config }) => {
                 underline="hover"
                 variant="subtitle2"
             >
-                {config.name}
+                {t(config.name)}
             </Link>
         </Typography>
     );

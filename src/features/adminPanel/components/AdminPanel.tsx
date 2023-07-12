@@ -13,11 +13,17 @@ import {
 } from '../../../store/allUsers/allUsersSlice';
 import { updateUserData } from '../../../store/user/userSlice';
 import { useAuthorizationContext } from '../../authorization';
+import useBaseQueryError from '../../../hooks/useBaseQueryError';
 import UsersTableData from './UsersTableData';
 import UsersTableControls from './UsersTableControls';
 import Loader from '../../../components/Loader';
+import ErrorAlert from '../../../components/ErrorAlert';
+import { errorsConfig } from '../configs/api.config';
 
 export const AdminPanel: FC = () => {
+    const { apiError, handleBaseQueryError, resetApiError } =
+        useBaseQueryError(errorsConfig);
+
     const dispatch = useTypedDispatch();
 
     const [selected, setSelected] = useState<number[]>([]);
@@ -71,23 +77,25 @@ export const AdminPanel: FC = () => {
 
     const toggleUsersAdminRole = async (isAdmin: boolean): Promise<void> => {
         try {
+            resetApiError();
             await updateUsersRole({ id: selected, isAdmin }).unwrap();
             dispatch(updateUsersRoleData({ users: selected, isAdmin }));
             updateCurrentUserRole(isAdmin);
             setSelected([]);
         } catch (err) {
-            console.log(err);
+            handleBaseQueryError(err);
         }
     };
 
     const handleUsersDelete = async (): Promise<void> => {
         try {
+            resetApiError();
             await deleteUsers(selected).unwrap();
             dispatch(deleteUsersData(selected));
             checkIsCurrentUserDeleted();
             setSelected([]);
         } catch (err) {
-            console.log(err);
+            handleBaseQueryError(err);
         }
     };
 
@@ -96,7 +104,17 @@ export const AdminPanel: FC = () => {
     }, [getUsersData]);
 
     return (
-        <Box sx={{ px: { lg: 5 }, py: 2, width: '100%' }}>
+        <Box
+            sx={{
+                px: { lg: 5 },
+                py: 2,
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 2,
+            }}
+        >
+            {apiError && <ErrorAlert error={apiError} />}
             {!isLoading && !isError && (
                 <Paper>
                     <UsersTableControls

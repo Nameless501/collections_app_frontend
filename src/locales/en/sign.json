@@ -1,0 +1,22 @@
+{
+    "title": {
+        "login": "Login",
+        "register": "Register"
+    },
+    "inputs": {
+        "name": "Name",
+        "email": "Email",
+        "password": "Password"
+    },
+    "link": {
+        "register": {
+            "text": "Don't have an account?",
+            "link": "Register"
+        },
+        "login": {
+            "text": "Already have an account?",
+            "link": "Login"
+        }
+    },
+    "button": "Send"
+}

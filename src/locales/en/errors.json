@@ -1,0 +1,22 @@
+{
+    "validation": {
+        "string": {
+            "base": "Value must be a string",
+            "max": "Characters limit exceeded",
+            "min": "Value too short",
+            "email": "Not a valid email",
+            "uri": "Not a valid url"
+        },
+        "number": {
+            "base": "Value must be a number"
+        },
+        "required": "Field is required"
+    },
+    "http": {
+        "emailConflict": "This email is already used",
+        "wrongCredentials": "Wrong email or password",
+        "dataAccess": "Access error",
+        "fileSize": "File size exceeds the maximum limit"
+    },
+    "default": "Something went wrong. Try again Later"
+}

@@ -10,7 +10,7 @@ import { NavigationListType } from '../types/common.types';
 
 export const mainNavigationConfig: NavigationListType = [
     {
-        title: 'Main',
+        text: 'navigation:pages.main',
         route: AppRoutes.main,
         icon: HomeIcon,
     },
@@ -18,12 +18,12 @@ export const mainNavigationConfig: NavigationListType = [
 
 export const signNavigationConfig: NavigationListType = [
     {
-        title: 'Login',
+        text: 'navigation:sign.in',
         route: AppRoutes.signIn,
         icon: LoginIcon,
     },
     {
-        title: 'Register',
+        text: 'navigation:sign.up',
         route: AppRoutes.singUp,
         icon: VpnKeyIcon,
     },
@@ -31,25 +31,25 @@ export const signNavigationConfig: NavigationListType = [
 
 export const userNavigationConfig: NavigationListType = [
     {
-        title: 'Profile',
+        text: 'navigation:user.profile',
         route: AppRoutes.currentUser,
         icon: AccountBoxIcon,
     },
     {
-        title: 'My collections',
+        text: 'navigation:user.collections',
         route: AppRoutes.userCollections,
         icon: CollectionsIcon,
     },
 ];
 
 export const signOutButtonConfig = {
-    title: 'Sign out',
+    text: 'navigation:sign.out',
     icon: LogoutIcon,
 };
 
 export const adminNavigationConfig: NavigationListType = [
     {
-        title: 'All users',
+        text: 'navigation:admin.users',
         route: AppRoutes.adminPanel,
         icon: PeopleIcon,
     },

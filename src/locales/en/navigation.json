@@ -1,0 +1,17 @@
+{
+    "sign": {
+        "in": "Login",
+        "up": "Register",
+        "out": "SignOut"
+    },
+    "admin": {
+        "users": "All users"
+    },
+    "user": {
+        "profile": "Profile",
+        "collections": "My collections"
+    },
+    "pages": {
+        "main": "Main"
+    }
+}

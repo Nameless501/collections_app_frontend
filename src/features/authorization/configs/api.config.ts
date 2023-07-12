@@ -10,3 +10,5 @@ export const singOutQueryOptions = {
     method: ApiMethods.post,
     body: {},
 };
+
+export const defaultError = 'Needed authentication';

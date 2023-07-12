@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useTypedDispatch } from '../../../store/store';
@@ -9,8 +9,8 @@ import FormInput from './FormInput';
 import SignFormWrapper from './SignFormWrapper';
 import { signInputsConfig } from '../configs/inputs.config';
 import { useAuthenticationMutation } from '../store/authentication.slice';
-import { SignRedirectionConfig } from '../configs/common.config';
-import { handleFetchBaseQueryError } from '../../../utils/helpers.util';
+import { signRedirectionConfig, errorsConfig } from '../configs/common.config';
+import useBaseQueryError from '../../../hooks/useBaseQueryError';
 import { getHookFormConfig } from '../../../configs/hookForm.config';
 import { signValidationSchema } from '../configs/validation.config';
 import { signFormConfig } from '../configs/form.config';
@@ -23,7 +23,8 @@ export const SignForm: FC<FormPropsType> = ({ type }) => {
 
     const dispatch = useTypedDispatch();
 
-    const [apiError, setApiError] = useState('');
+    const { apiError, handleBaseQueryError, resetApiError } =
+        useBaseQueryError(errorsConfig);
 
     const {
         register,
@@ -49,11 +50,11 @@ export const SignForm: FC<FormPropsType> = ({ type }) => {
         if (typeof user === 'object' && user != null && 'email' in user) {
             options.state = { email: user.email };
         }
-        navigate(SignRedirectionConfig[type], options);
+        navigate(signRedirectionConfig[type], options);
     };
 
     const handleAuthentication = async (data: FormInputType): Promise<void> => {
-        setApiError('');
+        resetApiError();
         return await authenticate({ type, data }).unwrap();
     };
 
@@ -65,7 +66,7 @@ export const SignForm: FC<FormPropsType> = ({ type }) => {
             setCurrentUser(user);
             handleRedirect(user);
         } catch (err) {
-            handleFetchBaseQueryError(err, (msg) => setApiError(msg));
+            handleBaseQueryError(err);
         }
     };
 

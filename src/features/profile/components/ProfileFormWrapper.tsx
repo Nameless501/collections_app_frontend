@@ -1,6 +1,8 @@
 import { FC } from 'react';
-import { Alert, Box, Button } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import { Box, Button } from '@mui/material';
 import { ProfileFormWrapperPropsType } from '../types/common.types';
+import ErrorAlert from '../../../components/ErrorAlert';
 
 const ProfileFormWrapper: FC<ProfileFormWrapperPropsType> = ({
     handleSubmit,
@@ -8,6 +10,8 @@ const ProfileFormWrapper: FC<ProfileFormWrapperPropsType> = ({
     error,
     children,
 }) => {
+    const { t } = useTranslation();
+
     return (
         <Box
             component="form"
@@ -35,9 +39,9 @@ const ProfileFormWrapper: FC<ProfileFormWrapperPropsType> = ({
                 disabled={disabled}
                 type="submit"
             >
-                Update
+                {t('profile:button')}
             </Button>
-            {error && <Alert severity="error">{error}</Alert>}
+            <ErrorAlert error={error} />
         </Box>
     );
 };

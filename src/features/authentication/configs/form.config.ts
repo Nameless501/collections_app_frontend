@@ -6,18 +6,18 @@ export const signFormConfig: {
     [key in SignFormTypes]: SignFormConfigType;
 } = {
     [SignFormTypes.signIn]: {
-        title: 'Login',
+        title: 'sign:title.login',
         link: {
-            text: "Don't have an account?",
-            name: 'Register',
+            text: 'sign:link.register.text',
+            name: 'sign:link.register.link',
             route: AppRoutes.singUp,
         },
     },
     [SignFormTypes.signUp]: {
-        title: 'Register',
+        title: 'sign:title.register',
         link: {
-            text: 'Already have an account?',
-            name: 'Log in',
+            text: 'sign:link.login.text',
+            name: 'sign:link.login.link',
             route: AppRoutes.signIn,
         },
     },

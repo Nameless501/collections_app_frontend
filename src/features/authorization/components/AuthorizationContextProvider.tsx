@@ -11,6 +11,7 @@ import {
     setIsLoading,
 } from '../../../store/user/userSlice';
 import { ChildrenPropsType } from '../../../types/props.types';
+import { defaultError } from '../configs/api.config';
 
 export const AuthorizationContextProvider: FC<ChildrenPropsType> = ({
     children,
@@ -26,7 +27,7 @@ export const AuthorizationContextProvider: FC<ChildrenPropsType> = ({
             await signOut({}).unwrap();
             dispatch(clearUserData());
         } catch (err) {
-            console.log(err);
+            console.log(defaultError);
         }
     };
 
@@ -34,7 +35,7 @@ export const AuthorizationContextProvider: FC<ChildrenPropsType> = ({
         authorize({})
             .unwrap()
             .then((user) => dispatch(setUserData(user)))
-            .catch((err) => console.log(err));
+            .catch(() => console.log(defaultError));
     }, [authorize, dispatch]);
 
     useEffect(() => {

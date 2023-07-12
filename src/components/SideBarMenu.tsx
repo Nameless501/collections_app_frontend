@@ -4,6 +4,7 @@ import { useTypedSelector } from '../store/store';
 import LinksList from './LinksList';
 import SignOutButton from './SignOutButton';
 import { ColorThemeToggle } from '../features/theme';
+import { LocaleSelect } from '../components/LocaleSelect';
 import {
     signNavigationConfig,
     mainNavigationConfig,
@@ -19,6 +20,7 @@ const SideBarMenu: FC = () => {
 
     return (
         <>
+            <LocaleSelect />
             <ColorThemeToggle />
             <Divider />
             <List component="nav">

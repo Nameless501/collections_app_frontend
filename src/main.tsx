@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import App from './App.tsx';
 import { store } from './store/store';
+import './i18n.ts';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { alpha, Stack, Toolbar, Typography } from '@mui/material';
 import ButtonWithIcon from '../../../components/ButtonWithIcon';
 import AddModeratorIcon from '@mui/icons-material/AddModerator';
@@ -11,6 +12,8 @@ const UsersTableControls: FC<UsersTableControlsProps> = ({
     handleDelete,
     toggleUsersAdminRole,
 }) => {
+    const { t } = useTranslation();
+
     return (
         <Toolbar
             sx={{
@@ -30,24 +33,26 @@ const UsersTableControls: FC<UsersTableControlsProps> = ({
                 justifyContent="space-between"
                 sx={{ width: '100%' }}
             >
-                <Typography variant="h6">{selectedCount} selected</Typography>
+                <Typography variant="h6">
+                    {t('admin:select', { count: selectedCount })}
+                </Typography>
                 <Stack direction="row" spacing={2}>
                     <ButtonWithIcon
-                        tooltip="Give admin role"
+                        tooltip={t('admin:tooltips.adminRole')}
                         icon={AddModeratorIcon}
                         large={true}
                         disabled={selectedCount === 0}
                         handleClick={() => toggleUsersAdminRole(true)}
                     />
                     <ButtonWithIcon
-                        tooltip="Take admin role"
+                        tooltip={t('admin:tooltips.userRole')}
                         icon={RemoveModeratorIcon}
                         large={true}
                         disabled={selectedCount === 0}
                         handleClick={() => toggleUsersAdminRole(false)}
                     />
                     <ButtonWithIcon
-                        tooltip="Delete users"
+                        tooltip={t('admin:tooltips.delete')}
                         icon={PersonRemoveIcon}
                         large={true}
                         disabled={selectedCount === 0}

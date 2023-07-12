@@ -59,3 +59,7 @@ export type ButtonWithIconProps = {
     disabled?: boolean;
     large?: boolean;
 };
+
+export type ErrorAlertPropsType = {
+    error?: string;
+};

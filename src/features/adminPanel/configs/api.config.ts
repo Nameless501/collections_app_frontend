@@ -19,3 +19,8 @@ export const getUpdateUsersRoleQueryOptions = (credentials: {
     method: ApiMethods.patch,
     body: { ...credentials },
 });
+
+export const errorsConfig = {
+    401: 'errors:http.wrongCredentials',
+    500: 'errors:default',
+};

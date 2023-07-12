@@ -4,11 +4,11 @@ import { SignFormInputs, SignFormTypes } from './enums.config';
 const signInInputs: SignInputsType<SignFormInputs> = [
     {
         name: SignFormInputs.email,
-        label: 'Email',
+        label: 'sign:inputs.email',
     },
     {
         name: SignFormInputs.password,
-        label: 'Password',
+        label: 'sign:inputs.password',
         type: 'password',
     },
 ];
@@ -16,7 +16,7 @@ const signInInputs: SignInputsType<SignFormInputs> = [
 const signUpInputs: SignInputsType<SignFormInputs> = [
     {
         name: SignFormInputs.name,
-        label: 'Name',
+        label: 'sign:inputs.name',
     },
     ...signInInputs,
 ];

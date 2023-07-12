@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
     TableCell,
     TableHead,
@@ -17,6 +18,8 @@ const UsersTableHead: FC<UsersTableHeadProps> = ({
     sortDirection,
     changeSortParams,
 }) => {
+    const { t } = useTranslation();
+
     return (
         <TableHead>
             <TableRow>
@@ -44,7 +47,7 @@ const UsersTableHead: FC<UsersTableHeadProps> = ({
                             }
                             onClick={() => changeSortParams(column.id)}
                         >
-                            {column.label}
+                            {t(column.label)}
                         </TableSortLabel>
                     </TableCell>
                 ))}

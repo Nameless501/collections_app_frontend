@@ -4,15 +4,15 @@ import { ProfileFormInputs } from './enums.config';
 export const profileFormInputsConfig: ProfileInputsType = [
     {
         name: ProfileFormInputs.name,
-        label: 'Name',
+        label: 'profile:inputs.labels.name',
     },
     {
         name: ProfileFormInputs.email,
-        label: 'Email',
+        label: 'profile:inputs.labels.email',
     },
     {
         name: ProfileFormInputs.password,
-        label: 'New password',
+        label: 'profile:inputs.labels.password',
         type: 'password',
     },
 ];

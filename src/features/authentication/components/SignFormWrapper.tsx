@@ -1,7 +1,9 @@
 import { FC } from 'react';
-import { Box, Stack, Button, Alert, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import { Box, Stack, Button, Typography } from '@mui/material';
 import { FormWrapperPropsType } from '../types/common.types';
 import FormLink from './FormLink';
+import ErrorAlert from '../../../components/ErrorAlert';
 
 const SignFormWrapper: FC<FormWrapperPropsType> = ({
     children,
@@ -10,6 +12,8 @@ const SignFormWrapper: FC<FormWrapperPropsType> = ({
     error,
     config,
 }) => {
+    const { t } = useTranslation();
+
     return (
         <Stack
             spacing={4}
@@ -23,7 +27,7 @@ const SignFormWrapper: FC<FormWrapperPropsType> = ({
                 borderRadius: 2,
             }}
         >
-            <Typography variant="h4">{config.title}</Typography>
+            <Typography variant="h4">{t(config.title)}</Typography>
             <Box
                 component="form"
                 noValidate
@@ -38,9 +42,9 @@ const SignFormWrapper: FC<FormWrapperPropsType> = ({
                         type="submit"
                         disabled={!isValid}
                     >
-                        Send
+                        {t('sign:button')}
                     </Button>
-                    {error && <Alert severity="error">{error}</Alert>}
+                    <ErrorAlert error={error} />
                 </Stack>
             </Box>
             <FormLink config={config.link} />
