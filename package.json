@@ -5,6 +5,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
+        "preview": "vite preview",
         "build": "tsc && vite build",
         "format": "prettier --write .",
         "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
