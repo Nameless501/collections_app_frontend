@@ -16,7 +16,7 @@ const ItemCardSmall: FC<ItemCardPropsType> = ({ item, fields }) => {
             elevation={4}
             sx={{
                 display: 'flex',
-                width: '100%'
+                width: '100%',
             }}
         >
             <CardActionArea
@@ -31,9 +31,7 @@ const ItemCardSmall: FC<ItemCardPropsType> = ({ item, fields }) => {
                             </Typography>
                         </Grid>
                         <Grid item xs>
-                            <Typography variant="h6">
-                                {item.title}
-                            </Typography>
+                            <Typography variant="h6">{item.title}</Typography>
                         </Grid>
                     </Grid>
                     <Grid item container justifyContent="space-between">
@@ -68,31 +66,38 @@ const ItemCardSmall: FC<ItemCardPropsType> = ({ item, fields }) => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item container justifyContent="space-between" wrap='wrap'>
-                        {
-                            fields.map(({ field, value, id }) => (
-                                <Fragment key={id}>
-                                    {
-                                        smallCardFieldsTypeConfig[field.type] &&
-                                        <Grid item container xs="auto" columnGap={1}>
-                                            <Grid item xs="auto">
-                                                <Typography
-                                                    variant="subtitle1"
-                                                    color="text.secondary"
-                                                >
-                                                    {`${field.label}:`}
-                                                </Typography>
-                                            </Grid>
-                                            <Grid item xs>
-                                                <Typography variant="subtitle1">
-                                                    {value}
-                                                </Typography>
-                                            </Grid>
+                    <Grid
+                        item
+                        container
+                        justifyContent="space-between"
+                        wrap="wrap"
+                    >
+                        {fields.map(({ field, value, id }) => (
+                            <Fragment key={id}>
+                                {smallCardFieldsTypeConfig[field.type] && (
+                                    <Grid
+                                        item
+                                        container
+                                        xs="auto"
+                                        columnGap={1}
+                                    >
+                                        <Grid item xs="auto">
+                                            <Typography
+                                                variant="subtitle1"
+                                                color="text.secondary"
+                                            >
+                                                {`${field.label}:`}
+                                            </Typography>
                                         </Grid>
-                                    }
-                                </Fragment>
-                            ))
-                        }
+                                        <Grid item xs>
+                                            <Typography variant="subtitle1">
+                                                {value}
+                                            </Typography>
+                                        </Grid>
+                                    </Grid>
+                                )}
+                            </Fragment>
+                        ))}
                     </Grid>
                 </Grid>
             </CardActionArea>

@@ -7,11 +7,11 @@ const ItemsList: FC<ItemsListPropsType> = ({ items }) => {
     return (
         <List sx={{ width: '100%', display: 'flex', flexWrap: 'wrap' }}>
             {items.map((data) => (
-                <ListItem key={data.item.id} sx={{ flexGrow: 1, flexBasis: '50%' }}>
-                    <ItemCardSmall
-                        item={data.item}
-                        fields={data.fields}
-                    />
+                <ListItem
+                    key={data.item.id}
+                    sx={{ flexGrow: 1, flexBasis: '50%' }}
+                >
+                    <ItemCardSmall item={data.item} fields={data.fields} />
                 </ListItem>
             ))}
         </List>

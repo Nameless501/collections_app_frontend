@@ -11,7 +11,9 @@ import { CollectionItemsPropsType } from '../types/common.types';
 import { useTranslation } from 'react-i18next';
 import { collectionItemsContentConfig } from '../configs/content.config';
 
-export const CollectionItems: FC<CollectionItemsPropsType> = ({ collectionId }) => {
+export const CollectionItems: FC<CollectionItemsPropsType> = ({
+    collectionId,
+}) => {
     const { t } = useTranslation();
 
     const { apiError, handleBaseQueryError, resetApiError } =
@@ -20,7 +22,7 @@ export const CollectionItems: FC<CollectionItemsPropsType> = ({ collectionId }) 
     const [itemsData, setItemsData] = useState<IItemWithFields[]>([]);
 
     const [getCollectionItems, { isLoading, isError }] =
-    useGetCollectionItemsMutation();
+        useGetCollectionItemsMutation();
 
     const { openErrorNotification } = useNotificationsContext();
 
@@ -45,16 +47,11 @@ export const CollectionItems: FC<CollectionItemsPropsType> = ({ collectionId }) 
     }, [apiError, openErrorNotification]);
 
     return (
-        <Box
-            sx={{ width: '100%' }}
-        >
-            <Typography variant='h6' textAlign='center'>
+        <Box sx={{ width: '100%' }}>
+            <Typography variant="h6" textAlign="center">
                 {t(collectionItemsContentConfig.title)}
             </Typography>
-            {
-                (!isLoading && !isError) && 
-                <ItemsList items={itemsData} />
-            }
+            {!isLoading && !isError && <ItemsList items={itemsData} />}
             {isLoading && <Loader />}
         </Box>
     );

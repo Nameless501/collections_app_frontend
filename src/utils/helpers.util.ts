@@ -13,7 +13,8 @@ export const getFormData = (data: FieldValues) => {
     return formData;
 };
 
-export const getFormattedDate = (date: string): string => new Date(Date.parse(date)).toLocaleDateString('ru-RU', {
-    hour: '2-digit',
-    minute: '2-digit',
-});
+export const getFormattedDate = (date: string): string =>
+    new Date(Date.parse(date)).toLocaleDateString('ru-RU', {
+        hour: '2-digit',
+        minute: '2-digit',
+    });

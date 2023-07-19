@@ -48,10 +48,10 @@ const CollectionListWithFilters: FC<CollectionListWithFiltersPropsType> = ({
         const filteredList =
             selectedSubjects.length > 0
                 ? collections.filter((collection) =>
-                    selectedSubjects.includes(
-                        collection.subject as CollectionSubjects
-                    )
-                )
+                      selectedSubjects.includes(
+                          collection.subject as CollectionSubjects
+                      )
+                  )
                 : collections;
         return [...filteredList].sort((item1, item2) =>
             handleSort(

@@ -56,10 +56,7 @@ export const RecentItems: FC = () => {
             <Typography variant="h5" textAlign="center">
                 {t(recentItemsContentConfig.title)}
             </Typography>
-            {
-                (!isLoading && !isError) && 
-                <ItemsList items={itemsData} />
-            }
+            {!isLoading && !isError && <ItemsList items={itemsData} />}
             {isLoading && <Loader />}
         </Box>
     );

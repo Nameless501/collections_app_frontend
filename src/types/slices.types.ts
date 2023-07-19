@@ -1,4 +1,4 @@
-import { CollectionSubjects, FieldTypes } from "../configs/common.config";
+import { CollectionSubjects, FieldTypes } from '../configs/common.config';
 
 export interface IUser {
     id: number;
@@ -42,7 +42,6 @@ export interface ICollectionState {
 export interface ICollectionsState {
     collections: Array<ICollection>;
 }
-
 
 export interface IItem {
     id: number;
