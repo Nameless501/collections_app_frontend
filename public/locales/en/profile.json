@@ -6,5 +6,9 @@
             "password": "New password"
         }
     },
-    "button": "Update"
+    "button": "Update",
+    "tabs": {
+        "profile": "Profile",
+        "collections": "Collections"
+    }
 }

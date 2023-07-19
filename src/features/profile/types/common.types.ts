@@ -22,10 +22,13 @@ export type ProfileFormInputsPropsType = {
 export type ProfileFormWrapperPropsType = {
     handleSubmit: (e: BaseSyntheticEvent) => void;
     disabled: boolean;
-    error?: string;
 } & ChildrenPropsType;
 
 export type ProfileFormPropsType = {
     user: IUser;
     handleStateUpdate: (data: IUser) => void;
+};
+
+export type UserProfilePropsType = {
+    userId: number;
 };

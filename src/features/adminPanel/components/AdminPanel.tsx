@@ -17,7 +17,7 @@ import useBaseQueryError from '../../../hooks/useBaseQueryError';
 import UsersTableData from './UsersTableData';
 import UsersTableControls from './UsersTableControls';
 import Loader from '../../../components/Loader';
-import ErrorAlert from '../../../components/ErrorAlert';
+import { useNotificationsContext } from '../../../contexts/NotificationsContext';
 import { errorsConfig } from '../configs/api.config';
 
 export const AdminPanel: FC = () => {
@@ -40,14 +40,16 @@ export const AdminPanel: FC = () => {
 
     const { handleSignOut } = useAuthorizationContext();
 
+    const { openErrorNotification } = useNotificationsContext();
+
     const getUsersData = useCallback(async () => {
         try {
             const users = await getAllUsers({}).unwrap();
             dispatch(setAllUsersData(users));
         } catch (err) {
-            console.log(err);
+            handleBaseQueryError(err);
         }
-    }, [getAllUsers, dispatch]);
+    }, [getAllUsers, dispatch, handleBaseQueryError]);
 
     const toggleUserSelect = (id: number): void =>
         setSelected((current) =>
@@ -103,6 +105,12 @@ export const AdminPanel: FC = () => {
         getUsersData();
     }, [getUsersData]);
 
+    useEffect(() => {
+        if (apiError) {
+            openErrorNotification(apiError);
+        }
+    }, [apiError, openErrorNotification]);
+
     return (
         <Box
             sx={{
@@ -114,7 +122,6 @@ export const AdminPanel: FC = () => {
                 gap: 2,
             }}
         >
-            {apiError && <ErrorAlert error={apiError} />}
             {!isLoading && !isError && (
                 <Paper>
                     <UsersTableControls

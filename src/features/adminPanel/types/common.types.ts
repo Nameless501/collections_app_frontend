@@ -1,6 +1,7 @@
 import { SyntheticEvent } from 'react';
 import { IUser } from '../../../types/slices.types';
-import { UserTableColumns, SortDirections } from '../configs/table.config';
+import { UserTableColumns } from '../configs/table.config';
+import { SortDirections } from '../../../configs/common.config';
 
 export type TableColumnType<T> = {
     id: T;

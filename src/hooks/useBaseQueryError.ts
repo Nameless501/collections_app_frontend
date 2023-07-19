@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 
 function useBaseQueryError(config: { [key: number]: string }) {
@@ -7,18 +7,6 @@ function useBaseQueryError(config: { [key: number]: string }) {
     const [apiDefaultMessage, setApiDefaultMessage] = useState<string>('');
 
     const [apiErrorStatus, setApiErrorStatus] = useState<number | null>(null);
-
-    const handleBaseQueryError = (err: unknown): void => {
-        if (
-            isFetchBaseQueryError(err) &&
-            isErrorWithStatus(err) &&
-            isErrorWithMessage(err.data)
-        ) {
-            setApiError(getErrorMessage(err.status));
-            setApiErrorStatus(err.status);
-            setApiDefaultMessage(err.data.message);
-        }
-    };
 
     function isFetchBaseQueryError(
         error: unknown
@@ -44,10 +32,27 @@ function useBaseQueryError(config: { [key: number]: string }) {
         );
     }
 
-    const getErrorMessage = (code: number): string =>
-        code in config ? config[code] : config[500];
+    const getErrorMessage = useCallback(
+        (code: number): string => (code in config ? config[code] : config[500]),
+        [config]
+    );
 
-    const resetApiError = (): void => setApiError('');
+    const resetApiError = useCallback((): void => setApiError(''), []);
+
+    const handleBaseQueryError = useCallback(
+        (err: unknown): void => {
+            if (
+                isFetchBaseQueryError(err) &&
+                isErrorWithStatus(err) &&
+                isErrorWithMessage(err.data)
+            ) {
+                setApiError(getErrorMessage(err.status));
+                setApiErrorStatus(err.status);
+                setApiDefaultMessage(err.data.message);
+            }
+        },
+        [getErrorMessage]
+    );
 
     return {
         apiError,

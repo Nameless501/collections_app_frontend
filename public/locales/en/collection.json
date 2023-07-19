@@ -1,0 +1,111 @@
+{
+    "card": {
+        "labels": {
+            "bigCard": {
+                "title": "Title:",
+                "author": "Author:",
+                "subject": "Subject:",
+                "description": "Description: ",
+                "user": "You"
+            },
+            "smallCard": {
+                "id": "Id: {{id}}",
+                "author": "Author: {{name}}",
+                "subject": "Subject: {{subject}}",
+                "userAuthor": "Author: You"
+            },
+            "table": {
+                "type": "Type",
+                "label": "Label",
+                "number": "№"
+            }
+        },
+        "image": "Collection image",
+        "tooltips": {
+            "collection": {
+                "delete": "Delete collection",
+                "edit": "Edit collection"
+            },
+            "field": {
+                "delete": "Delete field",
+                "edit": "Edit field",
+                "add": "New fields"
+            }
+        },
+        "tabs": {
+            "info": "Info",
+            "fields": "Fields"
+        }
+    },
+    "form": {
+        "new": {
+            "title": "New collection",
+            "steps": {
+                "collection": "Collection data",
+                "fields": "Fields data"
+            }
+        },
+        "labels": {            
+            "collection": {
+                "title": "Title",
+                "description": "Description",
+                "subject": "Subject",
+                "image": "Image"
+            },
+            "fields": {
+                "type": "Type",
+                "label": "Field label"
+            },
+            "sort": {
+                "subject": "Subject",
+                "sortBy": "Sort by",
+                "id": "ID",
+                "name": "Name"
+            }
+        },
+        "buttons": {
+            "next": "Next",
+            "update": "Update",
+            "create": "Create",
+            "clear": "Clear"
+        }
+    },
+    "titles": {
+        "topCollections": "Biggest collections"
+    },
+    "subjects": {
+        "books": "Books",
+        "coins": "Coins",
+        "postcards": "Postcards",
+        "actionFigures": "Action figures",
+        "vinylRecords": "Vinyl records",
+        "sportsJerseys": "Sports jerseys",
+        "autographs": "Autographs",
+        "artPrints": "Art prints",
+        "antiqueFurniture": "Antique furniture",
+        "vintageClothing": "Vintage clothing",
+        "toys": "Toys",
+        "musicalInstruments": "Musical instruments",
+        "movieProps": "Movie props",
+        "wristwatches": "Wristwatches",
+        "jewelry": "Jewelry",
+        "videoGames": "Video games",
+        "comicBooks": "Comic books",
+        "boardGames": "Board games",
+        "figurines": "Figurines",
+        "posters": "Posters",
+        "tickets": "Tickets",
+        "magazines": "Magazines",
+        "musicalRecords": "Musical records",
+        "maps": "Maps",
+        "tradingPins": "Trading pins",
+        "artifacts": "Artifacts",
+        "other": "Other"
+    },
+    "fieldTypes": {
+        "integer": "Number",
+        "string": "String",
+        "text": "Text",
+        "boolean": "Checkbox"
+    }
+}

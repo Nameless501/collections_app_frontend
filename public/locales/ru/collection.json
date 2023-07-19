@@ -1,0 +1,110 @@
+{
+    "card": {
+        "labels": {
+            "bigCard": {
+                "title": "Название:",
+                "author": "Автор:",
+                "subject": "Тема:",
+                "description": "Описание: ",
+                "user": "Вы"
+            },
+            "smallCard": {
+                "id": "Id: {{id}}",
+                "author": "Автор: {{name}}",
+                "subject": "Тема: {{subject}}",
+                "userAuthor": "Автор: Вы"
+            },
+            "table": {
+                "type": "Тип",
+                "label": "Название",
+                "number": "№"
+            }
+        },
+        "tooltips": {
+            "collection": {
+                "delete": "Удалить коллекцию",
+                "edit": "Редактировать коллекцию"
+            },
+            "field": {
+                "delete": "Удалить поле",
+                "edit": "Редактировать поле",
+                "add": "Добавить поля"
+            }
+        },
+        "tabs": {
+            "info": "Коллекция",
+            "fields": "Поля"
+        }
+    },
+    "form": {
+        "new": {
+            "title": "Новая коллекция",
+            "steps": {
+                "collection": "Создание коллекции",
+                "fields": "Создание полей"
+            }
+        },
+        "labels": {            
+            "collection": {
+                "title": "Название",
+                "description": "Описание",
+                "subject": "Тема",
+                "image": "Изображение"
+            },
+            "fields": {
+                "type": "Тип",
+                "label": "Название поля"
+            },
+            "sort": {
+                "subject": "Тема",
+                "sortBy": "Сортировать по",
+                "id": "ID",
+                "name": "Имени"
+            }
+        },
+        "buttons": {
+            "next": "Далее",
+            "update": "Обновить",
+            "create": "Создать",
+            "clear": "Очистить"
+        }
+    },
+    "titles": {
+        "topCollections": "Топ самых объемных коллекций"
+    },
+    "subjects": {
+        "books": "Книги",
+        "coins": "Монеты",
+        "postcards": "Почтовые марки",
+        "actionFigures": "Фигурки",
+        "vinylRecords": "Виниловые пластинки",
+        "sportsJerseys": "Спортивная одежда",
+        "autographs": "Автографы",
+        "artPrints": "Репродукции картин",
+        "antiqueFurniture": "Винтажная мебель",
+        "vintageClothing": "Винтажная одежда",
+        "toys": "Игрушки",
+        "musicalInstruments": "Музыкальные инструменты",
+        "movieProps": "Фильмы",
+        "wristwatches": "Часы",
+        "jewelry": "Ювелирные украшения",
+        "videoGames": "Видео игры",
+        "comicBooks": "Комиксы",
+        "boardGames": "Настольные игры",
+        "figurines": "Статуэтки",
+        "posters": "Постеры",
+        "tickets": "Билеты",
+        "magazines": "Журналы",
+        "musicalRecords": "Музыкальные альбомы",
+        "maps": "Карты",
+        "tradingPins": "Значки",
+        "artifacts": "Артефакты",
+        "other": "Другое"
+    },
+    "fieldTypes": {
+        "integer": "Число",
+        "string": "Строка",
+        "text": "Текст",
+        "boolean": "Чекбокс"
+    }
+}

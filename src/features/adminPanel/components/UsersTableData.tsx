@@ -4,8 +4,9 @@ import useSort from '../../../hooks/useSort';
 import { UsersTableDataProps } from '../types/common.types';
 import UsersTableRow from './UsersTableRow';
 import UsersTableHead from './UserTableHead';
-import { UserTableColumns, SortDirections } from '../configs/table.config';
+import { UserTableColumns } from '../configs/table.config';
 import { IUser } from '../../../types/slices.types';
+import { SortDirections } from '../../../configs/common.config';
 
 const UsersTableData: FC<UsersTableDataProps> = ({
     usersList = [],

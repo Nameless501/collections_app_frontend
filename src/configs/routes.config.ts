@@ -5,6 +5,7 @@ export enum AppRoutes {
     currentUser = '/users/me',
     userData = '/users/:id',
     adminPanel = '/users/all',
-    collections = '/collections',
+    allCollections = '/collections/all',
     userCollections = '/collections/my',
+    collectionData = '/collections/:id',
 }

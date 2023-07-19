@@ -1,10 +1,5 @@
 import { TableColumnType } from '../types/common.types';
 
-export enum SortDirections {
-    ascending = 'asc',
-    descending = 'desc',
-}
-
 export enum UserTableColumns {
     id = 'id',
     name = 'name',

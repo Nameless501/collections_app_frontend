@@ -5,6 +5,7 @@ export enum ValidationOptions {
     email = 'email',
     number = 'number',
     url = 'url',
+    image = 'image',
 }
 
 export const validationErrors = {
@@ -23,4 +24,5 @@ export const validationConfig = {
     [ValidationOptions.email]: Joi.string().email({ tlds: { allow: false } }),
     [ValidationOptions.number]: Joi.number(),
     [ValidationOptions.url]: Joi.string().uri(),
+    [ValidationOptions.image]: Joi.object().allow(null),
 };

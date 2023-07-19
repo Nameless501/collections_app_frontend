@@ -15,6 +15,7 @@ import { getHookFormConfig } from '../../../configs/hookForm.config';
 import { signValidationSchema } from '../configs/validation.config';
 import { signFormConfig } from '../configs/form.config';
 import { AppRoutes } from '../../../configs/routes.config';
+import { useNotificationsContext } from '../../../contexts/NotificationsContext';
 
 export const SignForm: FC<FormPropsType> = ({ type }) => {
     const navigate = useNavigate();
@@ -38,6 +39,8 @@ export const SignForm: FC<FormPropsType> = ({ type }) => {
     );
 
     const [authenticate, { isLoading }] = useAuthenticationMutation();
+
+    const { openErrorNotification } = useNotificationsContext();
 
     const setCurrentUser = (user: unknown): void => {
         if (type === SignFormTypes.signIn) {
@@ -78,11 +81,16 @@ export const SignForm: FC<FormPropsType> = ({ type }) => {
         }
     }, [clearErrors, reset, location, setValue]);
 
+    useEffect(() => {
+        if (apiError) {
+            openErrorNotification(apiError);
+        }
+    }, [apiError, openErrorNotification]);
+
     return (
         <SignFormWrapper
             handleSubmit={handleSubmit(onSubmit)}
             isValid={isValid && !isLoading}
-            error={apiError}
             config={signFormConfig[type]}
         >
             {signInputsConfig[type].map((input, index) => (

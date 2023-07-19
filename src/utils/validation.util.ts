@@ -1,4 +1,4 @@
-import Joi, { Schema, ObjectSchema } from 'joi';
+import Joi, { Schema, ObjectSchema, ArraySchema } from 'joi';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { FieldValues } from 'react-hook-form';
 import {
@@ -17,10 +17,10 @@ export const getValidationOption = (
     return schema.messages(validationErrors);
 };
 
-function getValidationSchema(params: FieldValues): ObjectSchema {
-    return Joi.object(params);
-}
+export const getObjectSchema = (params: FieldValues): ObjectSchema => Joi.object(params);
+
+export const getArraySchema = (params: FieldValues): ArraySchema => Joi.array().items(params)
 
 export function getResolvedValidationSchema(params: FieldValues) {
-    return joiResolver(getValidationSchema(params));
+    return joiResolver(getObjectSchema(params));
 }

@@ -3,13 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { Box, Stack, Button, Typography } from '@mui/material';
 import { FormWrapperPropsType } from '../types/common.types';
 import FormLink from './FormLink';
-import ErrorAlert from '../../../components/ErrorAlert';
 
 const SignFormWrapper: FC<FormWrapperPropsType> = ({
     children,
     handleSubmit,
     isValid,
-    error,
     config,
 }) => {
     const { t } = useTranslation();
@@ -44,7 +42,6 @@ const SignFormWrapper: FC<FormWrapperPropsType> = ({
                     >
                         {t('sign:button')}
                     </Button>
-                    <ErrorAlert error={error} />
                 </Stack>
             </Box>
             <FormLink config={config.link} />

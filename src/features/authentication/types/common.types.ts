@@ -46,7 +46,6 @@ export type FormPropsType = {
 export type FormWrapperPropsType = {
     isValid: boolean;
     handleSubmit: (e: BaseSyntheticEvent) => void;
-    error?: string;
     config: SignFormConfigType;
 } & ChildrenPropsType;
 

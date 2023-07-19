@@ -2,12 +2,10 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Box, Button } from '@mui/material';
 import { ProfileFormWrapperPropsType } from '../types/common.types';
-import ErrorAlert from '../../../components/ErrorAlert';
 
 const ProfileFormWrapper: FC<ProfileFormWrapperPropsType> = ({
     handleSubmit,
     disabled,
-    error,
     children,
 }) => {
     const { t } = useTranslation();
@@ -41,7 +39,6 @@ const ProfileFormWrapper: FC<ProfileFormWrapperPropsType> = ({
             >
                 {t('profile:button')}
             </Button>
-            <ErrorAlert error={error} />
         </Box>
     );
 };

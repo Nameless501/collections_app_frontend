@@ -1,11 +1,16 @@
 import { ReactNode, ElementType } from 'react';
-import { NavigationListType } from './common.types';
+import { ColorOptions, NavigationListType, SizeOptions } from './common.types';
 import { SignFormTypes } from '../features/authentication';
 import { ProfileFormTypes } from '../features/profile';
+import { SxProps } from '@mui/material';
 
 export type ChildrenPropsType = {
     children: ReactNode;
 };
+
+export type FlexCenterPropsType = {
+    align?: 'space-between' | 'flex-start' | 'center';
+} & ChildrenPropsType;
 
 export type ProfileMenuPropsType = {
     isOpen: boolean;
@@ -58,8 +63,17 @@ export type ButtonWithIconProps = {
     handleClick?: (param: unknown) => unknown;
     disabled?: boolean;
     large?: boolean;
+    color?: ColorOptions;
 };
 
-export type ErrorAlertPropsType = {
-    error?: string;
+export type CustomFabPropsType = {
+    tooltip?: string;
+    icon: ReactNode;
+    isLink?: boolean;
+    link?: string;
+    handleClick?: (param: unknown) => unknown;
+    disabled?: boolean;
+    size?: SizeOptions;
+    color?: ColorOptions;
+    sx?: SxProps;
 };

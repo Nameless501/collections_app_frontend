@@ -1,13 +1,16 @@
 import { FC } from 'react';
 import { Box } from '@mui/material';
-import { ChildrenPropsType } from '../types/props.types';
+import { FlexCenterPropsType } from '../types/props.types';
 
-const FlexCenterWrapper: FC<ChildrenPropsType> = ({ children }) => {
+const FlexCenterWrapper: FC<FlexCenterPropsType> = ({
+    align = 'center',
+    children,
+}) => {
     return (
         <Box
             display="flex"
             justifyContent="center"
-            alignItems="center"
+            alignItems={align}
             sx={{ width: '100%' }}
         >
             {children}

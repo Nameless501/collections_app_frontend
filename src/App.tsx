@@ -7,8 +7,11 @@ import MainPage from './pages/Main.page';
 import ProfilePage from './pages/Profile.page';
 import AdminPanelPage from './pages/AdminPanel.page';
 import SignPage from './pages/Sign.page';
+import AllCollectionsPage from './pages/AllCollections.page';
+import CollectionPage from './pages/Collection.page';
 import { ColorThemeContextProvider } from './features/theme';
 import { AuthorizationContextProvider } from './features/authorization';
+import { NotificationsContextProvider } from './contexts/NotificationsContext';
 import { AppRoutes } from './configs/routes.config';
 import { SignFormTypes } from './features/authentication';
 import { ProfileFormTypes } from './features/profile';
@@ -18,45 +21,66 @@ const App: FC = () => {
         <AuthorizationContextProvider>
             <ColorThemeContextProvider>
                 <PageWrapper>
-                    <Routes>
-                        <Route path={AppRoutes.main} element={<MainPage />} />
-                        <Route element={<PrivateRoutes />}>
+                    <NotificationsContextProvider>
+                        <Routes>
                             <Route
-                                path={AppRoutes.currentUser}
+                                path={AppRoutes.main}
+                                element={<MainPage />}
+                            />
+                            <Route element={<PrivateRoutes />}>
+                                <Route
+                                    path={AppRoutes.currentUser}
+                                    element={
+                                        <ProfilePage
+                                            type={ProfileFormTypes.selfProfile}
+                                        />
+                                    }
+                                />
+                            </Route>
+                            <Route element={<AdminRoutes />}>
+                                <Route
+                                    path={AppRoutes.adminPanel}
+                                    element={<AdminPanelPage />}
+                                />
+                                <Route
+                                    path={AppRoutes.userData}
+                                    element={
+                                        <ProfilePage
+                                            type={
+                                                ProfileFormTypes.otherUserProfile
+                                            }
+                                        />
+                                    }
+                                />
+                            </Route>
+                            <Route
+                                path={AppRoutes.allCollections}
+                                element={<AllCollectionsPage />}
+                            />
+                            <Route
+                                path={AppRoutes.collectionData}
+                                element={<CollectionPage />}
+                            />
+                            <Route
+                                path={AppRoutes.signIn}
                                 element={
-                                    <ProfilePage
-                                        type={ProfileFormTypes.selfProfile}
-                                    />
+                                    <SignPage type={SignFormTypes.signIn} />
                                 }
                             />
-                        </Route>
-                        <Route element={<AdminRoutes />}>
                             <Route
-                                path={AppRoutes.adminPanel}
-                                element={<AdminPanelPage />}
-                            />
-                            <Route
-                                path={AppRoutes.userData}
+                                path={AppRoutes.singUp}
                                 element={
-                                    <ProfilePage
-                                        type={ProfileFormTypes.otherUserProfile}
-                                    />
+                                    <SignPage type={SignFormTypes.signUp} />
                                 }
                             />
-                        </Route>
-                        <Route
-                            path={AppRoutes.signIn}
-                            element={<SignPage type={SignFormTypes.signIn} />}
-                        />
-                        <Route
-                            path={AppRoutes.singUp}
-                            element={<SignPage type={SignFormTypes.signUp} />}
-                        />
-                        <Route
-                            path="*"
-                            element={<Navigate to={AppRoutes.main} replace />}
-                        />
-                    </Routes>
+                            <Route
+                                path="*"
+                                element={
+                                    <Navigate to={AppRoutes.main} replace />
+                                }
+                            />
+                        </Routes>
+                    </NotificationsContextProvider>
                 </PageWrapper>
             </ColorThemeContextProvider>
         </AuthorizationContextProvider>

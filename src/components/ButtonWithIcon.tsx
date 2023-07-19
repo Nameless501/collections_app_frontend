@@ -11,6 +11,7 @@ const ButtonWithIcon: FC<ButtonWithIconProps> = ({
     handleClick,
     disabled = false,
     large = false,
+    color,
 }) => {
     return (
         <Tooltip title={tooltip} arrow>
@@ -20,9 +21,9 @@ const ButtonWithIcon: FC<ButtonWithIconProps> = ({
                     to={link}
                     onClick={handleClick}
                     disabled={disabled}
-                    size={large ? 'large' : 'medium'}
+                    color={color}
                 >
-                    <Icon />
+                    <Icon fontSize={large ? 'large' : 'medium'} />
                 </IconButton>
             </Box>
         </Tooltip>

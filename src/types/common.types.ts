@@ -7,3 +7,14 @@ export type NavigationListType = Array<{
     route: AppRoutes;
     icon: OverridableComponent<SvgIconTypeMap>;
 }>;
+
+export type ProfilePageTabsType<T> = Array<{
+    label: string;
+    value: T;
+    icon: OverridableComponent<SvgIconTypeMap>;
+    iconPosition: 'top' | 'bottom' | 'end' | 'start';
+}>;
+
+export type ColorOptions = "default" | "primary" | "secondary" | "success" | "info" | "warning" | 'error';
+
+export type SizeOptions = "small" | "medium" | "large";

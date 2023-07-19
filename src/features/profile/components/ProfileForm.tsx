@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, useCallback, useMemo } from 'react';
+import { FC, useState, useEffect, useMemo } from 'react';
 import { useForm, SubmitHandler, useWatch } from 'react-hook-form';
 import { Box, Stack } from '@mui/material';
 import { useUpdateUserMutation } from '../store/profile.slice';
@@ -11,6 +11,8 @@ import { getHookFormConfig } from '../../../configs/hookForm.config';
 import { profileValidationSchema } from '../configs/validation.config';
 import { errorsConfig } from '../configs/common.config';
 import { ProfileFormPropsType } from '../types/common.types';
+import { useNotificationsContext } from '../../../contexts/NotificationsContext';
+import useFilterDefaultFieldValues from '../../../hooks/useFilterDefaultFieldValues';
 
 export const ProfileForm: FC<ProfileFormPropsType> = ({
     user,
@@ -24,9 +26,12 @@ export const ProfileForm: FC<ProfileFormPropsType> = ({
     const [updateUser, { isLoading }] = useUpdateUserMutation();
 
     const defaultValues = useMemo<InputsType>(
-        () => ({ name: user.name, email: user.email }),
+        () => ({ name: user?.name, email: user?.email }),
         [user]
     );
+
+    const { openErrorNotification, openSuccessNotification } =
+        useNotificationsContext();
 
     const {
         register,
@@ -40,47 +45,25 @@ export const ProfileForm: FC<ProfileFormPropsType> = ({
 
     const watch = useWatch({ control });
 
-    const filterEmptyFields = useCallback(
-        (data: InputsType) =>
-            Object.entries(data).reduce<InputsType>((acc, [key, value]) => {
-                if (value) {
-                    acc[key as keyof InputsType] = value;
-                }
-                return acc;
-            }, {} as InputsType),
-        []
-    );
-
-    const filterDefaultValues = useCallback(
-        (data: InputsType) =>
-            Object.entries(data).reduce<InputsType>((acc, [key, value]) => {
-                if (
-                    typeof defaultValues === 'object' &&
-                    defaultValues[key as keyof InputsType] !== value
-                ) {
-                    acc[key as keyof InputsType] = value;
-                }
-                return acc;
-            }, {} as InputsType),
-        [defaultValues]
-    );
+    const getUpdatedFields = useFilterDefaultFieldValues<InputsType>(defaultValues);
 
     const onSubmit: SubmitHandler<InputsType> = async (data): Promise<void> => {
         try {
             resetApiError();
-            const updatedFields = filterDefaultValues(filterEmptyFields(data));
-            await updateUser({ id: user.id, data: updatedFields }).unwrap();
+            const updatedFields = getUpdatedFields(data);
+            await updateUser({ id: user?.id, data: updatedFields }).unwrap();
             handleStateUpdate({ ...user, ...updatedFields });
+            openSuccessNotification('Success');
         } catch (err) {
             handleBaseQueryError(err);
         }
     };
 
     useEffect(() => {
-        const updatedFields = filterDefaultValues(filterEmptyFields(watch));
+        const updatedFields = getUpdatedFields(watch);
         const isDefault = Object.keys(updatedFields).length === 0;
         setIsChanged(!isDefault);
-    }, [watch, filterDefaultValues, filterEmptyFields]);
+    }, [watch, getUpdatedFields]);
 
     useEffect(() => {
         Object.entries(defaultValues).forEach(([key, value]) =>
@@ -88,18 +71,23 @@ export const ProfileForm: FC<ProfileFormPropsType> = ({
         );
     }, [defaultValues, setValue]);
 
+    useEffect(() => {
+        if (apiError) {
+            openErrorNotification(apiError);
+        }
+    }, [apiError, openErrorNotification]);
+
     return (
         <ProfileFormWrapper
             handleSubmit={handleSubmit(onSubmit)}
             disabled={!isValid || !isChanged || isLoading}
-            error={apiError}
         >
             <Box sx={{ mt: -5 }}>
                 <UserAvatar
-                    name={user.name}
+                    name={user?.name}
                     size={120}
                     fontSize={60}
-                    isAdmin={user.isAdmin}
+                    isAdmin={user?.isAdmin}
                 />
             </Box>
             <Stack direction="column" gap={4} sx={{ width: '100%' }}>

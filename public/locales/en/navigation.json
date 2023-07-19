@@ -11,7 +11,8 @@
         "profile": "Profile",
         "collections": "My collections"
     },
-    "pages": {
-        "main": "Main"
+    "common": {
+        "main": "Main",
+        "collections": "All collections"
     }
 }

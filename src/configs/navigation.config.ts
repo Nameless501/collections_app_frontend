@@ -6,13 +6,19 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import CollectionsIcon from '@mui/icons-material/Collections';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PeopleIcon from '@mui/icons-material/People';
-import { NavigationListType } from '../types/common.types';
+import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
+import { NavigationListType, ProfilePageTabsType } from '../types/common.types';
 
 export const mainNavigationConfig: NavigationListType = [
     {
-        text: 'navigation:pages.main',
+        text: 'navigation:common.main',
         route: AppRoutes.main,
         icon: HomeIcon,
+    },
+    {
+        text: 'navigation:common.collections',
+        route: AppRoutes.allCollections,
+        icon: CollectionsIcon,
     },
 ];
 
@@ -35,11 +41,6 @@ export const userNavigationConfig: NavigationListType = [
         route: AppRoutes.currentUser,
         icon: AccountBoxIcon,
     },
-    {
-        text: 'navigation:user.collections',
-        route: AppRoutes.userCollections,
-        icon: CollectionsIcon,
-    },
 ];
 
 export const signOutButtonConfig = {
@@ -52,5 +53,25 @@ export const adminNavigationConfig: NavigationListType = [
         text: 'navigation:admin.users',
         route: AppRoutes.adminPanel,
         icon: PeopleIcon,
+    },
+];
+
+export enum ProfilePageTabs {
+    profile,
+    collections,
+}
+
+export const ProfilePageTabsConfig: ProfilePageTabsType<ProfilePageTabs> = [
+    {
+        label: 'profile:tabs.profile',
+        value: ProfilePageTabs.profile,
+        icon: AccountBoxIcon,
+        iconPosition: 'start',
+    },
+    {
+        label: 'profile:tabs.collections',
+        value: ProfilePageTabs.collections,
+        icon: CollectionsBookmarkIcon,
+        iconPosition: 'start',
     },
 ];

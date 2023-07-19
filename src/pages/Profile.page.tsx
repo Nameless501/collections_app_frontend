@@ -1,45 +1,83 @@
-import { FC } from 'react';
+import { FC, SyntheticEvent, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import { useTypedSelector, useTypedDispatch } from '../store/store';
-import { updateUserData } from '../store/user/userSlice';
-import { updateUsersData } from '../store/allUsers/allUsersSlice';
-import { ProfileForm, ProfileFormTypes } from '../features/profile';
+import { useTranslation } from 'react-i18next';
+import { useTypedSelector } from '../store/store';
+import { UserProfile, ProfileFormTypes } from '../features/profile';
 import FlexCenterWrapper from '../components/FlexCenterWrapper';
-import { IUser } from '../types/slices.types';
 import { ProfilePagePropsType } from '../types/props.types';
+import { UserCollections } from '../features/collections';
+import { Box, Tabs, Tab } from '@mui/material';
+import {
+    ProfilePageTabs,
+    ProfilePageTabsConfig,
+} from '../configs/navigation.config';
 
 const ProfilePage: FC<ProfilePagePropsType> = ({ type }) => {
-    const dispatch = useTypedDispatch();
+    const { t } = useTranslation();
+
+    const [currentTab, setCurrentTab] = useState<ProfilePageTabs>(
+        ProfilePageTabs.profile
+    );
 
     const { data: currentUser } = useTypedSelector((state) => state.user);
 
-    const { users } = useTypedSelector((state) => state.allUsers);
+    const { id: pageId } = useParams();
 
-    const { id } = useParams();
+    const userId = useMemo(
+        () =>
+            type === ProfileFormTypes.selfProfile
+                ? currentUser.id
+                : Number(pageId),
+        [type, currentUser, pageId]
+    );
 
-    const findUser = () =>
-        users.find((user) => user.id === Number(id)) as IUser;
-
-    const handleStateUpdate = (data: IUser) => {
-        if (
-            type === ProfileFormTypes.selfProfile ||
-            currentUser.id === Number(id)
-        ) {
-            dispatch(updateUserData(data));
-        }
-        dispatch(updateUsersData(data));
-    };
+    const handleTabChange = (_evt: SyntheticEvent, newValue: ProfilePageTabs) =>
+        setCurrentTab(newValue);
 
     return (
-        <FlexCenterWrapper>
-            <ProfileForm
-                user={
-                    type === ProfileFormTypes.selfProfile
-                        ? currentUser
-                        : findUser()
-                }
-                handleStateUpdate={handleStateUpdate}
-            />
+        <FlexCenterWrapper align="flex-start">
+            <Box
+                sx={{
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: 5,
+                }}
+            >
+                <Box
+                    sx={{
+                        width: '100%',
+                        borderBottom: 1,
+                        borderColor: 'divider',
+                    }}
+                >
+                    <Tabs
+                        value={currentTab}
+                        onChange={handleTabChange}
+                        centered
+                        variant="fullWidth"
+                    >
+                        {ProfilePageTabsConfig.map(
+                            ({ label, icon: Icon, value, iconPosition }) => (
+                                <Tab
+                                    label={t(label)}
+                                    value={value}
+                                    icon={<Icon />}
+                                    iconPosition={iconPosition}
+                                    key={value}
+                                />
+                            )
+                        )}
+                    </Tabs>
+                </Box>
+                {currentTab === ProfilePageTabs.profile && (
+                    <UserProfile userId={userId} />
+                )}
+                {currentTab === ProfilePageTabs.collections && (
+                    <UserCollections userId={userId} />
+                )}
+            </Box>
         </FlexCenterWrapper>
     );
 };

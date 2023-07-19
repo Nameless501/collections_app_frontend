@@ -11,7 +11,8 @@
         "profile": "Профиль",
         "collections": "Мои коллекции"
     },
-    "pages": {
-        "main": "Главная"
+    "common": {
+        "main": "Главная",
+        "collections": "Все коллекции"
     }
 }
