@@ -14,10 +14,8 @@ import {
     CollectionDataTabs,
 } from '../configs/enums.config';
 import { ChildrenPropsType } from '../../../types/props.types';
-import {
-    CollectionFormInputs,
-    CollectionSubjects,
-} from '../configs/enums.config';
+import { CollectionFormInputs } from '../configs/enums.config';
+import { CollectionSubjects } from '../../../configs/common.config';
 import { SxProps } from '@mui/material';
 import { AppRoutes } from '../../../configs/routes.config';
 

@@ -1,0 +1,15 @@
+{
+    "card": {
+        "labels": {
+            "smallCard": {
+                "title": "Title:",
+                "collection": "Collection:",
+                "created": "Created:"
+            }
+        }
+    },
+    "titles": {
+        "recentItems": "Recent items",
+        "collectionItems": "Items in collection"
+    }
+}

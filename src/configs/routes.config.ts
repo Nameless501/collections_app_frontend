@@ -8,4 +8,5 @@ export enum AppRoutes {
     allCollections = '/collections/all',
     userCollections = '/collections/my',
     collectionData = '/collections/:id',
+    itemData = '/items/:id',
 }

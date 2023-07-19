@@ -1,0 +1,15 @@
+{
+    "card": {
+        "labels": {
+            "smallCard": {
+                "title": "Навзание:",
+                "collection": "Коллекция:",
+                "created": "Создано:"
+            }
+        }
+    },
+    "titles": {
+        "recentItems": "Недавно добавленные вещи",
+        "collectionItems": "Вещи в коллекции"
+    }
+}

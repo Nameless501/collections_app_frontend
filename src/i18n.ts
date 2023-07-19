@@ -13,6 +13,7 @@ i18n.use(Backend)
             'profile',
             'admin',
             'collection',
+            'item',
         ],
         lng: 'en',
         fallbackLng: 'en',

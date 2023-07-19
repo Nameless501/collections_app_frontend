@@ -12,3 +12,8 @@ export const getFormData = (data: FieldValues) => {
     Object.entries(data).forEach(([key, value]) => formData.append(key, value));
     return formData;
 };
+
+export const getFormattedDate = (date: string): string => new Date(Date.parse(date)).toLocaleDateString('ru-RU', {
+    hour: '2-digit',
+    minute: '2-digit',
+});

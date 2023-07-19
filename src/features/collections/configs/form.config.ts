@@ -1,12 +1,11 @@
 import {
     CollectionFormInputs,
-    CollectionSubjects,
     SortOptions,
     SortFormInputs,
     FieldsFormInputs,
-    FieldTypes,
     CollectionFormSteps,
 } from './enums.config';
+import { FieldTypes, CollectionSubjects } from '../../../configs/common.config';
 import { FileInputConfigType, SelectConfigType } from '../types/common.types';
 import { SortDirections } from '../../../configs/common.config';
 import {

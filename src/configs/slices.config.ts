@@ -6,6 +6,7 @@ import {
     ICollectionState,
     ICollection,
 } from '../types/slices.types';
+import { CollectionSubjects } from './common.config';
 
 export const initialUserData: IUser = {
     name: '',
@@ -16,7 +17,7 @@ export const initialUserData: IUser = {
 
 export const initialCollectionData: ICollection = {
     title: '',
-    subject: '',
+    subject: CollectionSubjects.books,
     description: '',
     id: 0,
     userId: 0,

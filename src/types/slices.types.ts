@@ -1,3 +1,5 @@
+import { CollectionSubjects, FieldTypes } from "../configs/common.config";
+
 export interface IUser {
     id: number;
     email: string;
@@ -19,14 +21,14 @@ export interface IField {
     id: number;
     collectionId: number;
     label: string;
-    type: string;
+    type: FieldTypes;
 }
 
 export interface ICollection {
     id: number;
     userId: number;
     image: string | null;
-    subject: string;
+    subject: CollectionSubjects;
     title: string;
     description: string;
     user?: IUser;
@@ -39,4 +41,26 @@ export interface ICollectionState {
 
 export interface ICollectionsState {
     collections: Array<ICollection>;
+}
+
+
+export interface IItem {
+    id: number;
+    collectionId: number;
+    createdAt: string;
+    title: string;
+    collection: ICollection;
+}
+
+export interface IFieldValue {
+    id: number;
+    fieldId: number;
+    itemId: number;
+    value: string;
+    field: IField;
+}
+
+export interface IItemWithFields {
+    item: IItem;
+    fields: IFieldValue[];
 }

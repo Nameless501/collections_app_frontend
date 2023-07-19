@@ -6,7 +6,8 @@ import SortSelect from '../inputs/SortSelect';
 import CollectionsList from './CollectionsList';
 import { CollectionListWithFiltersPropsType } from '../../types/common.types';
 import { SortDirections } from '../../../../configs/common.config';
-import { CollectionSubjects, SortFormInputs } from '../../configs/enums.config';
+import { SortFormInputs } from '../../configs/enums.config';
+import { CollectionSubjects } from '../../../../configs/common.config';
 import useSort from '../../../../hooks/useSort';
 import {
     subjectSelectConfig,
@@ -47,10 +48,10 @@ const CollectionListWithFilters: FC<CollectionListWithFiltersPropsType> = ({
         const filteredList =
             selectedSubjects.length > 0
                 ? collections.filter((collection) =>
-                      selectedSubjects.includes(
-                          collection.subject as CollectionSubjects
-                      )
-                  )
+                    selectedSubjects.includes(
+                        collection.subject as CollectionSubjects
+                    )
+                )
                 : collections;
         return [...filteredList].sort((item1, item2) =>
             handleSort(
