@@ -11,6 +11,12 @@ export const getCollectionItemsQueryOptions = (collectionId: number) => ({
     method: ApiMethods.get,
 });
 
+export const getDeleteItemsQueryOptions = (id: number[]) => ({
+    url: ApiRoutes.deleteItems,
+    method: ApiMethods.delete,
+    body: { id },
+});
+
 export const errorsConfig = {
     401: 'errors:http.dataAccess',
     500: 'errors:default',

@@ -6,6 +6,10 @@
                 "collection": "Collection:",
                 "created": "Created:"
             }
+        },
+        "tooltips": {
+            "delete": "Delete item",
+            "edit": "Edit item"
         }
     },
     "titles": {

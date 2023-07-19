@@ -16,3 +16,8 @@ export type ItemsListPropsType = {
 export type CollectionItemsPropsType = {
     collectionId: number;
 };
+
+export type DeleteItemsButtonPropsType = {
+    itemId: number;
+    onSubmit?: (itemId: number) => void;
+};

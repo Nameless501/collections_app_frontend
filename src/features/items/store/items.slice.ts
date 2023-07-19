@@ -2,6 +2,7 @@ import { apiSlice } from '../../api';
 import {
     getRecentItemsQueryOptions,
     getCollectionItemsQueryOptions,
+    getDeleteItemsQueryOptions,
 } from '../configs/api.config';
 
 export const collectionsSlice = apiSlice.injectEndpoints({
@@ -13,8 +14,14 @@ export const collectionsSlice = apiSlice.injectEndpoints({
             query: (collectionId) =>
                 getCollectionItemsQueryOptions(collectionId),
         }),
+        deleteItems: builder.mutation({
+            query: (id: number[]) => getDeleteItemsQueryOptions(id),
+        }),
     }),
 });
 
-export const { useGetRecentItemsMutation, useGetCollectionItemsMutation } =
-    collectionsSlice;
+export const {
+    useGetRecentItemsMutation,
+    useGetCollectionItemsMutation,
+    useDeleteItemsMutation,
+} = collectionsSlice;

@@ -11,3 +11,7 @@ export const recentItemsContentConfig = {
 export const collectionItemsContentConfig = {
     title: 'item:titles.collectionItems',
 };
+
+export const tooltipsConfig = {
+    delete: 'item:card.tooltips.delete',
+};

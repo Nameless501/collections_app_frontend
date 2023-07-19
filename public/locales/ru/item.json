@@ -6,6 +6,10 @@
                 "collection": "Коллекция:",
                 "created": "Создано:"
             }
+        },
+        "tooltips": {
+            "delete": "Удалить",
+            "edit": "Редактровать"
         }
     },
     "titles": {

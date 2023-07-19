@@ -7,6 +7,7 @@ import { getFormattedDate, setRouteParam } from '../../../utils/helpers.util';
 import { ItemCardPropsType } from '../types/common.types';
 import { smallCardFieldsTypeConfig } from '../configs/common.config';
 import { smallCardLabelsConfig } from '../configs/content.config';
+import { DeleteItemsButton } from './DeleteItemButton';
 
 const ItemCardSmall: FC<ItemCardPropsType> = ({ item, fields }) => {
     const { t } = useTranslation();
