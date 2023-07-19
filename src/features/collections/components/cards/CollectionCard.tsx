@@ -7,6 +7,7 @@ import CollectionCardImage from './CollectionCardImage';
 import { setRouteParam } from '../../../../utils/helpers.util';
 import { CollectionCardPropsType } from '../../types/common.types';
 import { cardLabelsConfig } from '../../configs/content.config';
+import { getCollectionSubjectValue } from '../../utils/helpers.util';
 
 const CollectionCard: FC<CollectionCardPropsType> = ({
     id,
@@ -82,7 +83,11 @@ const CollectionCard: FC<CollectionCardPropsType> = ({
                                 color="text.secondary"
                                 fontSize={{ xs: 12, sm: 14, lg: 16 }}
                             >
-                                {t(cardLabelsConfig.subject, { subject })}
+                                {t(cardLabelsConfig.subject, {
+                                    subject: t(
+                                        getCollectionSubjectValue(subject)
+                                    ),
+                                })}
                             </Typography>
                             <Divider orientation="vertical" flexItem />
                             <Typography

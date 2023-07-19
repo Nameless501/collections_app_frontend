@@ -4,6 +4,7 @@ import { Box, Grid, Typography, Divider } from '@mui/material';
 import CollectionCardImage from './CollectionCardImage';
 import { CollectionInfoPropsType } from '../../types/common.types';
 import { dataCardLabelsConfig } from '../../configs/content.config';
+import { getCollectionSubjectValue } from '../../utils/helpers.util';
 
 const CollectionDataCardInfo: FC<CollectionInfoPropsType> = ({
     collection,
@@ -55,7 +56,11 @@ const CollectionDataCardInfo: FC<CollectionInfoPropsType> = ({
                             </Grid>
                             <Grid item xs>
                                 <Typography variant="subtitle1">
-                                    {collection.subject}
+                                    {t(
+                                        getCollectionSubjectValue(
+                                            collection.subject
+                                        )
+                                    )}
                                 </Typography>
                             </Grid>
                         </Grid>
