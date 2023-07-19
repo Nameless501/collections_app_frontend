@@ -32,16 +32,20 @@ export const collectionsSlice = apiSlice.injectEndpoints({
             query: (id: number) => getDeleteCollectionQueryOptions(id),
         }),
         createCollection: builder.mutation({
-            query: (payload: FormData) => getCreateCollectionQueryOptions(payload),
+            query: (payload: FormData) =>
+                getCreateCollectionQueryOptions(payload),
         }),
         createFields: builder.mutation({
-            query: (payload: {id: number, fields: FieldsFormInputsType}) => getCreateFieldsQueryOptions(payload.id, payload.fields),
+            query: (payload: { id: number; fields: FieldsFormInputsType }) =>
+                getCreateFieldsQueryOptions(payload.id, payload.fields),
         }),
         updateCollection: builder.mutation({
-            query: (payload: {id: number, body: FormData}) => getUpdateCollectionQueryOptions(payload.id, payload.body),
+            query: (payload: { id: number; body: FormData }) =>
+                getUpdateCollectionQueryOptions(payload.id, payload.body),
         }),
         updateField: builder.mutation({
-            query: (payload: {id: number, body: FieldValues}) => getUpdateFieldQueryOptions(payload.id, payload.body),
+            query: (payload: { id: number; body: FieldValues }) =>
+                getUpdateFieldQueryOptions(payload.id, payload.body),
         }),
         deleteField: builder.mutation({
             query: (id: number) => getDeleteFieldsQueryOptions(id),

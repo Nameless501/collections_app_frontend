@@ -1,5 +1,11 @@
 import { FC, useEffect, useMemo, useState } from 'react';
-import { FieldValues, useForm, SubmitHandler, useWatch, FieldError } from 'react-hook-form';
+import {
+    FieldValues,
+    useForm,
+    SubmitHandler,
+    useWatch,
+    FieldError,
+} from 'react-hook-form';
 import { useUpdateFieldMutation } from '../../store/collections.slice';
 import { useNotificationsContext } from '../../../../contexts/NotificationsContext';
 import useBaseQueryError from '../../../../hooks/useBaseQueryError';
@@ -12,7 +18,11 @@ import { Box } from '@mui/material';
 import useFilterDefaultFieldValues from '../../../../hooks/useFilterDefaultFieldValues';
 import FormInput from '../inputs/FormInput';
 import ControlledSelect from '../inputs/ControlledSelect';
-import { fieldLabelInputConfig, fieldTypeSelectConfig, formButtonsConfig } from '../../configs/form.config';
+import {
+    fieldLabelInputConfig,
+    fieldTypeSelectConfig,
+    formButtonsConfig,
+} from '../../configs/form.config';
 import { IField } from '../../../../types/slices.types';
 
 const UpdateFieldForm: FC<UpdateFieldFormPropsType> = ({ onSubmit, field }) => {
@@ -21,7 +31,8 @@ const UpdateFieldForm: FC<UpdateFieldFormPropsType> = ({ onSubmit, field }) => {
     const { apiError, handleBaseQueryError, resetApiError } =
         useBaseQueryError(errorsConfig);
 
-    const { openErrorNotification, openSuccessNotification } = useNotificationsContext();
+    const { openErrorNotification, openSuccessNotification } =
+        useNotificationsContext();
 
     const [updateField, { isLoading }] = useUpdateFieldMutation();
 
@@ -31,16 +42,20 @@ const UpdateFieldForm: FC<UpdateFieldFormPropsType> = ({ onSubmit, field }) => {
     }, [field]);
 
     console.log(defaultValues);
-    
-    const { register, control, handleSubmit, formState: { errors, isValid } } = useForm<FieldValues>(
-        getHookFormConfig<FieldValues>(
-            fieldValidationSchema,
-            defaultValues,
-        ));
+
+    const {
+        register,
+        control,
+        handleSubmit,
+        formState: { errors, isValid },
+    } = useForm<FieldValues>(
+        getHookFormConfig<FieldValues>(fieldValidationSchema, defaultValues)
+    );
 
     const watch = useWatch({ control });
 
-    const getUpdatedFields = useFilterDefaultFieldValues<FieldValues>(defaultValues);
+    const getUpdatedFields =
+        useFilterDefaultFieldValues<FieldValues>(defaultValues);
 
     const handleFieldUpdate: SubmitHandler<FieldValues> = async (data) => {
         try {
@@ -52,7 +67,7 @@ const UpdateFieldForm: FC<UpdateFieldFormPropsType> = ({ onSubmit, field }) => {
         } catch (err) {
             handleBaseQueryError(err);
         }
-    }
+    };
 
     useEffect(() => {
         if (apiError) {
@@ -73,7 +88,7 @@ const UpdateFieldForm: FC<UpdateFieldFormPropsType> = ({ onSubmit, field }) => {
                 onSubmit={handleSubmit(handleFieldUpdate)}
                 buttonText={formButtonsConfig.update}
             >
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }} >
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                     <FormInput
                         register={register}
                         error={errors[fieldLabelInputConfig.name] as FieldError}

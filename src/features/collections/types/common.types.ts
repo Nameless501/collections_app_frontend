@@ -3,11 +3,16 @@ import {
     FieldError,
     Control,
     FieldValues,
-    FieldErrors
+    FieldErrors,
 } from 'react-hook-form';
 import { ICollection, IField } from '../../../types/slices.types';
 import { SortDirections } from '../../../configs/common.config';
-import { SortOptions, SortFormInputs, FieldsFormInputs, CollectionDataTabs } from '../configs/enums.config';
+import {
+    SortOptions,
+    SortFormInputs,
+    FieldsFormInputs,
+    CollectionDataTabs,
+} from '../configs/enums.config';
 import { ChildrenPropsType } from '../../../types/props.types';
 import {
     CollectionFormInputs,
@@ -67,7 +72,14 @@ export type DeleteCollectionButtonPropsType = {
     redirect?: AppRoutes;
     sx?: SxProps;
     size?: 'small' | 'medium' | 'large';
-    color?: "default" | "primary" | "secondary" | "success" | "info" | "warning" | 'error';
+    color?:
+        | 'default'
+        | 'primary'
+        | 'secondary'
+        | 'success'
+        | 'info'
+        | 'warning'
+        | 'error';
 };
 
 export type CollectionFormInputsType = {
@@ -81,7 +93,7 @@ export type FieldsFormInputsType = {
     fields: Array<{
         [FieldsFormInputs.label]: string;
         [FieldsFormInputs.type]: string;
-    }>
+    }>;
 };
 
 export type FormInputPropsType = {
@@ -159,12 +171,12 @@ export type FieldsFormInputPropsType = {
 
 export type CollectionDataPropsType = {
     collectionId: number;
-}
+};
 
 export type CollectionInfoPropsType = {
     collection: ICollection;
     isOwner: boolean;
-}
+};
 
 export type CollectionFieldsTablePropsType = {
     fields: Array<IField>;
@@ -172,7 +184,7 @@ export type CollectionFieldsTablePropsType = {
     handleEdit: (field: IField) => void;
     handleDelete: (id: number) => void;
     openNewFieldsForm: () => void;
-}
+};
 
 export type CollectionDataCardPropsType = {
     collection: ICollection;
@@ -182,7 +194,7 @@ export type CollectionDataCardPropsType = {
     handleFieldEdit: (field: IField) => void;
     handleFieldDelete: (id: number) => void;
     openNewFieldsForm: () => void;
-}
+};
 
 export type CollectionInfoControlWrapperPropsType = {
     collectionId: number;
@@ -191,10 +203,10 @@ export type CollectionInfoControlWrapperPropsType = {
 } & ChildrenPropsType;
 
 export type CollectionDataCardTabsPropsType = {
-    currentTab: CollectionDataTabs,
+    currentTab: CollectionDataTabs;
     changeTab: (tab: CollectionDataTabs) => void;
-}
+};
 
 export type NewCollectionAndFieldsFormPropsType = {
     handleClose: () => void;
-}
+};

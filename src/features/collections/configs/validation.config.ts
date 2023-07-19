@@ -22,4 +22,6 @@ export const fieldsValidationSchema = getResolvedValidationSchema({
     fields: getArraySchema(getObjectSchema(fieldValidationConfig)),
 });
 
-export const fieldValidationSchema = getResolvedValidationSchema(fieldValidationConfig);
+export const fieldValidationSchema = getResolvedValidationSchema(
+    fieldValidationConfig
+);

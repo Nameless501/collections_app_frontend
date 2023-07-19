@@ -5,7 +5,15 @@ import Backend from 'i18next-http-backend';
 i18n.use(Backend)
     .use(initReactI18next)
     .init({
-        ns: ['common', 'navigation', 'sign', 'errors', 'profile', 'admin', 'collection'],
+        ns: [
+            'common',
+            'navigation',
+            'sign',
+            'errors',
+            'profile',
+            'admin',
+            'collection',
+        ],
         lng: 'en',
         fallbackLng: 'en',
         returnEmptyString: false,

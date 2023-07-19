@@ -12,7 +12,13 @@ import { useNotificationsContext } from '../../../../contexts/NotificationsConte
 import CustomFab from '../../../../components/CustomFab';
 import { dataCardTooltipsConfig } from '../../configs/content.config';
 
-const DeleteCollectionButton: FC<DeleteCollectionButtonPropsType> = ({ collectionId, size, sx, color, redirect }) => {
+const DeleteCollectionButton: FC<DeleteCollectionButtonPropsType> = ({
+    collectionId,
+    size,
+    sx,
+    color,
+    redirect,
+}) => {
     const navigate = useNavigate();
 
     const { apiError, handleBaseQueryError, resetApiError } =
@@ -28,10 +34,10 @@ const DeleteCollectionButton: FC<DeleteCollectionButtonPropsType> = ({ collectio
     const deleteCollectionFromStore = () => {
         dispatch(deleteUserCollection(collectionId));
         dispatch(deleteCollection(collectionId));
-    }
+    };
 
     const handleRedirect = () => {
-        if(redirect) {
+        if (redirect) {
             navigate(redirect);
         }
     };
@@ -60,7 +66,12 @@ const DeleteCollectionButton: FC<DeleteCollectionButtonPropsType> = ({ collectio
             sx={sx}
             handleClick={handleCollectionDelete}
             color={color}
-            icon={<DeleteIcon fontSize={size} color={color ? 'inherit' : "error"} />}
+            icon={
+                <DeleteIcon
+                    fontSize={size}
+                    color={color ? 'inherit' : 'error'}
+                />
+            }
             tooltip={dataCardTooltipsConfig.deleteCollection}
         />
     );

@@ -56,15 +56,17 @@ export const TopBiggestCollections: FC = () => {
                 gap: 2,
             }}
         >
-            <Typography variant='h5' textAlign='center'>
+            <Typography variant="h5" textAlign="center">
                 {t(topCollectionsConfig.title)}
             </Typography>
             {!isLoading && !isError && (
                 <List>
-                    {collections.map((collection) =>
-                    (
+                    {collections.map((collection) => (
                         <ListItem key={collection.id}>
-                            <CollectionCard {...collection} isOwner={collection.userId === currentUser.id} />
+                            <CollectionCard
+                                {...collection}
+                                isOwner={collection.userId === currentUser.id}
+                            />
                         </ListItem>
                     ))}
                 </List>

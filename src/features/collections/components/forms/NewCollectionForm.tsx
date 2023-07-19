@@ -2,7 +2,10 @@ import { FC, useEffect } from 'react';
 import { FieldValues, useForm, SubmitHandler } from 'react-hook-form';
 import { useTypedDispatch } from '../../../../store/store';
 import { useCreateCollectionMutation } from '../../store/collections.slice';
-import { collectionFormDefaultValues, formButtonsConfig } from '../../configs/form.config';
+import {
+    collectionFormDefaultValues,
+    formButtonsConfig,
+} from '../../configs/form.config';
 import { useNotificationsContext } from '../../../../contexts/NotificationsContext';
 import useBaseQueryError from '../../../../hooks/useBaseQueryError';
 import { errorsConfig } from '../../configs/api.config';
@@ -14,7 +17,9 @@ import CollectionFormInputs from './CollectionFormInputs';
 import CollectionFormWrapper from './CollectionFormWrapper';
 import { getFormData } from '../../../../utils/helpers.util';
 
-const NewCollectionDataForm: FC<NewCollectionFormPropsType> = ({ onSubmit }) => {
+const NewCollectionDataForm: FC<NewCollectionFormPropsType> = ({
+    onSubmit,
+}) => {
     const dispatch = useTypedDispatch();
 
     const { apiError, handleBaseQueryError, resetApiError } =
@@ -24,11 +29,17 @@ const NewCollectionDataForm: FC<NewCollectionFormPropsType> = ({ onSubmit }) => 
 
     const [createCollection, { isLoading }] = useCreateCollectionMutation();
 
-    const { register, control, handleSubmit, formState: { errors, isValid } } = useForm<FieldValues>(
+    const {
+        register,
+        control,
+        handleSubmit,
+        formState: { errors, isValid },
+    } = useForm<FieldValues>(
         getHookFormConfig<FieldValues>(
             collectionValidationSchema,
-            collectionFormDefaultValues,
-        ));
+            collectionFormDefaultValues
+        )
+    );
 
     const handleCreateCollection: SubmitHandler<FieldValues> = async (data) => {
         try {
@@ -40,7 +51,7 @@ const NewCollectionDataForm: FC<NewCollectionFormPropsType> = ({ onSubmit }) => 
         } catch (err) {
             handleBaseQueryError(err);
         }
-    }
+    };
 
     useEffect(() => {
         if (apiError) {

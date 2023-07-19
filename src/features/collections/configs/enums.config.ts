@@ -37,7 +37,7 @@ export enum FieldTypes {
 
 export enum CollectionFormSteps {
     collection,
-    fields
+    fields,
 }
 
 export enum SortFormInputs {
@@ -65,5 +65,5 @@ export enum CollectionFormInputs {
 
 export enum CollectionDataTabs {
     info,
-    fields
+    fields,
 }

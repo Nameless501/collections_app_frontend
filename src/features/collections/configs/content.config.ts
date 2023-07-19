@@ -25,15 +25,15 @@ export const dataCardTabsConfig = {
     fields: 'collection:card.tabs.fields',
 };
 
-export const cardImageAlt = 'collection:card.image'
+export const cardImageAlt = 'collection:card.image';
 
 export const cardLabelsConfig = {
     id: 'collection:card.labels.smallCard.id',
     author: 'collection:card.labels.smallCard.author',
     subject: 'collection:card.labels.smallCard.subject',
     userAuthor: 'collection:card.labels.smallCard.userAuthor',
-}
+};
 
 export const topCollectionsConfig = {
     title: 'collection:titles.topCollections',
-}
+};

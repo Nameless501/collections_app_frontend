@@ -20,25 +20,29 @@ const ControlledSelect: FC<ControlledSelectPropsType> = ({
     const { t } = useTranslation();
 
     const getSelectedOptionName = (selected: string) => {
-        const option = config.options.find(option => option.value === selected);
+        const option = config.options.find(
+            (option) => option.value === selected
+        );
         if (typeof option === 'object') {
-            return (option).name;
+            return option.name;
         }
-    }
+    };
 
     const renderSelected = (selected: string | string[]) => {
         if (typeof selected === 'string') {
             return t(getSelectedOptionName(selected));
         }
-        return selected.map(option => t(getSelectedOptionName(option))).join(', ');
-    }
+        return selected
+            .map((option) => t(getSelectedOptionName(option)))
+            .join(', ');
+    };
 
     const setIsChecked = (inputValues: unknown, currentValue: string) => {
-        if(Array.isArray(inputValues)) {
+        if (Array.isArray(inputValues)) {
             return inputValues.includes(currentValue);
         }
         return false;
-    }
+    };
 
     return (
         <FormControl sx={{ width: '100%' }} size={size}>
@@ -53,7 +57,9 @@ const ControlledSelect: FC<ControlledSelectPropsType> = ({
                         label={t(config.label)}
                         multiple={multiple}
                         value={inputValues}
-                        onChange={(evt) => onChange(evt as ChangeEvent<Element>)}
+                        onChange={(evt) =>
+                            onChange(evt as ChangeEvent<Element>)
+                        }
                         renderValue={(selected) => renderSelected(selected)}
                         MenuProps={{
                             PaperProps: {
@@ -67,7 +73,10 @@ const ControlledSelect: FC<ControlledSelectPropsType> = ({
                             <MenuItem key={value} value={value}>
                                 {multiple && (
                                     <Checkbox
-                                        checked={setIsChecked(inputValues, value)}
+                                        checked={setIsChecked(
+                                            inputValues,
+                                            value
+                                        )}
                                     />
                                 )}
                                 <ListItemText primary={t(name)} />

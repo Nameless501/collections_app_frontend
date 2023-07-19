@@ -22,7 +22,7 @@ const CollectionListWithFilters: FC<CollectionListWithFiltersPropsType> = ({
     isAdmin,
 }) => {
     const { t } = useTranslation();
-    
+
     const { control, reset, setValue, watch } = useForm<FieldValues>({
         defaultValues: sortFormDefaultValues,
     });
@@ -47,13 +47,16 @@ const CollectionListWithFilters: FC<CollectionListWithFiltersPropsType> = ({
         const filteredList =
             selectedSubjects.length > 0
                 ? collections.filter((collection) =>
-                    selectedSubjects.includes(
-                        collection.subject as CollectionSubjects
-                    )
-                )
+                      selectedSubjects.includes(
+                          collection.subject as CollectionSubjects
+                      )
+                  )
                 : collections;
         return [...filteredList].sort((item1, item2) =>
-            handleSort(item1[sortedBy as keyof ICollection], item2[sortedBy as keyof ICollection])
+            handleSort(
+                item1[sortedBy as keyof ICollection],
+                item2[sortedBy as keyof ICollection]
+            )
         );
     }, [selectedSubjects, collections, sortedBy, handleSort]);
 

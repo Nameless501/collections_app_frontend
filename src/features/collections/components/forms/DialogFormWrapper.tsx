@@ -2,17 +2,19 @@ import { FC } from 'react';
 import { Box, Dialog } from '@mui/material';
 import { DialogFormWrapperPropsType } from '../../types/common.types';
 
-const DialogFormWrapper: FC<DialogFormWrapperPropsType> = ({ children, isOpen, handleClose }) => {
+const DialogFormWrapper: FC<DialogFormWrapperPropsType> = ({
+    children,
+    isOpen,
+    handleClose,
+}) => {
     return (
         <Dialog
             fullWidth={true}
-            maxWidth='sm'
+            maxWidth="sm"
             open={isOpen}
             onClose={handleClose}
         >
-            <Box sx={{ p: {xs: 1, sm: 2, md: 3} }}>
-                {children}
-            </Box>
+            <Box sx={{ p: { xs: 1, sm: 2, md: 3 } }}>{children}</Box>
         </Dialog>
     );
 };

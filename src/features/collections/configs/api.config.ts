@@ -35,17 +35,23 @@ export const getCreateCollectionQueryOptions = (body: FormData) => ({
     body,
 });
 
-export const getUpdateCollectionQueryOptions = (id: number, body: FormData) => ({
+export const getUpdateCollectionQueryOptions = (
+    id: number,
+    body: FormData
+) => ({
     url: setRouteParam(ApiRoutes.updateCollection, id),
     method: ApiMethods.patch,
     body,
 });
 
-export const getCreateFieldsQueryOptions = (id: number, fields: FieldsFormInputsType) => ({
+export const getCreateFieldsQueryOptions = (
+    id: number,
+    fields: FieldsFormInputsType
+) => ({
     url: setRouteParam(ApiRoutes.createCollectionFields, id),
     method: ApiMethods.post,
     body: {
-        fields
+        fields,
     },
 });
 

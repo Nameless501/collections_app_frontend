@@ -8,9 +8,7 @@ const CollectionPage: FC = () => {
 
     return (
         <FlexCenterWrapper>
-            <CollectionData
-                collectionId={Number(id)}
-            />
+            <CollectionData collectionId={Number(id)} />
         </FlexCenterWrapper>
     );
 };

@@ -15,42 +15,56 @@ import useFilterDefaultFieldValues from '../../../../hooks/useFilterDefaultField
 import { ICollection } from '../../../../types/slices.types';
 import { formButtonsConfig } from '../../configs/form.config';
 
-const UpdateCollectionForm: FC<UpdateCollectionFormPropsType> = ({ onSubmit, collection }) => {
+const UpdateCollectionForm: FC<UpdateCollectionFormPropsType> = ({
+    onSubmit,
+    collection,
+}) => {
     const [isChanged, setIsChanged] = useState<boolean>(false);
 
     const { apiError, handleBaseQueryError, resetApiError } =
         useBaseQueryError(errorsConfig);
 
-    const { openErrorNotification, openSuccessNotification } = useNotificationsContext();
+    const { openErrorNotification, openSuccessNotification } =
+        useNotificationsContext();
 
     const [updateCollection, { isLoading }] = useUpdateCollectionMutation();
 
     const defaultValues = useMemo(() => {
         const { subject, title, description } = collection;
-        return { subject, title, description }
+        return { subject, title, description };
     }, [collection]);
 
-    const { register, control, handleSubmit, formState: { errors, isValid } } = useForm<FieldValues>(
+    const {
+        register,
+        control,
+        handleSubmit,
+        formState: { errors, isValid },
+    } = useForm<FieldValues>(
         getHookFormConfig<FieldValues>(
             collectionValidationSchema,
-            defaultValues,
-        ));
+            defaultValues
+        )
+    );
 
     const watch = useWatch({ control });
 
-    const getUpdatedFields = useFilterDefaultFieldValues<FieldValues>(defaultValues);
+    const getUpdatedFields =
+        useFilterDefaultFieldValues<FieldValues>(defaultValues);
 
     const handleCreateCollection: SubmitHandler<FieldValues> = async (data) => {
         try {
             resetApiError();
             const formData = getFormData(getUpdatedFields(data));
-            const newCollection = await updateCollection({ id: collection.id, body: formData }).unwrap();
+            const newCollection = await updateCollection({
+                id: collection.id,
+                body: formData,
+            }).unwrap();
             onSubmit(newCollection as ICollection);
             openSuccessNotification('Success');
         } catch (err) {
             handleBaseQueryError(err);
         }
-    }
+    };
 
     useEffect(() => {
         if (apiError) {

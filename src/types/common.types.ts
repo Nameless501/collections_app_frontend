@@ -15,6 +15,13 @@ export type ProfilePageTabsType<T> = Array<{
     iconPosition: 'top' | 'bottom' | 'end' | 'start';
 }>;
 
-export type ColorOptions = "default" | "primary" | "secondary" | "success" | "info" | "warning" | 'error';
+export type ColorOptions =
+    | 'default'
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'info'
+    | 'warning'
+    | 'error';
 
-export type SizeOptions = "small" | "medium" | "large";
+export type SizeOptions = 'small' | 'medium' | 'large';

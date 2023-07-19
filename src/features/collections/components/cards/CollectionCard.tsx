@@ -89,12 +89,11 @@ const CollectionCard: FC<CollectionCardPropsType> = ({
                                 color="text.secondary"
                                 fontSize={{ xs: 12, sm: 14, lg: 16 }}
                             >
-                                {
-                                    isOwner ?
-                                        t(cardLabelsConfig.userAuthor)
-                                        :
-                                        t(cardLabelsConfig.author, { name: user?.name })
-                                }
+                                {isOwner
+                                    ? t(cardLabelsConfig.userAuthor)
+                                    : t(cardLabelsConfig.author, {
+                                          name: user?.name,
+                                      })}
                             </Typography>
                         </Grid>
                         <Typography noWrap fontSize={{ xs: 14, lg: 16 }}>

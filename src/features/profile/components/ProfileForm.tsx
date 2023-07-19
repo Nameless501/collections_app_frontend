@@ -45,7 +45,8 @@ export const ProfileForm: FC<ProfileFormPropsType> = ({
 
     const watch = useWatch({ control });
 
-    const getUpdatedFields = useFilterDefaultFieldValues<InputsType>(defaultValues);
+    const getUpdatedFields =
+        useFilterDefaultFieldValues<InputsType>(defaultValues);
 
     const onSubmit: SubmitHandler<InputsType> = async (data): Promise<void> => {
         try {

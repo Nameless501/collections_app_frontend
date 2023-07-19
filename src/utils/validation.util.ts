@@ -17,9 +17,11 @@ export const getValidationOption = (
     return schema.messages(validationErrors);
 };
 
-export const getObjectSchema = (params: FieldValues): ObjectSchema => Joi.object(params);
+export const getObjectSchema = (params: FieldValues): ObjectSchema =>
+    Joi.object(params);
 
-export const getArraySchema = (params: FieldValues): ArraySchema => Joi.array().items(params)
+export const getArraySchema = (params: FieldValues): ArraySchema =>
+    Joi.array().items(params);
 
 export function getResolvedValidationSchema(params: FieldValues) {
     return joiResolver(getObjectSchema(params));

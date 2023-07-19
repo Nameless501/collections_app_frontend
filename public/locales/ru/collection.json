@@ -44,7 +44,7 @@
                 "fields": "Создание полей"
             }
         },
-        "labels": {            
+        "labels": {
             "collection": {
                 "title": "Название",
                 "description": "Описание",

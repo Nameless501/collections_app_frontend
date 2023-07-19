@@ -77,9 +77,14 @@ export const UserCollections: FC<UserCollectionsPropsType> = ({ userId }) => {
                     />
                     <CustomFab
                         color="primary"
-                        sx={{ position: 'fixed', bottom: 20, alignSelf: 'flex-start', transform: 'scale(1.1)' }}
+                        sx={{
+                            position: 'fixed',
+                            bottom: 20,
+                            alignSelf: 'flex-start',
+                            transform: 'scale(1.1)',
+                        }}
                         size="large"
-                        icon={<AddIcon fontSize='large' />}
+                        icon={<AddIcon fontSize="large" />}
                         handleClick={() => setFormDialogState(true)}
                     />
                     <DialogFormWrapper

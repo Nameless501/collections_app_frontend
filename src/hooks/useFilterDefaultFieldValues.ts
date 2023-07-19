@@ -27,7 +27,10 @@ function useFilterDefaultFieldValues<T extends FieldValues>(defaultValues: T) {
         [defaultValues]
     );
 
-    const getUpdatedFields = useCallback((data: T) => filterDefaultValues(filterEmptyFields(data)), [filterDefaultValues, filterEmptyFields]);
+    const getUpdatedFields = useCallback(
+        (data: T) => filterDefaultValues(filterEmptyFields(data)),
+        [filterDefaultValues, filterEmptyFields]
+    );
 
     return getUpdatedFields;
 }

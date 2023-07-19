@@ -17,10 +17,13 @@ const CollectionsList: FC<AllCollectionsListPropsType> = ({
                     <ListItem key={collection.id} sx={{ my: 1 }}>
                         {isOwner || isAdmin ? (
                             <Box sx={{ position: 'relative' }}>
-                                <CollectionCard {...collection} isOwner={isOwner} />
+                                <CollectionCard
+                                    {...collection}
+                                    isOwner={isOwner}
+                                />
                                 <DeleteCollectionButton
                                     collectionId={collection.id}
-                                    size='small'
+                                    size="small"
                                     sx={{
                                         position: 'absolute',
                                         top: -10,

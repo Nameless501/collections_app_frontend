@@ -45,7 +45,7 @@
                 "fields": "Fields data"
             }
         },
-        "labels": {            
+        "labels": {
             "collection": {
                 "title": "Title",
                 "description": "Description",

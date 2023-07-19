@@ -1,6 +1,9 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 import { useTypedSelector, useTypedDispatch } from '../../../store/store';
-import { useGetCollectionDataMutation, useDeleteFieldMutation } from '../store/collections.slice';
+import {
+    useGetCollectionDataMutation,
+    useDeleteFieldMutation,
+} from '../store/collections.slice';
 import Loader from '../../../components/Loader';
 import { errorsConfig } from '../configs/api.config';
 import useBaseQueryError from '../../../hooks/useBaseQueryError';
@@ -12,13 +15,21 @@ import UpdateCollectionForm from './forms/UpdateCollectionForm';
 import UpdateFieldForm from './forms/UpdateFieldForm';
 import NewFieldsForm from './forms/NewFieldsForm';
 import DialogFormWrapper from './forms/DialogFormWrapper';
-import { addCollectionFields, deleteCollectionField, setCollectionData, updateCollectionField } from '../../../store/collectionData/collectionDataSlice';
+import {
+    addCollectionFields,
+    deleteCollectionField,
+    setCollectionData,
+    updateCollectionField,
+} from '../../../store/collectionData/collectionDataSlice';
 
-export const CollectionData: FC<CollectionDataPropsType> = ({ collectionId }) => {
+export const CollectionData: FC<CollectionDataPropsType> = ({
+    collectionId,
+}) => {
     const { apiError, handleBaseQueryError, resetApiError } =
         useBaseQueryError(errorsConfig);
 
-    const [editCollectionIsOpen, setEditCollectionState] = useState<boolean>(false);
+    const [editCollectionIsOpen, setEditCollectionState] =
+        useState<boolean>(false);
 
     const [editFieldIsOpen, setEditFieldState] = useState<boolean>(false);
 
@@ -28,12 +39,13 @@ export const CollectionData: FC<CollectionDataPropsType> = ({ collectionId }) =>
 
     const dispatch = useTypedDispatch();
 
-    const { data: collectionData } = useTypedSelector((state) => state.collectionData);
+    const { data: collectionData } = useTypedSelector(
+        (state) => state.collectionData
+    );
 
     const { data: currentUser } = useTypedSelector((state) => state.user);
 
-    const [getCollectionData, { isLoading }] =
-        useGetCollectionDataMutation();
+    const [getCollectionData, { isLoading }] = useGetCollectionDataMutation();
 
     const [deleteField] = useDeleteFieldMutation();
 
@@ -42,29 +54,29 @@ export const CollectionData: FC<CollectionDataPropsType> = ({ collectionId }) =>
     const openFieldUpdateForm = (field: IField) => {
         setEditingField(field);
         setEditFieldState(true);
-    }
+    };
 
     const closeFieldUpdateForm = () => {
         setEditingField(null);
         setEditFieldState(false);
-    }
+    };
 
     const updateCollectionData = (newCollection: ICollection) => {
         dispatch(setCollectionData(newCollection));
         setEditCollectionState(false);
-    }
+    };
 
     const updateFieldsData = (newField: IField) => {
         dispatch(updateCollectionField(newField));
         closeFieldUpdateForm();
-    }
+    };
 
     const addFieldsData = (fields?: IField[]) => {
-        if(fields) {
+        if (fields) {
             dispatch(addCollectionFields(fields));
         }
         setNewFieldsState(false);
-    }
+    };
 
     const handleFieldDelete = async (fieldId: number) => {
         try {
@@ -85,7 +97,13 @@ export const CollectionData: FC<CollectionDataPropsType> = ({ collectionId }) =>
         } catch (err) {
             handleBaseQueryError(err);
         }
-    }, [getCollectionData, handleBaseQueryError, resetApiError, collectionId, dispatch]);
+    }, [
+        getCollectionData,
+        handleBaseQueryError,
+        resetApiError,
+        collectionId,
+        dispatch,
+    ]);
 
     useEffect(() => {
         handleCollectionData();
@@ -99,8 +117,7 @@ export const CollectionData: FC<CollectionDataPropsType> = ({ collectionId }) =>
 
     return (
         <>
-            {
-                collectionData &&
+            {collectionData && (
                 <CollectionDataCard
                     collection={collectionData}
                     isAdmin={currentUser.isAdmin}
@@ -110,42 +127,39 @@ export const CollectionData: FC<CollectionDataPropsType> = ({ collectionId }) =>
                     handleFieldDelete={handleFieldDelete}
                     openNewFieldsForm={() => setNewFieldsState(true)}
                 />
-            }
+            )}
             <DialogFormWrapper
                 isOpen={editCollectionIsOpen}
                 handleClose={() => setEditCollectionState(false)}
             >
-                {
-                    collectionData &&
+                {collectionData && (
                     <UpdateCollectionForm
                         onSubmit={updateCollectionData}
                         collection={collectionData}
                     />
-                }
+                )}
             </DialogFormWrapper>
             <DialogFormWrapper
                 isOpen={editFieldIsOpen}
                 handleClose={closeFieldUpdateForm}
             >
-                {
-                    editingField &&
+                {editingField && (
                     <UpdateFieldForm
                         onSubmit={updateFieldsData}
                         field={editingField}
                     />
-                }
+                )}
             </DialogFormWrapper>
             <DialogFormWrapper
                 isOpen={newFieldsIsOpen}
                 handleClose={() => setNewFieldsState(false)}
             >
-                {
-                    collectionData &&
+                {collectionData && (
                     <NewFieldsForm
                         onSubmit={addFieldsData}
                         collectionId={collectionData.id}
                     />
-                }
+                )}
             </DialogFormWrapper>
             {isLoading && <Loader />}
         </>

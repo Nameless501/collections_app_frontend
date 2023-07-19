@@ -10,20 +10,24 @@ export const collectionDataSlice = createSlice({
             state.data = payload;
         },
         deleteCollectionField: (state, { payload }: PayloadAction<number>) => {
-            if(state.data.fields) {
-                const fields = state.data.fields.filter(field => field.id !== payload);
+            if (state.data.fields) {
+                const fields = state.data.fields.filter(
+                    (field) => field.id !== payload
+                );
                 state.data.fields = fields;
             }
         },
         updateCollectionField: (state, { payload }: PayloadAction<IField>) => {
-            if(state.data.fields) {
-                const fields = state.data.fields.map(field => field.id === payload.id ? payload : field);
+            if (state.data.fields) {
+                const fields = state.data.fields.map((field) =>
+                    field.id === payload.id ? payload : field
+                );
                 state.data.fields = fields;
             }
         },
         addCollectionFields: (state, { payload }: PayloadAction<IField[]>) => {
-            let fields = payload
-            if(state.data.fields) {
+            let fields = payload;
+            if (state.data.fields) {
                 fields = [...state.data.fields, ...fields];
             }
             state.data.fields = fields;
@@ -31,7 +35,11 @@ export const collectionDataSlice = createSlice({
     },
 });
 
-export const { setCollectionData, deleteCollectionField, updateCollectionField, addCollectionFields } =
-    collectionDataSlice.actions;
+export const {
+    setCollectionData,
+    deleteCollectionField,
+    updateCollectionField,
+    addCollectionFields,
+} = collectionDataSlice.actions;
 
 export default collectionDataSlice.reducer;

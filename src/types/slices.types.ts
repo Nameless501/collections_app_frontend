@@ -30,7 +30,7 @@ export interface ICollection {
     title: string;
     description: string;
     user?: IUser;
-    fields?: Array<IField> 
+    fields?: Array<IField>;
 }
 
 export interface ICollectionState {

@@ -4,7 +4,7 @@ import FlexCenterWrapper from '../components/FlexCenterWrapper';
 
 const MainPage: FC = () => {
     return (
-        <FlexCenterWrapper align='flex-start'>
+        <FlexCenterWrapper align="flex-start">
             <TopBiggestCollections />
         </FlexCenterWrapper>
     );

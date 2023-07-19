@@ -17,10 +17,7 @@ export const userCollectionsSlice = createSlice({
                 (collection) => collection.id !== payload
             );
         },
-        addUserCollection: (
-            state,
-            { payload }: PayloadAction<ICollection>
-        ) => {
+        addUserCollection: (state, { payload }: PayloadAction<ICollection>) => {
             state.collections = [...state.collections, payload];
         },
     },

@@ -9,21 +9,24 @@ import {
 } from './enums.config';
 import { FileInputConfigType, SelectConfigType } from '../types/common.types';
 import { SortDirections } from '../../../configs/common.config';
-import { getCollectionSubjectValue, getFieldTypeValue } from '../utils/helpers.util';
+import {
+    getCollectionSubjectValue,
+    getFieldTypeValue,
+} from '../utils/helpers.util';
 
 export const collectionAndFieldsFormConfig = {
     title: 'collection:form.new.title',
     steps: [
         {
             key: CollectionFormSteps.collection,
-            label: 'collection:form.new.steps.collection'
+            label: 'collection:form.new.steps.collection',
         },
         {
             key: CollectionFormSteps.fields,
-            label: 'collection:form.new.steps.fields'
+            label: 'collection:form.new.steps.fields',
         },
-    ]
-}
+    ],
+};
 
 export const collectionFormConfig = [
     {
@@ -68,13 +71,13 @@ export const sortSelectConfig: SelectConfigType = {
     label: 'collection:form.labels.sort.sortBy',
     id: 'sort-by-select',
     options: [
-        { 
+        {
             name: 'collection:form.labels.sort.id',
-            value: SortOptions.id
+            value: SortOptions.id,
         },
-        { 
+        {
             name: 'collection:form.labels.sort.name',
-            value: SortOptions.name
+            value: SortOptions.name,
         },
     ],
 };
@@ -91,7 +94,9 @@ export const fieldLabelInputConfig: FileInputConfigType = {
     id: 'field-label-input',
 };
 
-export const getFieldLabelInputConfig = (index: number): FileInputConfigType => ({
+export const getFieldLabelInputConfig = (
+    index: number
+): FileInputConfigType => ({
     ...fieldLabelInputConfig,
     name: `fields.${index}.${FieldsFormInputs.label}`,
 });
@@ -112,17 +117,15 @@ export const collectionFormDefaultValues = {
 export const fieldDefaultValue = {
     [FieldsFormInputs.label]: '',
     [FieldsFormInputs.type]: '',
-}
+};
 
 export const fieldsFormDefaultValues = {
-    fields: [
-        fieldDefaultValue,
-    ],
+    fields: [fieldDefaultValue],
 };
 
 export const formButtonsConfig = {
     next: 'collection:form.buttons.next',
     create: 'collection:form.buttons.create',
     update: 'collection:form.buttons.update',
-    clear: 'collection:form.buttons.clear'
-}
+    clear: 'collection:form.buttons.clear',
+};

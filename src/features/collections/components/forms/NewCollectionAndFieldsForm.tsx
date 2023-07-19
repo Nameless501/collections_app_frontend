@@ -15,50 +15,60 @@ import { NewCollectionAndFieldsFormPropsType } from '../../types/common.types';
 import { useTranslation } from 'react-i18next';
 import { collectionAndFieldsFormConfig } from '../../configs/form.config';
 
-const NewCollectionAndFieldsForm: FC<NewCollectionAndFieldsFormPropsType> = ({ handleClose }) => {
+const NewCollectionAndFieldsForm: FC<NewCollectionAndFieldsFormPropsType> = ({
+    handleClose,
+}) => {
     const { t } = useTranslation();
 
-    const [newCollection, setNewCollection] = useState<ICollection | null>(null);
+    const [newCollection, setNewCollection] = useState<ICollection | null>(
+        null
+    );
 
-    const [currentStep, setCurrentStep] = useState<CollectionFormSteps>(CollectionFormSteps.collection);
+    const [currentStep, setCurrentStep] = useState<CollectionFormSteps>(
+        CollectionFormSteps.collection
+    );
 
     const goToNextStep = () => setCurrentStep((current) => current + 1);
 
     const saveNewCollection = (collection: ICollection) => {
         setNewCollection(collection);
         goToNextStep();
-    }
+    };
 
     return (
-        <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 2 }}>
+        <Box
+            sx={{
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 2,
+            }}
+        >
             <DialogTitle variant="h5" textAlign="center">
                 {t(collectionAndFieldsFormConfig.title)}
             </DialogTitle>
             <DialogContent sx={{ p: { xs: 1, md: 2 } }}>
-                <Stepper activeStep={currentStep} sx={{ px: { xs: 1, sm: 4 }, mb: 3 }}>
-                    {
-                        collectionAndFieldsFormConfig.steps.map(({ key, label }) => (
+                <Stepper
+                    activeStep={currentStep}
+                    sx={{ px: { xs: 1, sm: 4 }, mb: 3 }}
+                >
+                    {collectionAndFieldsFormConfig.steps.map(
+                        ({ key, label }) => (
                             <Step key={key}>
-                                <StepLabel>
-                                    {t(label)}
-                                </StepLabel>
+                                <StepLabel>{t(label)}</StepLabel>
                             </Step>
-                        ))
-                    }
+                        )
+                    )}
                 </Stepper>
-                {
-                    currentStep === CollectionFormSteps.collection &&
-                    <NewCollectionForm
-                        onSubmit={saveNewCollection}
-                    />
-                }
-                {
-                    currentStep === CollectionFormSteps.fields &&
+                {currentStep === CollectionFormSteps.collection && (
+                    <NewCollectionForm onSubmit={saveNewCollection} />
+                )}
+                {currentStep === CollectionFormSteps.fields && (
                     <NewFieldsForm
                         onSubmit={handleClose}
                         collectionId={newCollection?.id as number}
                     />
-                }
+                )}
             </DialogContent>
         </Box>
     );
