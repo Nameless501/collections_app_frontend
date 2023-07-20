@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TextField } from '@mui/material';
-import { FormInputPropsType } from '../../types/common.types';
+import { FormInputPropsType } from '../types/props.types';
 
 const FormInput: FC<FormInputPropsType> = ({
     register,

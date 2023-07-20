@@ -6,6 +6,7 @@ export enum ValidationOptions {
     number = 'number',
     url = 'url',
     image = 'image',
+    boolean = 'boolean',
 }
 
 export const validationErrors = {
@@ -25,4 +26,5 @@ export const validationConfig = {
     [ValidationOptions.number]: Joi.number(),
     [ValidationOptions.url]: Joi.string().uri(),
     [ValidationOptions.image]: Joi.object().allow(null),
+    [ValidationOptions.boolean]: Joi.boolean(),
 };

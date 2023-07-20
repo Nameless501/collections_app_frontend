@@ -25,6 +25,7 @@ export const CollectionDataCard: FC<CollectionDataCardPropsType> = ({
             elevation={3}
             sx={{
                 width: '100%',
+                minWidth: { xs: '80vw', md: '50vw' },
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 3,

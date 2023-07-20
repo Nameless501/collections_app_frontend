@@ -14,7 +14,7 @@ import { NewCollectionFormPropsType } from '../../types/common.types';
 import { collectionValidationSchema } from '../../configs/validation.config';
 import { getHookFormConfig } from '../../../../configs/hookForm.config';
 import CollectionFormInputs from './CollectionFormInputs';
-import CollectionFormWrapper from './CollectionFormWrapper';
+import FormWrapper from '../../../../components/FormWrapper';
 import { getFormData } from '../../../../utils/helpers.util';
 
 const NewCollectionDataForm: FC<NewCollectionFormPropsType> = ({
@@ -60,7 +60,7 @@ const NewCollectionDataForm: FC<NewCollectionFormPropsType> = ({
     }, [apiError, openErrorNotification]);
 
     return (
-        <CollectionFormWrapper
+        <FormWrapper
             disabled={!isValid || isLoading}
             onSubmit={handleSubmit(handleCreateCollection)}
             buttonText={formButtonsConfig.next}
@@ -70,7 +70,7 @@ const NewCollectionDataForm: FC<NewCollectionFormPropsType> = ({
                 control={control}
                 errors={errors}
             />
-        </CollectionFormWrapper>
+        </FormWrapper>
     );
 };
 

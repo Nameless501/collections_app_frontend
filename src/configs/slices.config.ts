@@ -5,6 +5,7 @@ import {
     ICollectionsState,
     ICollectionState,
     ICollection,
+    ICollectionItemsState,
 } from '../types/slices.types';
 import { CollectionSubjects } from './common.config';
 
@@ -40,4 +41,8 @@ export const allUsersInitialState: IAllUsersState = {
 
 export const collectionsInitialState: ICollectionsState = {
     collections: [],
+};
+
+export const collectionItemsInitialState: ICollectionItemsState = {
+    items: [],
 };

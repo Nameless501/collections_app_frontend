@@ -7,6 +7,7 @@ import allUsersReducer from './allUsers/allUsersSlice';
 import userCollectionsReducer from './userCollections/userCollectionsSlice';
 import allCollectionsReducer from './allCollections/allCollectionsSlice';
 import collectionDataReducer from './collectionData/collectionDataSlice';
+import collectionItemsReducer from './collectionItems/collectionItemsSlice';
 
 export const store = configureStore({
     reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
         userCollections: userCollectionsReducer,
         allCollections: allCollectionsReducer,
         collectionData: collectionDataReducer,
+        collectionItems: collectionItemsReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(apiSlice.middleware),

@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { Box, Button } from '@mui/material';
-import { CollectionFormWrapperPropsType } from '../../types/common.types';
+import { FormWrapperPropsType } from '../types/props.types';
 import { useTranslation } from 'react-i18next';
 
-const CollectionFormWrapper: FC<CollectionFormWrapperPropsType> = ({
+const FormWrapper: FC<FormWrapperPropsType> = ({
     onSubmit,
     disabled,
     children,
@@ -31,4 +31,4 @@ const CollectionFormWrapper: FC<CollectionFormWrapperPropsType> = ({
     );
 };
 
-export default CollectionFormWrapper;
+export default FormWrapper;

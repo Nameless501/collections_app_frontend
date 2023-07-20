@@ -20,7 +20,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { FieldsFormInputsType } from '../../types/common.types';
 import { fieldsValidationSchema } from '../../configs/validation.config';
 import { getHookFormConfig } from '../../../../configs/hookForm.config';
-import CollectionFormWrapper from './CollectionFormWrapper';
+import FormWrapper from '../../../../components/FormWrapper';
 import { useNotificationsContext } from '../../../../contexts/NotificationsContext';
 import useBaseQueryError from '../../../../hooks/useBaseQueryError';
 import { errorsConfig } from '../../configs/api.config';
@@ -77,7 +77,7 @@ const NewFieldsForm: FC<NewFieldsFormPropsType> = ({
     }, [apiError, openErrorNotification]);
 
     return (
-        <CollectionFormWrapper
+        <FormWrapper
             disabled={!isValid || isLoading}
             onSubmit={handleSubmit(handleFieldsFormSubmit)}
             buttonText={formButtonsConfig.create}
@@ -105,7 +105,7 @@ const NewFieldsForm: FC<NewFieldsFormPropsType> = ({
                     />
                 </ListItem>
             </List>
-        </CollectionFormWrapper>
+        </FormWrapper>
     );
 };
 

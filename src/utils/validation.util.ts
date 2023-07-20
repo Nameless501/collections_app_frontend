@@ -20,8 +20,10 @@ export const getValidationOption = (
 export const getObjectSchema = (params: FieldValues): ObjectSchema =>
     Joi.object(params);
 
-export const getArraySchema = (params: FieldValues): ArraySchema =>
-    Joi.array().items(params);
+export const getArraySchema = (...params: FieldValues[]): ArraySchema =>
+    Joi.array()
+        .items(...params)
+        .empty(Joi.array().length(0));
 
 export function getResolvedValidationSchema(params: FieldValues) {
     return joiResolver(getObjectSchema(params));

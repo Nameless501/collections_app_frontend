@@ -8,7 +8,7 @@ import { UpdateCollectionFormPropsType } from '../../types/common.types';
 import { collectionValidationSchema } from '../../configs/validation.config';
 import { getHookFormConfig } from '../../../../configs/hookForm.config';
 import CollectionFormInputs from './CollectionFormInputs';
-import CollectionFormWrapper from './CollectionFormWrapper';
+import FormWrapper from '../../../../components/FormWrapper';
 import { getFormData } from '../../../../utils/helpers.util';
 import { Box } from '@mui/material';
 import useFilterDefaultFieldValues from '../../../../hooks/useFilterDefaultFieldValues';
@@ -80,7 +80,7 @@ const UpdateCollectionForm: FC<UpdateCollectionFormPropsType> = ({
 
     return (
         <Box sx={{ p: 2 }}>
-            <CollectionFormWrapper
+            <FormWrapper
                 disabled={!isValid || isLoading || !isChanged}
                 onSubmit={handleSubmit(handleCreateCollection)}
                 buttonText={formButtonsConfig.update}
@@ -90,7 +90,7 @@ const UpdateCollectionForm: FC<UpdateCollectionFormPropsType> = ({
                     control={control}
                     errors={errors}
                 />
-            </CollectionFormWrapper>
+            </FormWrapper>
         </Box>
     );
 };

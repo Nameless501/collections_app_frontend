@@ -13,10 +13,10 @@ import { errorsConfig } from '../../configs/api.config';
 import { UpdateFieldFormPropsType } from '../../types/common.types';
 import { fieldValidationSchema } from '../../configs/validation.config';
 import { getHookFormConfig } from '../../../../configs/hookForm.config';
-import CollectionFormWrapper from './CollectionFormWrapper';
+import FormWrapper from '../../../../components/FormWrapper';
 import { Box } from '@mui/material';
 import useFilterDefaultFieldValues from '../../../../hooks/useFilterDefaultFieldValues';
-import FormInput from '../inputs/FormInput';
+import FormInput from '../../../../components/FormInput';
 import ControlledSelect from '../inputs/ControlledSelect';
 import {
     fieldLabelInputConfig,
@@ -83,7 +83,7 @@ const UpdateFieldForm: FC<UpdateFieldFormPropsType> = ({ onSubmit, field }) => {
 
     return (
         <Box sx={{ p: 2, minWidth: 300 }}>
-            <CollectionFormWrapper
+            <FormWrapper
                 disabled={!isValid || isLoading || !isChanged}
                 onSubmit={handleSubmit(handleFieldUpdate)}
                 buttonText={formButtonsConfig.update}
@@ -101,7 +101,7 @@ const UpdateFieldForm: FC<UpdateFieldFormPropsType> = ({ onSubmit, field }) => {
                         size="medium"
                     />
                 </Box>
-            </CollectionFormWrapper>
+            </FormWrapper>
         </Box>
     );
 };

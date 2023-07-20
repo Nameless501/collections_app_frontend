@@ -1,8 +1,12 @@
+import { FieldValues } from 'react-hook-form';
 import { apiSlice } from '../../api';
 import {
     getRecentItemsQueryOptions,
     getCollectionItemsQueryOptions,
     getDeleteItemsQueryOptions,
+    getItemDataQueryOptions,
+    getItemFieldsQueryOptions,
+    getCreateItemQueryOptions,
 } from '../configs/api.config';
 
 export const collectionsSlice = apiSlice.injectEndpoints({
@@ -11,11 +15,22 @@ export const collectionsSlice = apiSlice.injectEndpoints({
             query: () => getRecentItemsQueryOptions(),
         }),
         getCollectionItems: builder.mutation({
-            query: (collectionId) =>
+            query: (collectionId: number) =>
                 getCollectionItemsQueryOptions(collectionId),
+        }),
+        getItemData: builder.mutation({
+            query: (itemId: number) => getItemDataQueryOptions(itemId),
+        }),
+        getItemFields: builder.mutation({
+            query: (collectionId: number) =>
+                getItemFieldsQueryOptions(collectionId),
         }),
         deleteItems: builder.mutation({
             query: (id: number[]) => getDeleteItemsQueryOptions(id),
+        }),
+        createItem: builder.mutation({
+            query: (payload: { id: number; body: FieldValues }) =>
+                getCreateItemQueryOptions(payload.id, payload.body),
         }),
     }),
 });
@@ -23,5 +38,8 @@ export const collectionsSlice = apiSlice.injectEndpoints({
 export const {
     useGetRecentItemsMutation,
     useGetCollectionItemsMutation,
+    useGetItemDataMutation,
+    useGetItemFieldsMutation,
     useDeleteItemsMutation,
+    useCreateItemMutation,
 } = collectionsSlice;

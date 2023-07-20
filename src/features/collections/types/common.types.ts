@@ -94,16 +94,6 @@ export type FieldsFormInputsType = {
     }>;
 };
 
-export type FormInputPropsType = {
-    label: string;
-    error?: FieldError;
-    name: string;
-    register: UseFormRegister<FieldValues>;
-    type?: string;
-    multiline?: boolean;
-    rows?: number;
-};
-
 export type FileInputConfigType = {
     name: string;
     label: string;
@@ -148,17 +138,6 @@ export type NewFieldsFormPropsType = {
     collectionId: number;
 };
 
-export type CollectionFormWrapperPropsType = {
-    onSubmit: () => void;
-    disabled: boolean;
-    buttonText: string;
-} & ChildrenPropsType;
-
-export type DialogFormWrapperPropsType = {
-    handleClose: () => void;
-    isOpen: boolean;
-} & ChildrenPropsType;
-
 export type FieldsFormInputPropsType = {
     control: Control;
     register: UseFormRegister<FieldValues>;
@@ -169,6 +148,7 @@ export type FieldsFormInputPropsType = {
 
 export type CollectionDataPropsType = {
     collectionId: number;
+    setOwner: (value: boolean) => void;
 };
 
 export type CollectionInfoPropsType = {

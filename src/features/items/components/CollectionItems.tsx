@@ -1,25 +1,28 @@
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import { useGetCollectionItemsMutation } from '../store/items.slice';
 import Loader from '../../../components/Loader';
 import { errorsConfig } from '../configs/api.config';
 import useBaseQueryError from '../../../hooks/useBaseQueryError';
 import { useNotificationsContext } from '../../../contexts/NotificationsContext';
-import { IItemWithFields } from '../../../types/slices.types';
 import ItemsList from './ItemsList';
 import { CollectionItemsPropsType } from '../types/common.types';
 import { useTranslation } from 'react-i18next';
 import { collectionItemsContentConfig } from '../configs/content.config';
+import { useTypedDispatch, useTypedSelector } from '../../../store/store';
+import { setCollectionItems } from '../../../store/collectionItems/collectionItemsSlice';
 
 export const CollectionItems: FC<CollectionItemsPropsType> = ({
     collectionId,
 }) => {
     const { t } = useTranslation();
 
+    const dispatch = useTypedDispatch();
+
     const { apiError, handleBaseQueryError, resetApiError } =
         useBaseQueryError(errorsConfig);
 
-    const [itemsData, setItemsData] = useState<IItemWithFields[]>([]);
+    const { items } = useTypedSelector((state) => state.collectionItems);
 
     const [getCollectionItems, { isLoading, isError }] =
         useGetCollectionItemsMutation();
@@ -30,11 +33,17 @@ export const CollectionItems: FC<CollectionItemsPropsType> = ({
         try {
             resetApiError();
             const items = await getCollectionItems(collectionId).unwrap();
-            setItemsData(items);
+            dispatch(setCollectionItems(items));
         } catch (err) {
             handleBaseQueryError(err);
         }
-    }, [getCollectionItems, handleBaseQueryError, resetApiError, collectionId]);
+    }, [
+        getCollectionItems,
+        handleBaseQueryError,
+        resetApiError,
+        collectionId,
+        dispatch,
+    ]);
 
     useEffect(() => {
         getItemsData();
@@ -51,7 +60,7 @@ export const CollectionItems: FC<CollectionItemsPropsType> = ({
             <Typography variant="h6" textAlign="center">
                 {t(collectionItemsContentConfig.title)}
             </Typography>
-            {!isLoading && !isError && <ItemsList items={itemsData} />}
+            {!isLoading && !isError && <ItemsList items={items} />}
             {isLoading && <Loader />}
         </Box>
     );

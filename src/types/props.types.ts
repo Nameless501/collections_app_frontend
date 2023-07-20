@@ -1,4 +1,5 @@
 import { ReactNode, ElementType } from 'react';
+import { FieldError, FieldValues, UseFormRegister } from 'react-hook-form';
 import { ColorOptions, NavigationListType, SizeOptions } from './common.types';
 import { SignFormTypes } from '../features/authentication';
 import { ProfileFormTypes } from '../features/profile';
@@ -23,6 +24,17 @@ export type LinksListPropsType = {
     fontSize?: number;
     iconWidth?: string;
 };
+
+export type FormWrapperPropsType = {
+    onSubmit: () => void;
+    disabled: boolean;
+    buttonText: string;
+} & ChildrenPropsType;
+
+export type DialogFormWrapperPropsType = {
+    handleClose: () => void;
+    isOpen: boolean;
+} & ChildrenPropsType;
 
 export type UserAvatarPropsType = {
     isAdmin?: boolean;
@@ -76,4 +88,14 @@ export type CustomFabPropsType = {
     size?: SizeOptions;
     color?: ColorOptions;
     sx?: SxProps;
+};
+
+export type FormInputPropsType = {
+    label: string;
+    error?: FieldError;
+    name: string;
+    register: UseFormRegister<FieldValues>;
+    type?: string;
+    multiline?: boolean;
+    rows?: number;
 };

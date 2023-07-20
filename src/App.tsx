@@ -9,6 +9,7 @@ import AdminPanelPage from './pages/AdminPanel.page';
 import SignPage from './pages/Sign.page';
 import AllCollectionsPage from './pages/AllCollections.page';
 import CollectionPage from './pages/Collection.page';
+import ItemPage from './pages/Item.page';
 import { ColorThemeContextProvider } from './features/theme';
 import { AuthorizationContextProvider } from './features/authorization';
 import { NotificationsContextProvider } from './contexts/NotificationsContext';
@@ -60,6 +61,10 @@ const App: FC = () => {
                             <Route
                                 path={AppRoutes.collectionData}
                                 element={<CollectionPage />}
+                            />
+                            <Route
+                                path={AppRoutes.itemData}
+                                element={<ItemPage />}
                             />
                             <Route
                                 path={AppRoutes.signIn}

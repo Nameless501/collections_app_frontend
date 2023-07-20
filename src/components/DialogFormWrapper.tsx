@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Box, Dialog } from '@mui/material';
-import { DialogFormWrapperPropsType } from '../../types/common.types';
+import { DialogFormWrapperPropsType } from '../types/props.types';
 
 const DialogFormWrapper: FC<DialogFormWrapperPropsType> = ({
     children,

@@ -14,7 +14,7 @@ import { CollectionDataCard } from './cards/CollectionDataCard';
 import UpdateCollectionForm from './forms/UpdateCollectionForm';
 import UpdateFieldForm from './forms/UpdateFieldForm';
 import NewFieldsForm from './forms/NewFieldsForm';
-import DialogFormWrapper from './forms/DialogFormWrapper';
+import DialogFormWrapper from '../../../components/DialogFormWrapper';
 import {
     addCollectionFields,
     deleteCollectionField,
@@ -24,6 +24,7 @@ import {
 
 export const CollectionData: FC<CollectionDataPropsType> = ({
     collectionId,
+    setOwner,
 }) => {
     const { apiError, handleBaseQueryError, resetApiError } =
         useBaseQueryError(errorsConfig);
@@ -114,6 +115,12 @@ export const CollectionData: FC<CollectionDataPropsType> = ({
             openErrorNotification(apiError);
         }
     }, [apiError, openErrorNotification]);
+
+    useEffect(() => {
+        setOwner(
+            collectionData.userId === currentUser.id || currentUser.isAdmin
+        );
+    }, [setOwner, currentUser, collectionData]);
 
     return (
         <>

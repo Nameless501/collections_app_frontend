@@ -2,6 +2,7 @@ export const smallCardLabelsConfig = {
     title: 'item:card.labels.smallCard.title',
     collection: 'item:card.labels.smallCard.collection',
     created: 'item:card.labels.smallCard.created',
+    tags: 'item:card.labels.smallCard.tags',
 };
 
 export const recentItemsContentConfig = {
@@ -14,4 +15,12 @@ export const collectionItemsContentConfig = {
 
 export const tooltipsConfig = {
     delete: 'item:card.tooltips.delete',
+};
+
+export const buttonsTextConfig = {
+    add: 'item:form.buttons.add',
+};
+
+export const fomTitlesConfig = {
+    newItem: 'item:form.titles.newItem',
 };

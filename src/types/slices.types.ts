@@ -24,6 +24,11 @@ export interface IField {
     type: FieldTypes;
 }
 
+export interface ITag {
+    id: number;
+    value: number;
+}
+
 export interface ICollection {
     id: number;
     userId: number;
@@ -43,12 +48,17 @@ export interface ICollectionsState {
     collections: Array<ICollection>;
 }
 
+export interface ICollectionItemsState {
+    items: Array<IItemWithFields>;
+}
+
 export interface IItem {
     id: number;
     collectionId: number;
     createdAt: string;
     title: string;
     collection: ICollection;
+    tags?: ITag[];
 }
 
 export interface IFieldValue {

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Box, Grid } from '@mui/material';
-import FormInput from './FormInput';
+import FormInput from '../../../../components/FormInput';
 import ControlledSelect from './ControlledSelect';
 import ButtonWithIcon from '../../../../components/ButtonWithIcon';
 import {

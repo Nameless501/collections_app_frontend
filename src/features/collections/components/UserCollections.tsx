@@ -12,7 +12,7 @@ import { UserCollectionsPropsType } from '../types/common.types';
 import CustomFab from '../../../components/CustomFab';
 import AddIcon from '@mui/icons-material/Add';
 import NewCollectionAndFieldsForm from './forms/NewCollectionAndFieldsForm';
-import DialogFormWrapper from './forms/DialogFormWrapper';
+import DialogFormWrapper from '../../../components/DialogFormWrapper';
 
 export const UserCollections: FC<UserCollectionsPropsType> = ({ userId }) => {
     const [formDialogIsOpen, setFormDialogState] = useState<boolean>(false);
