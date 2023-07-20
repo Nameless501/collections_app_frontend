@@ -34,4 +34,5 @@ export enum ApiRoutes {
     deleteItems = '/items/',
     itemData = '/items/:id',
     allTags = '/tags/',
+    likes = '/likes/item/:id',
 }

@@ -10,7 +10,10 @@ import { CollectionItemsPropsType } from '../types/common.types';
 import { useTranslation } from 'react-i18next';
 import { collectionItemsContentConfig } from '../configs/content.config';
 import { useTypedDispatch, useTypedSelector } from '../../../store/store';
-import { setCollectionItems } from '../../../store/collectionItems/collectionItemsSlice';
+import {
+    deleteCollectionItem,
+    setCollectionItems,
+} from '../../../store/collectionItems/collectionItemsSlice';
 
 export const CollectionItems: FC<CollectionItemsPropsType> = ({
     collectionId,
@@ -28,6 +31,9 @@ export const CollectionItems: FC<CollectionItemsPropsType> = ({
         useGetCollectionItemsMutation();
 
     const { openErrorNotification } = useNotificationsContext();
+
+    const handleDeleteItem = (itemId: number) =>
+        dispatch(deleteCollectionItem(itemId));
 
     const getItemsData = useCallback(async () => {
         try {
@@ -60,7 +66,13 @@ export const CollectionItems: FC<CollectionItemsPropsType> = ({
             <Typography variant="h6" textAlign="center">
                 {t(collectionItemsContentConfig.title)}
             </Typography>
-            {!isLoading && !isError && <ItemsList items={items} />}
+            {!isLoading && !isError && (
+                <ItemsList
+                    items={items}
+                    showDelete={true}
+                    onSubmit={handleDeleteItem}
+                />
+            )}
             {isLoading && <Loader />}
         </Box>
     );

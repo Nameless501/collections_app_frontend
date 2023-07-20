@@ -16,6 +16,8 @@ import { ObjectSchema } from 'joi';
 export type ItemCardPropsType = {
     item: IItem;
     fields: IFieldValue[];
+    showDelete?: boolean;
+    onSubmit?: (itemId: number) => void;
 };
 
 export type FieldsListShortPropsType = {
@@ -24,6 +26,8 @@ export type FieldsListShortPropsType = {
 
 export type ItemsListPropsType = {
     items: IItemWithFields[];
+    showDelete?: boolean;
+    onSubmit?: (itemId: number) => void;
 };
 
 export type CollectionItemsPropsType = {

@@ -52,6 +52,12 @@ export interface ICollectionItemsState {
     items: Array<IItemWithFields>;
 }
 
+export interface ILikes {
+    id: number;
+    ItemId: number;
+    userId: number;
+}
+
 export interface IItem {
     id: number;
     collectionId: number;
@@ -59,6 +65,7 @@ export interface IItem {
     title: string;
     collection: ICollection;
     tags?: ITag[];
+    likes?: ILikes[];
 }
 
 export interface IFieldValue {
