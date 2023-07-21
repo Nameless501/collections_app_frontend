@@ -19,6 +19,7 @@ import { getFormData } from '../../../../utils/helpers.util';
 
 const NewCollectionDataForm: FC<NewCollectionFormPropsType> = ({
     onSubmit,
+    userId,
 }) => {
     const dispatch = useTypedDispatch();
 
@@ -45,7 +46,10 @@ const NewCollectionDataForm: FC<NewCollectionFormPropsType> = ({
         try {
             resetApiError();
             const formData = getFormData(data);
-            const collection = await createCollection(formData).unwrap();
+            const collection = await createCollection({
+                id: userId,
+                body: formData,
+            }).unwrap();
             dispatch(addUserCollection(collection));
             onSubmit(collection);
         } catch (err) {

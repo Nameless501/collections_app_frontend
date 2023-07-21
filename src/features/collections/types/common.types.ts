@@ -121,6 +121,7 @@ export type CollectionFormInputsPropsType = {
 
 export type NewCollectionFormPropsType = {
     onSubmit: (collection: ICollection) => void;
+    userId: number;
 };
 
 export type UpdateCollectionFormPropsType = {
@@ -187,4 +188,5 @@ export type CollectionDataCardTabsPropsType = {
 
 export type NewCollectionAndFieldsFormPropsType = {
     handleClose: () => void;
+    userId: number;
 };

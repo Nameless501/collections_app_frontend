@@ -93,6 +93,7 @@ export const UserCollections: FC<UserCollectionsPropsType> = ({ userId }) => {
                     >
                         <NewCollectionAndFieldsForm
                             handleClose={() => setFormDialogState(false)}
+                            userId={userId}
                         />
                     </DialogFormWrapper>
                 </>

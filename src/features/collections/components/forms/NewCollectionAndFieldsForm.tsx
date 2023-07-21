@@ -17,6 +17,7 @@ import { collectionAndFieldsFormConfig } from '../../configs/form.config';
 
 const NewCollectionAndFieldsForm: FC<NewCollectionAndFieldsFormPropsType> = ({
     handleClose,
+    userId,
 }) => {
     const { t } = useTranslation();
 
@@ -61,7 +62,10 @@ const NewCollectionAndFieldsForm: FC<NewCollectionAndFieldsFormPropsType> = ({
                     )}
                 </Stepper>
                 {currentStep === CollectionFormSteps.collection && (
-                    <NewCollectionForm onSubmit={saveNewCollection} />
+                    <NewCollectionForm
+                        onSubmit={saveNewCollection}
+                        userId={userId}
+                    />
                 )}
                 {currentStep === CollectionFormSteps.fields && (
                     <NewFieldsForm

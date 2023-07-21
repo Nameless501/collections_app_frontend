@@ -32,8 +32,8 @@ export const collectionsSlice = apiSlice.injectEndpoints({
             query: (id: number) => getDeleteCollectionQueryOptions(id),
         }),
         createCollection: builder.mutation({
-            query: (payload: FormData) =>
-                getCreateCollectionQueryOptions(payload),
+            query: (payload: { id: number; body: FormData }) =>
+                getCreateCollectionQueryOptions(payload.id, payload.body),
         }),
         createFields: builder.mutation({
             query: (payload: { id: number; fields: FieldsFormInputsType }) =>

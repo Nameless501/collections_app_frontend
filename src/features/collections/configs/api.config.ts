@@ -29,8 +29,11 @@ export const getDeleteCollectionQueryOptions = (id: number) => ({
     body: { id: [id] },
 });
 
-export const getCreateCollectionQueryOptions = (body: FormData) => ({
-    url: ApiRoutes.createCollection,
+export const getCreateCollectionQueryOptions = (
+    id: number,
+    body: FormData
+) => ({
+    url: setRouteParam(ApiRoutes.createCollection, id),
     method: ApiMethods.post,
     body,
 });
