@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import { FieldError, Controller } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 import { FormControlLabel, Checkbox } from '@mui/material';
 import { FieldsInputsPropsType } from '../types/common.types';
 import FormInput from '../../../components/FormInput';
-import { getFieldIndexedName } from '../configs/forms.config';
+import { ItemFormInputs, getFieldIndexedName } from '../configs/forms.config';
 import { FieldTypes } from '../../../configs/common.config';
 
 const FieldsInputs: FC<FieldsInputsPropsType> = ({
@@ -12,6 +12,19 @@ const FieldsInputs: FC<FieldsInputsPropsType> = ({
     errors,
     control,
 }) => {
+    const getFieldError = (index: number) => {
+        let error;
+        if (
+            ItemFormInputs.fields in errors &&
+            Array.isArray(errors[ItemFormInputs.fields])
+        ) {
+            error = errors[ItemFormInputs.fields][index];
+            if ('value' in error) {
+                return error.value;
+            }
+        }
+    };
+
     return (
         <>
             {fields.map(({ id, label, type }, index) =>
@@ -23,7 +36,7 @@ const FieldsInputs: FC<FieldsInputsPropsType> = ({
                         label={label}
                         register={register}
                         name={getFieldIndexedName(index)}
-                        error={errors[getFieldIndexedName(index)] as FieldError}
+                        error={getFieldError(index)}
                     />
                 ) : (
                     <FormControlLabel
