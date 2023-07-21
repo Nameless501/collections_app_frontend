@@ -6,6 +6,7 @@ import Header from './Header';
 import SideBarWrapper from './SideBarWrapper';
 import SideBarMenu from './SideBarMenu';
 import { ChildrenPropsType } from '../types/props.types';
+import { TagsCloud } from '../features/tags';
 
 const PageWrapper: FC<ChildrenPropsType> = ({ children }) => {
     const [sideBarIsOpen, setSideBarState] = useState<boolean>(false);
@@ -45,7 +46,9 @@ const PageWrapper: FC<ChildrenPropsType> = ({ children }) => {
                             open={true}
                             permanent={true}
                         >
-                            <Box></Box>
+                            <Box sx={{ p: 2 }}>
+                                <TagsCloud />
+                            </Box>
                         </SideBarWrapper>
                     )}
                 </Stack>

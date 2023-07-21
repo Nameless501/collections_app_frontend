@@ -9,4 +9,5 @@ export enum AppRoutes {
     userCollections = '/collections/my',
     collectionData = '/collections/:id',
     itemData = '/items/:id',
+    search = '/search',
 }

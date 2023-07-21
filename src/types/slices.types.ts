@@ -26,7 +26,12 @@ export interface IField {
 
 export interface ITag {
     id: number;
-    value: number;
+    value: string;
+    itemTags: Array<{
+        id: number;
+        tagId: number;
+        itemId: number;
+    }>;
 }
 
 export interface ICollection {

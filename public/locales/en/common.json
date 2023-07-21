@@ -4,5 +4,8 @@
     },
     "avatar": {
         "badge": "Admin"
+    },
+    "titles": {
+        "tagsCloud": "Popular tags:"
     }
 }
