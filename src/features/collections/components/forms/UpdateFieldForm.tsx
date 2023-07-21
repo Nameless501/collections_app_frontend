@@ -60,8 +60,8 @@ const UpdateFieldForm: FC<UpdateFieldFormPropsType> = ({ onSubmit, field }) => {
             resetApiError();
             const body = getUpdatedFields(data);
             const newField = await updateField({ id: field.id, body }).unwrap();
-            onSubmit(newField as IField);
             openSuccessNotification('Success');
+            onSubmit(newField as IField);
         } catch (err) {
             handleBaseQueryError(err);
         }

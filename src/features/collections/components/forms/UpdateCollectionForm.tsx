@@ -51,7 +51,7 @@ const UpdateCollectionForm: FC<UpdateCollectionFormPropsType> = ({
     const getUpdatedFields =
         useFilterDefaultFieldValues<FieldValues>(defaultValues);
 
-    const handleCreateCollection: SubmitHandler<FieldValues> = async (data) => {
+    const handleUpdateCollection: SubmitHandler<FieldValues> = async (data) => {
         try {
             resetApiError();
             const formData = getFormData(getUpdatedFields(data));
@@ -82,7 +82,7 @@ const UpdateCollectionForm: FC<UpdateCollectionFormPropsType> = ({
         <Box sx={{ p: 2 }}>
             <FormWrapper
                 disabled={!isValid || isLoading || !isChanged}
-                onSubmit={handleSubmit(handleCreateCollection)}
+                onSubmit={handleSubmit(handleUpdateCollection)}
                 buttonText={formButtonsConfig.update}
             >
                 <CollectionFormInputs

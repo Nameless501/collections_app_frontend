@@ -26,7 +26,7 @@ export const itemSlice = apiSlice.injectEndpoints({
                 getItemFieldsQueryOptions(collectionId),
         }),
         deleteItems: builder.mutation({
-            query: (id: number[]) => getDeleteItemsQueryOptions(id),
+            query: (itemId: number) => getDeleteItemsQueryOptions(itemId),
         }),
         createItem: builder.mutation({
             query: (payload: { id: number; body: FieldValues }) =>

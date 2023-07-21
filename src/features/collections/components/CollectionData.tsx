@@ -50,33 +50,36 @@ export const CollectionData: FC<CollectionDataPropsType> = ({
 
     const [deleteField] = useDeleteFieldMutation();
 
-    const { openErrorNotification } = useNotificationsContext();
+    const { openErrorNotification, openSuccessNotification } =
+        useNotificationsContext();
+
+    const closeAllDialogs = (): void => {
+        setEditingField(null);
+        setEditFieldState(false);
+        setNewFieldsState(false);
+        setEditCollectionState(false);
+    };
 
     const openFieldUpdateForm = (field: IField) => {
         setEditingField(field);
         setEditFieldState(true);
     };
 
-    const closeFieldUpdateForm = () => {
-        setEditingField(null);
-        setEditFieldState(false);
-    };
-
     const updateCollectionData = (newCollection: ICollection) => {
         dispatch(setCollectionData(newCollection));
-        setEditCollectionState(false);
+        closeAllDialogs();
     };
 
     const updateFieldsData = (newField: IField) => {
         dispatch(updateCollectionField(newField));
-        closeFieldUpdateForm();
+        closeAllDialogs();
     };
 
     const addFieldsData = (fields?: IField[]) => {
         if (fields) {
             dispatch(addCollectionFields(fields));
         }
-        setNewFieldsState(false);
+        closeAllDialogs();
     };
 
     const handleFieldDelete = async (fieldId: number) => {
@@ -84,7 +87,7 @@ export const CollectionData: FC<CollectionDataPropsType> = ({
             resetApiError();
             await deleteField(fieldId).unwrap();
             dispatch(deleteCollectionField(fieldId));
-            closeFieldUpdateForm();
+            openSuccessNotification('Success');
         } catch (err) {
             handleBaseQueryError(err);
         }
@@ -122,6 +125,10 @@ export const CollectionData: FC<CollectionDataPropsType> = ({
         );
     }, [setOwner, currentUser, collectionData]);
 
+    useEffect(() => {
+        handleCollectionData();
+    }, [handleCollectionData]);
+
     return (
         <>
             {collectionData && (
@@ -137,7 +144,7 @@ export const CollectionData: FC<CollectionDataPropsType> = ({
             )}
             <DialogFormWrapper
                 isOpen={editCollectionIsOpen}
-                handleClose={() => setEditCollectionState(false)}
+                handleClose={closeAllDialogs}
             >
                 {collectionData && (
                     <UpdateCollectionForm
@@ -148,7 +155,7 @@ export const CollectionData: FC<CollectionDataPropsType> = ({
             </DialogFormWrapper>
             <DialogFormWrapper
                 isOpen={editFieldIsOpen}
-                handleClose={closeFieldUpdateForm}
+                handleClose={closeAllDialogs}
             >
                 {editingField && (
                     <UpdateFieldForm
@@ -159,7 +166,7 @@ export const CollectionData: FC<CollectionDataPropsType> = ({
             </DialogFormWrapper>
             <DialogFormWrapper
                 isOpen={newFieldsIsOpen}
-                handleClose={() => setNewFieldsState(false)}
+                handleClose={closeAllDialogs}
             >
                 {collectionData && (
                     <NewFieldsForm

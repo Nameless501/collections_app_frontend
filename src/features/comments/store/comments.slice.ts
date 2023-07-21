@@ -16,7 +16,8 @@ export const commentsSlice = apiSlice.injectEndpoints({
                 getLeaveCommentQueryOptions(payload.itemId, payload.body),
         }),
         deleteComment: builder.mutation({
-            query: (id: number[]) => getDeleteCommentQueryOptions(id),
+            query: (commentId: number) =>
+                getDeleteCommentQueryOptions(commentId),
         }),
     }),
 });

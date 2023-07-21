@@ -22,10 +22,9 @@ export const getItemFieldsQueryOptions = (collectionId: number) => ({
     method: ApiMethods.get,
 });
 
-export const getDeleteItemsQueryOptions = (id: number[]) => ({
-    url: ApiRoutes.deleteItems,
+export const getDeleteItemsQueryOptions = (itemId: number) => ({
+    url: setRouteParam(ApiRoutes.deleteItem, itemId),
     method: ApiMethods.delete,
-    body: { id },
 });
 
 export const getCreateItemQueryOptions = (

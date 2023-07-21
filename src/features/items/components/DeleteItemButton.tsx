@@ -26,7 +26,7 @@ export const DeleteItemsButton: FC<DeleteItemsButtonPropsType> = ({
     const handleItemDelete = async () => {
         try {
             resetApiError();
-            await deleteItems([itemId]).unwrap();
+            await deleteItems(itemId).unwrap();
             if (onSubmit) {
                 onSubmit(itemId);
             }

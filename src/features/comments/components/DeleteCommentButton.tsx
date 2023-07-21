@@ -29,7 +29,7 @@ export const DeleteCommentButton: FC<DeleteCommentButtonPropsType> = ({
     const handleItemDelete = async () => {
         try {
             resetApiError();
-            await deleteComment([commentId]).unwrap();
+            await deleteComment(commentId).unwrap();
             dispatch(deleteItemComment(commentId));
             openSuccessNotification('Success');
         } catch (err) {

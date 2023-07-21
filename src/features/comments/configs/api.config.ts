@@ -16,10 +16,9 @@ export const getLeaveCommentQueryOptions = (
     body,
 });
 
-export const getDeleteCommentQueryOptions = (id: number[]) => ({
-    url: ApiRoutes.deleteComment,
+export const getDeleteCommentQueryOptions = (commentId: number) => ({
+    url: setRouteParam(ApiRoutes.deleteComment, commentId),
     method: ApiMethods.delete,
-    body: { id },
 });
 
 export const errorsConfig = {

@@ -24,9 +24,8 @@ export const getCollectionDataQueryOptions = (id: number) => ({
 });
 
 export const getDeleteCollectionQueryOptions = (id: number) => ({
-    url: ApiRoutes.deleteCollection,
+    url: setRouteParam(ApiRoutes.deleteCollection, id),
     method: ApiMethods.delete,
-    body: { id: [id] },
 });
 
 export const getCreateCollectionQueryOptions = (
@@ -65,9 +64,8 @@ export const getUpdateFieldQueryOptions = (id: number, body: FieldValues) => ({
 });
 
 export const getDeleteFieldsQueryOptions = (id: number) => ({
-    url: ApiRoutes.deleteCollectionFields,
+    url: setRouteParam(ApiRoutes.deleteCollectionFields, id),
     method: ApiMethods.delete,
-    body: { id: [id] },
 });
 
 export const errorsConfig = {
