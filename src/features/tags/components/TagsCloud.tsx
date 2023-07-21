@@ -38,7 +38,7 @@ export const TagsCloud: FC = () => {
     const handleRedirect = (data: { value: string }) => {
         if (tagsList) {
             const tag = tagsList.find((item) => item.value === data.value);
-            navigate(AppRoutes.search);
+            navigate(AppRoutes.search, { state: tag });
         }
     };
 
