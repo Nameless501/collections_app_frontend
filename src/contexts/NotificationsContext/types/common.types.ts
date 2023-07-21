@@ -13,5 +13,5 @@ export type NotificationAlertPropsType = {
 
 export type NotificationsContextType = {
     openErrorNotification: (message: string) => void;
-    openSuccessNotification: (message: string) => void;
+    openSuccessNotification: () => void;
 };

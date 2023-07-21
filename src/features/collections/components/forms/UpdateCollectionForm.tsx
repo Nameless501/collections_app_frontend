@@ -60,7 +60,7 @@ const UpdateCollectionForm: FC<UpdateCollectionFormPropsType> = ({
                 body: formData,
             }).unwrap();
             onSubmit(newCollection as ICollection);
-            openSuccessNotification('Success');
+            openSuccessNotification();
         } catch (err) {
             handleBaseQueryError(err);
         }

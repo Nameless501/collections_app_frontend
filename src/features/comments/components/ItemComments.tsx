@@ -47,7 +47,7 @@ export const ItemComments: FC<ItemCommentsPropsType> = ({ itemId }) => {
                 body: data,
             }).unwrap();
             dispatch(addItemComment(newComment));
-            openSuccessNotification('Success');
+            openSuccessNotification();
         } catch (err) {
             handleBaseQueryError(err);
         }

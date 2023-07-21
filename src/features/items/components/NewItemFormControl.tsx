@@ -78,7 +78,7 @@ const NewItemFormControl: FC<NewItemFormControlPropsType> = ({
             body.fields = formatFieldsData(body.fields);
             const item = await createItem({ id: collectionId, body }).unwrap();
             saveItemData(item);
-            openSuccessNotification('Success');
+            openSuccessNotification();
         } catch (err) {
             handleBaseQueryError(err);
         }

@@ -30,7 +30,7 @@ export const DeleteItemsButton: FC<DeleteItemsButtonPropsType> = ({
             if (onSubmit) {
                 onSubmit(itemId);
             }
-            openSuccessNotification('Success');
+            openSuccessNotification();
         } catch (err) {
             handleBaseQueryError(err);
         }

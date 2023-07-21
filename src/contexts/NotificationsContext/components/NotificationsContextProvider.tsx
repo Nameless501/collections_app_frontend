@@ -3,13 +3,14 @@ import NotificationsContext from '../context/NotificationsContext';
 import { ChildrenPropsType } from '../../../types/props.types';
 import NotificationAlert from './NotificationAlert';
 import { NotificationVariants } from '../types/common.types';
+import { defaultSuccessMessage } from '../configs/commin.config';
 
 export const NotificationsContextProvider: FC<ChildrenPropsType> = ({
     children,
 }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    const [message, setMessage] = useState<string>('Message');
+    const [message, setMessage] = useState<string>('');
 
     const [variant, setVariant] = useState<NotificationVariants>(
         NotificationVariants.error
@@ -32,9 +33,8 @@ export const NotificationsContextProvider: FC<ChildrenPropsType> = ({
         [handleOpenNotification]
     );
 
-    const openSuccessNotification = useCallback(
-        (message: string) =>
-            handleOpenNotification(message, NotificationVariants.success),
+    const openSuccessNotification = useCallback(() =>
+            handleOpenNotification(defaultSuccessMessage, NotificationVariants.success),
         [handleOpenNotification]
     );
 

@@ -87,7 +87,7 @@ export const CollectionData: FC<CollectionDataPropsType> = ({
             resetApiError();
             await deleteField(fieldId).unwrap();
             dispatch(deleteCollectionField(fieldId));
-            openSuccessNotification('Success');
+            openSuccessNotification();
         } catch (err) {
             handleBaseQueryError(err);
         }

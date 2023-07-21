@@ -48,7 +48,7 @@ const DeleteCollectionButton: FC<DeleteCollectionButtonPropsType> = ({
             await handleDelete(collectionId).unwrap();
             deleteCollectionFromStore();
             handleRedirect();
-            openSuccessNotification('Success');
+            openSuccessNotification();
         } catch (err) {
             handleBaseQueryError(err);
         }

@@ -63,7 +63,7 @@ const NewFieldsForm: FC<NewFieldsFormPropsType> = ({
                 id: collectionId,
                 fields: data.fields as FieldsFormInputsType,
             }).unwrap();
-            openSuccessNotification('Success');
+            openSuccessNotification();
             onSubmit(fields as IField[]);
         } catch (err) {
             handleBaseQueryError(err);

@@ -31,7 +31,7 @@ export const DeleteCommentButton: FC<DeleteCommentButtonPropsType> = ({
             resetApiError();
             await deleteComment(commentId).unwrap();
             dispatch(deleteItemComment(commentId));
-            openSuccessNotification('Success');
+            openSuccessNotification();
         } catch (err) {
             handleBaseQueryError(err);
         }

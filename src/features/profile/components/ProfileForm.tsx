@@ -54,7 +54,7 @@ export const ProfileForm: FC<ProfileFormPropsType> = ({
             const updatedFields = getUpdatedFields(data);
             await updateUser({ id: user?.id, data: updatedFields }).unwrap();
             handleStateUpdate({ ...user, ...updatedFields });
-            openSuccessNotification('Success');
+            openSuccessNotification();
         } catch (err) {
             handleBaseQueryError(err);
         }
