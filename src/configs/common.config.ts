@@ -39,3 +39,8 @@ export enum FieldTypes {
     text = 'text',
     boolean = 'boolean',
 }
+
+export enum CheckboxFieldValues {
+    checked = 'true',
+    unchecked = 'false',
+}
