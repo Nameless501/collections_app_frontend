@@ -28,6 +28,25 @@
     },
     "titles": {
         "recentItems": "Recent items",
-        "collectionItems": "Items in collection"
+        "collectionItems": "Items in collection",
+        "itemFields": "Item fields",
+        "comments": "Comments:"
+    },
+    "comments": {
+        "labels": {
+            "user": "User:",
+            "created": "Created:"
+        },
+        "form": {
+            "labels": {
+                "newComment": "New comment"
+            },
+            "buttons": {
+                "send": "Send"
+            }
+        },
+        "tooltips": {
+            "delete": "Delete comment"
+        }
     }
 }

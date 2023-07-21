@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 import { Box, Typography, Divider } from '@mui/material';
 import { TagCloud } from 'react-tagcloud';
-import { useGetAllTagsMutation } from '../store/items.slice';
+import { useGetAllTagsMutation } from '../store/tags.slice';
 import { errorsConfig } from '../configs/api.config';
 import useBaseQueryError from '../../../hooks/useBaseQueryError';
 import { useNotificationsContext } from '../../../contexts/NotificationsContext';

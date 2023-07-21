@@ -15,8 +15,12 @@ import { useTypedSelector } from '../../../store/store';
 import { useNavigate } from 'react-router-dom';
 import { AppRoutes } from '../../../configs/routes.config';
 import { setRouteParam } from '../../../utils/helpers.util';
+import { useTranslation } from 'react-i18next';
+import { itemFieldsContentConfig } from '../configs/content.config';
 
 export const ItemDataCard: FC<ItemDataCardPropsType> = ({ itemId }) => {
+    const { t } = useTranslation();
+
     const { apiError, handleBaseQueryError, resetApiError } =
         useBaseQueryError(errorsConfig);
 
@@ -115,7 +119,7 @@ export const ItemDataCard: FC<ItemDataCardPropsType> = ({ itemId }) => {
                     <Grid item container gap={2}>
                         <Grid item xs={12}>
                             <Typography textAlign={'center'} variant="h6">
-                                Item fields:
+                                {t(itemFieldsContentConfig.title)}
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>

@@ -85,3 +85,16 @@ export interface IItemWithFields {
     item: IItem;
     fields: IFieldValue[];
 }
+
+export interface IComment {
+    id: number;
+    value: string;
+    itemId: number;
+    userId: number;
+    createdAt: string;
+    user: IUser;
+}
+
+export interface IItemCommentsState {
+    comments: Array<IComment>;
+}

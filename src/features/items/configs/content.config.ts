@@ -13,6 +13,10 @@ export const collectionItemsContentConfig = {
     title: 'item:titles.collectionItems',
 };
 
+export const itemFieldsContentConfig = {
+    title: 'item:titles.itemFields',
+};
+
 export const tooltipsConfig = {
     delete: 'item:card.tooltips.delete',
 };

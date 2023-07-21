@@ -8,6 +8,7 @@ import userCollectionsReducer from './userCollections/userCollectionsSlice';
 import allCollectionsReducer from './allCollections/allCollectionsSlice';
 import collectionDataReducer from './collectionData/collectionDataSlice';
 import collectionItemsReducer from './collectionItems/collectionItemsSlice';
+import itemCommentsReducer from './itemComments/itemCommentsSlice';
 
 export const store = configureStore({
     reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
         allCollections: allCollectionsReducer,
         collectionData: collectionDataReducer,
         collectionItems: collectionItemsReducer,
+        itemComments: itemCommentsReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(apiSlice.middleware),

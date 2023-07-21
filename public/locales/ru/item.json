@@ -28,6 +28,25 @@
     },
     "titles": {
         "recentItems": "Недавно добавленные вещи",
-        "collectionItems": "Вещи в коллекции"
+        "collectionItems": "Вещи в коллекции",
+        "itemFields": "Дополнительные данные:",
+        "comments": "Комментарии:"
+    },
+    "comments": {
+        "labels": {
+            "user": "Пользователь:",
+            "created": "Создано:"
+        },
+        "form": {
+            "labels": {
+                "newComment": "Новый комментарий"
+            },
+            "buttons": {
+                "send": "Отправить"
+            }
+        },
+        "tooltips": {
+            "delete": "Удалить комментарий"
+        }
     }
 }

@@ -41,8 +41,6 @@ const UpdateFieldForm: FC<UpdateFieldFormPropsType> = ({ onSubmit, field }) => {
         return { type, label };
     }, [field]);
 
-    console.log(defaultValues);
-
     const {
         register,
         control,

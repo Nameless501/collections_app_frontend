@@ -1,6 +1,6 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 import { Box, Autocomplete, TextField } from '@mui/material';
-import { useGetAllTagsMutation } from '../store/items.slice';
+import { useGetAllTagsMutation } from '../store/tags.slice';
 import { errorsConfig } from '../configs/api.config';
 import useBaseQueryError from '../../../hooks/useBaseQueryError';
 import { useNotificationsContext } from '../../../contexts/NotificationsContext';

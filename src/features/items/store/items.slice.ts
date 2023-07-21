@@ -9,7 +9,7 @@ import {
     getCreateItemQueryOptions,
 } from '../configs/api.config';
 
-export const collectionsSlice = apiSlice.injectEndpoints({
+export const itemSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getRecentItems: builder.mutation({
             query: () => getRecentItemsQueryOptions(),
@@ -42,4 +42,4 @@ export const {
     useGetItemFieldsMutation,
     useDeleteItemsMutation,
     useCreateItemMutation,
-} = collectionsSlice;
+} = itemSlice;
