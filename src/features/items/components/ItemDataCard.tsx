@@ -9,16 +9,43 @@ import { IItemWithFields } from '../../../types/slices.types';
 import { ItemDataCardPropsType } from '../types/common.types';
 import ItemInfo from './ItemInfo';
 import ItemField from './ItemField';
+import { LikeButton } from '../../likes/components/LikeButton';
+import { DeleteItemsButton } from './DeleteItemButton';
+import { useTypedSelector } from '../../../store/store';
+import { useNavigate } from 'react-router-dom';
+import { AppRoutes } from '../../../configs/routes.config';
+import { setRouteParam } from '../../../utils/helpers.util';
 
 export const ItemDataCard: FC<ItemDataCardPropsType> = ({ itemId }) => {
     const { apiError, handleBaseQueryError, resetApiError } =
         useBaseQueryError(errorsConfig);
+
+    const navigate = useNavigate();
+
+    const { data: currentUser } = useTypedSelector((state) => state.user);
 
     const [itemData, setItemData] = useState<IItemWithFields | null>(null);
 
     const [getItemData, { isLoading, isError }] = useGetItemDataMutation();
 
     const { openErrorNotification } = useNotificationsContext();
+
+    const isOwner =
+        itemData?.item.collection.userId === currentUser.id ||
+        currentUser.isAdmin;
+
+    const handleRedirect = () => {
+        if (itemData?.item?.collection) {
+            navigate(
+                setRouteParam(
+                    AppRoutes.collectionData,
+                    itemData?.item?.collection.id
+                )
+            );
+        } else {
+            navigate(AppRoutes.allCollections);
+        }
+    };
 
     const getItemsData = useCallback(async () => {
         try {
@@ -61,6 +88,26 @@ export const ItemDataCard: FC<ItemDataCardPropsType> = ({ itemId }) => {
                         gap: 2,
                     }}
                 >
+                    <Grid container justifyContent="space-around">
+                        {itemData && (
+                            <>
+                                <LikeButton
+                                    itemId={itemId}
+                                    likes={
+                                        itemData.item.likes
+                                            ? itemData.item.likes
+                                            : []
+                                    }
+                                />
+                                {isOwner && (
+                                    <DeleteItemsButton
+                                        itemId={itemId}
+                                        onSubmit={handleRedirect}
+                                    />
+                                )}
+                            </>
+                        )}
+                    </Grid>
                     <Grid container gap={2}>
                         {itemData && <ItemInfo {...itemData.item} />}
                     </Grid>
