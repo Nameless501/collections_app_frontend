@@ -23,7 +23,7 @@ export enum ApiRoutes {
     topCollections = '/collections/top',
     deleteCollection = '/collections/:id',
     createCollection = '/collections/new/:id',
-    createCollectionFields = '/collections/:id/fields',
+    createCollectionFields = '/fields/collection/:id',
     updateCollectionFields = '/fields/:id',
     deleteCollectionFields = '/fields/:id',
     collectionFields = '/fields/collection/:id',

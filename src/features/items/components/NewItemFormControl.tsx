@@ -9,11 +9,7 @@ import { useNotificationsContext } from '../../../contexts/NotificationsContext'
 import useBaseQueryError from '../../../hooks/useBaseQueryError';
 import { errorsConfig } from '../configs/api.config';
 import { NewItemFormControlPropsType } from '../types/common.types';
-import {
-    IField,
-    IFieldValue,
-    IItemWithFields,
-} from '../../../types/slices.types';
+import { IField, IFieldValue, IItem } from '../../../types/slices.types';
 import { addCollectionItem } from '../../../store/collectionItems/collectionItemsSlice';
 import NewItemForm from './NewItemForm';
 import { newItemDefaultValues } from '../configs/forms.config';
@@ -67,9 +63,9 @@ const NewItemFormControl: FC<NewItemFormControlPropsType> = ({
     const formatFieldsData = (fields: IFieldValue[]) =>
         fields.map(({ fieldId, value }) => ({ fieldId, value: `${value}` }));
 
-    const saveItemData = (data: IItemWithFields) => {
-        dispatch(addCollectionItem(data));
-        onSubmit(data.item);
+    const saveItemData = (item: IItem) => {
+        dispatch(addCollectionItem(item));
+        onSubmit(item);
     };
 
     const handleCreateCollection: SubmitHandler<FieldValues> = async (body) => {

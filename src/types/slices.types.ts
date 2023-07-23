@@ -54,23 +54,13 @@ export interface ICollectionsState {
 }
 
 export interface ICollectionItemsState {
-    items: Array<IItemWithFields>;
+    items: Array<IItem>;
 }
 
 export interface ILikes {
     id: number;
     ItemId: number;
     userId: number;
-}
-
-export interface IItem {
-    id: number;
-    collectionId: number;
-    createdAt: string;
-    title: string;
-    collection: ICollection;
-    tags?: ITag[];
-    likes?: ILikes[];
 }
 
 export interface IFieldValue {
@@ -81,9 +71,15 @@ export interface IFieldValue {
     field: IField;
 }
 
-export interface IItemWithFields {
-    item: IItem;
-    fields: IFieldValue[];
+export interface IItem {
+    id: number;
+    collectionId: number;
+    createdAt: string;
+    title: string;
+    collection: ICollection;
+    tags?: ITag[];
+    likes?: ILikes[];
+    fields?: IFieldValue[];
 }
 
 export interface IComment {

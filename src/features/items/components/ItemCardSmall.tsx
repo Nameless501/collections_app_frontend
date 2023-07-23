@@ -13,7 +13,6 @@ import { useTypedSelector } from '../../../store/store';
 
 const ItemCardSmall: FC<ItemCardPropsType> = ({
     item,
-    fields,
     showDelete = false,
     onSubmit,
 }) => {
@@ -37,11 +36,14 @@ const ItemCardSmall: FC<ItemCardPropsType> = ({
             >
                 <Grid container sx={{ p: 2 }}>
                     <ItemInfo {...item} />
-                    <FieldsListShort
-                        fields={fields.filter(
-                            ({ field }) => smallCardFieldsTypeConfig[field.type]
-                        )}
-                    />
+                    {item.fields && (
+                        <FieldsListShort
+                            fields={item.fields.filter(
+                                ({ field }) =>
+                                    smallCardFieldsTypeConfig[field.type]
+                            )}
+                        />
+                    )}
                 </Grid>
             </CardActionArea>
             <Box

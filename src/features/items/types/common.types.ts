@@ -5,17 +5,11 @@ import {
     Control,
     SubmitHandler,
 } from 'react-hook-form';
-import {
-    IField,
-    IFieldValue,
-    IItem,
-    IItemWithFields,
-} from '../../../types/slices.types';
+import { IField, IFieldValue, IItem } from '../../../types/slices.types';
 import { ObjectSchema } from 'joi';
 
 export type ItemCardPropsType = {
     item: IItem;
-    fields: IFieldValue[];
     showDelete?: boolean;
     onSubmit?: (itemId: number) => void;
 };
@@ -25,7 +19,7 @@ export type FieldsListShortPropsType = {
 };
 
 export type ItemsListPropsType = {
-    items: IItemWithFields[];
+    items: IItem[];
     showDelete?: boolean;
     onSubmit?: (itemId: number) => void;
 };

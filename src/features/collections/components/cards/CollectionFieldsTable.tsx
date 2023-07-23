@@ -64,7 +64,9 @@ const CollectionFieldsTable: FC<CollectionFieldsTablePropsType> = ({
                             <TableCell padding="checkbox">
                                 {index + 1}
                             </TableCell>
-                            <TableCell align="left">{t(getFieldTypeValue(field.type))}</TableCell>
+                            <TableCell align="left">
+                                {t(getFieldTypeValue(field.type))}
+                            </TableCell>
                             <TableCell align="left">{field.label}</TableCell>
                             {isEditable && (
                                 <>

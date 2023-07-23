@@ -33,8 +33,12 @@ export const NotificationsContextProvider: FC<ChildrenPropsType> = ({
         [handleOpenNotification]
     );
 
-    const openSuccessNotification = useCallback(() =>
-            handleOpenNotification(defaultSuccessMessage, NotificationVariants.success),
+    const openSuccessNotification = useCallback(
+        () =>
+            handleOpenNotification(
+                defaultSuccessMessage,
+                NotificationVariants.success
+            ),
         [handleOpenNotification]
     );
 

@@ -13,14 +13,13 @@ const ItemsList: FC<ItemsListPropsType> = ({ items, showDelete, onSubmit }) => {
                 justifyContent: 'center',
             }}
         >
-            {items.map((data) => (
+            {items.map((item) => (
                 <ListItem
-                    key={data.item.id}
+                    key={item.id}
                     sx={{ p: 1, flexBasis: 300, flexGrow: 1 }}
                 >
                     <ItemCardSmall
-                        item={data.item}
-                        fields={data.fields}
+                        item={item}
                         showDelete={showDelete}
                         onSubmit={onSubmit}
                     />

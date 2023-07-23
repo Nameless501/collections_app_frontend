@@ -40,7 +40,8 @@ export const AdminPanel: FC = () => {
 
     const { handleSignOut } = useAuthorizationContext();
 
-    const { openErrorNotification, openSuccessNotification } = useNotificationsContext();
+    const { openErrorNotification, openSuccessNotification } =
+        useNotificationsContext();
 
     const getUsersData = useCallback(async () => {
         try {
@@ -80,7 +81,7 @@ export const AdminPanel: FC = () => {
     const showMessageAndClear = () => {
         setSelected([]);
         openSuccessNotification();
-    }
+    };
 
     const toggleUsersAdminRole = async (isAdmin: boolean): Promise<void> => {
         try {

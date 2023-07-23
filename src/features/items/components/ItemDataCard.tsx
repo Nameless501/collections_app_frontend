@@ -5,7 +5,7 @@ import Loader from '../../../components/Loader';
 import { errorsConfig } from '../configs/api.config';
 import useBaseQueryError from '../../../hooks/useBaseQueryError';
 import { useNotificationsContext } from '../../../contexts/NotificationsContext';
-import { IItemWithFields } from '../../../types/slices.types';
+import { IItem } from '../../../types/slices.types';
 import { ItemDataCardPropsType } from '../types/common.types';
 import ItemInfo from './ItemInfo';
 import ItemField from './ItemField';
@@ -28,23 +28,19 @@ export const ItemDataCard: FC<ItemDataCardPropsType> = ({ itemId }) => {
 
     const { data: currentUser } = useTypedSelector((state) => state.user);
 
-    const [itemData, setItemData] = useState<IItemWithFields | null>(null);
+    const [itemData, setItemData] = useState<IItem | null>(null);
 
     const [getItemData, { isLoading, isError }] = useGetItemDataMutation();
 
     const { openErrorNotification } = useNotificationsContext();
 
     const isOwner =
-        itemData?.item.collection.userId === currentUser.id ||
-        currentUser.isAdmin;
+        itemData?.collection.userId === currentUser.id || currentUser.isAdmin;
 
     const handleRedirect = () => {
-        if (itemData?.item?.collection) {
+        if (itemData?.collection) {
             navigate(
-                setRouteParam(
-                    AppRoutes.collectionData,
-                    itemData?.item?.collection.id
-                )
+                setRouteParam(AppRoutes.collectionData, itemData?.collection.id)
             );
         } else {
             navigate(AppRoutes.allCollections);
@@ -97,11 +93,7 @@ export const ItemDataCard: FC<ItemDataCardPropsType> = ({ itemId }) => {
                             <>
                                 <LikeButton
                                     itemId={itemId}
-                                    likes={
-                                        itemData.item.likes
-                                            ? itemData.item.likes
-                                            : []
-                                    }
+                                    likes={itemData.likes ? itemData.likes : []}
                                 />
                                 {isOwner && (
                                     <DeleteItemsButton
@@ -113,7 +105,7 @@ export const ItemDataCard: FC<ItemDataCardPropsType> = ({ itemId }) => {
                         )}
                     </Grid>
                     <Grid container gap={2}>
-                        {itemData && <ItemInfo {...itemData.item} />}
+                        {itemData && <ItemInfo {...itemData} />}
                     </Grid>
                     <Divider />
                     <Grid item container gap={2}>
@@ -123,7 +115,7 @@ export const ItemDataCard: FC<ItemDataCardPropsType> = ({ itemId }) => {
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            {itemData &&
+                            {itemData?.fields &&
                                 itemData.fields.map((field) => (
                                     <ItemField key={field.id} {...field} />
                                 ))}
