@@ -1,7 +1,7 @@
 import { FC, useMemo } from 'react';
 import { Box, Button } from '@mui/material';
 import { FieldValues, useForm } from 'react-hook-form';
-import ControlledSelect from '../inputs/ControlledSelect';
+import ControlledSelect from '../../../../components/ControlledSelect';
 import SortSelect from '../inputs/SortSelect';
 import CollectionsList from './CollectionsList';
 import { CollectionListWithFiltersPropsType } from '../../types/common.types';

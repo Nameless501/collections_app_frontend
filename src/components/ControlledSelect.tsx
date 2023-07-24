@@ -8,8 +8,8 @@ import {
     ListItemText,
 } from '@mui/material';
 import { Controller } from 'react-hook-form';
-import { ControlledSelectPropsType } from '../../types/common.types';
 import { useTranslation } from 'react-i18next';
+import { ControlledSelectPropsType } from '../types/props.types';
 
 const ControlledSelect: FC<ControlledSelectPropsType> = ({
     config,

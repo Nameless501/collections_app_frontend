@@ -3,7 +3,7 @@ import { ToggleButtonGroup, ToggleButton, Box } from '@mui/material';
 import { SortSelectPropsType } from '../../types/common.types';
 import { SortDirections } from '../../../../configs/common.config';
 import SortIcon from '@mui/icons-material/Sort';
-import ControlledSelect from './ControlledSelect';
+import ControlledSelect from '../../../../components/ControlledSelect';
 import { sortSelectConfig } from '../../configs/form.config';
 
 const SortSelect: FC<SortSelectPropsType> = ({

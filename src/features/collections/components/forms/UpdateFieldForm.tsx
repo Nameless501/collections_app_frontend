@@ -17,7 +17,7 @@ import FormWrapper from '../../../../components/FormWrapper';
 import { Box } from '@mui/material';
 import useFilterDefaultFieldValues from '../../../../hooks/useFilterDefaultFieldValues';
 import FormInput from '../../../../components/FormInput';
-import ControlledSelect from '../inputs/ControlledSelect';
+import ControlledSelect from '../../../../components/ControlledSelect';
 import {
     fieldLabelInputConfig,
     fieldTypeSelectConfig,

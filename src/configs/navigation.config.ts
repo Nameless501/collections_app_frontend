@@ -7,7 +7,9 @@ import CollectionsIcon from '@mui/icons-material/Collections';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PeopleIcon from '@mui/icons-material/People';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
-import { NavigationListType, ProfilePageTabsType } from '../types/common.types';
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
+import StorageIcon from '@mui/icons-material/Storage';
+import { NavigationListType, PageTabsType } from '../types/common.types';
 
 export const mainNavigationConfig: NavigationListType = [
     {
@@ -61,7 +63,12 @@ export enum ProfilePageTabs {
     collections,
 }
 
-export const ProfilePageTabsConfig: ProfilePageTabsType<ProfilePageTabs> = [
+export enum CollectionPageTabs {
+    info,
+    items,
+}
+
+export const profilePageTabsConfig: PageTabsType<ProfilePageTabs> = [
     {
         label: 'profile:tabs.profile',
         value: ProfilePageTabs.profile,
@@ -72,6 +79,21 @@ export const ProfilePageTabsConfig: ProfilePageTabsType<ProfilePageTabs> = [
         label: 'profile:tabs.collections',
         value: ProfilePageTabs.collections,
         icon: CollectionsBookmarkIcon,
+        iconPosition: 'start',
+    },
+];
+
+export const collectionPageTabsConfig: PageTabsType<CollectionPageTabs> = [
+    {
+        label: 'collection:tabs.info',
+        value: CollectionPageTabs.info,
+        icon: TextSnippetIcon,
+        iconPosition: 'start',
+    },
+    {
+        label: 'collection:tabs.items',
+        value: CollectionPageTabs.items,
+        icon: StorageIcon,
         iconPosition: 'start',
     },
 ];

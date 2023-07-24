@@ -62,7 +62,14 @@ export const CollectionItems: FC<CollectionItemsPropsType> = ({
     }, [apiError, openErrorNotification]);
 
     return (
-        <Box sx={{ width: '100%' }}>
+        <Box
+            sx={{
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 3,
+            }}
+        >
             <Typography variant="h6" textAlign="center">
                 {t(collectionItemsContentConfig.title)}
             </Typography>

@@ -1,9 +1,24 @@
-import { ReactNode, ElementType } from 'react';
-import { FieldError, FieldValues, UseFormRegister } from 'react-hook-form';
-import { ColorOptions, NavigationListType, SizeOptions } from './common.types';
+import { ReactNode, ElementType, SyntheticEvent } from 'react';
+import {
+    Control,
+    FieldError,
+    FieldValues,
+    UseFormRegister,
+} from 'react-hook-form';
+import {
+    ColorOptions,
+    NavigationListType,
+    PageTabsType,
+    SelectConfigType,
+    SizeOptions,
+} from './common.types';
 import { SignFormTypes } from '../features/authentication';
 import { ProfileFormTypes } from '../features/profile';
 import { SxProps } from '@mui/material';
+import {
+    CollectionPageTabs,
+    ProfilePageTabs,
+} from '../configs/navigation.config';
 
 export type ChildrenPropsType = {
     children: ReactNode;
@@ -99,4 +114,17 @@ export type FormInputPropsType = {
     type?: string;
     multiline?: boolean;
     rows?: number;
+};
+
+export type PageTabsWrapperPropsType = {
+    currentTab: number;
+    handleTabChange: (_evt: SyntheticEvent, newValue: number) => void;
+    config: PageTabsType<CollectionPageTabs | ProfilePageTabs>;
+} & ChildrenPropsType;
+
+export type ControlledSelectPropsType = {
+    multiple: boolean;
+    control: Control;
+    size?: 'small' | 'medium';
+    config: SelectConfigType;
 };

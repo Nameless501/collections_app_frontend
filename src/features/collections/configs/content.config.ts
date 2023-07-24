@@ -20,11 +20,6 @@ export const dataCardTooltipsConfig = {
     addField: 'collection:card.tooltips.field.add',
 };
 
-export const dataCardTabsConfig = {
-    info: 'collection:card.tabs.info',
-    fields: 'collection:card.tabs.fields',
-};
-
 export const cardImageAlt = 'collection:card.image';
 
 export const cardLabelsConfig = {

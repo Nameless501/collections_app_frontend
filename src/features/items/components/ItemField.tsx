@@ -7,8 +7,6 @@ import {
 } from '../../../configs/common.config';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import Markdown from 'marked-react';
-import DOMPurify from 'dompurify';
 
 const ItemField: FC<IFieldValue> = ({ field, value }) => {
     return (
@@ -17,10 +15,7 @@ const ItemField: FC<IFieldValue> = ({ field, value }) => {
                 display: 'flex',
                 gap: 1,
                 width: '100%',
-                alignItems:
-                    field.type === FieldTypes.text ? 'flex-stars' : 'center',
-                flexDirection:
-                    field.type === FieldTypes.text ? 'column' : 'row',
+                alignItems: 'center',
             }}
         >
             <Typography
@@ -30,7 +25,7 @@ const ItemField: FC<IFieldValue> = ({ field, value }) => {
             >
                 {`${field.label}:`}
             </Typography>
-            {field.type === FieldTypes.boolean && (
+            {field.type === FieldTypes.boolean ? (
                 <>
                     {value === CheckboxFieldValues.checked ? (
                         <CheckBoxIcon />
@@ -38,12 +33,7 @@ const ItemField: FC<IFieldValue> = ({ field, value }) => {
                         <CheckBoxOutlineBlankIcon />
                     )}
                 </>
-            )}
-            {field.type === FieldTypes.text && (
-                <Markdown>{DOMPurify.sanitize(value)}</Markdown>
-            )}
-            {(field.type === FieldTypes.string ||
-                field.type === FieldTypes.integer) && (
+            ) : (
                 <Typography variant="subtitle1">{value}</Typography>
             )}
         </Box>

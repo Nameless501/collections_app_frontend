@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { FieldError } from 'react-hook-form';
 import { collectionFormConfig } from '../../configs/form.config';
 import FormInput from '../../../../components/FormInput';
-import ControlledSelect from '../inputs/ControlledSelect';
+import ControlledSelect from '../../../../components/ControlledSelect';
 import {
     subjectSelectConfig,
     fileInputConfig,

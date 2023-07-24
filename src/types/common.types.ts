@@ -8,7 +8,7 @@ export type NavigationListType = Array<{
     icon: OverridableComponent<SvgIconTypeMap>;
 }>;
 
-export type ProfilePageTabsType<T> = Array<{
+export type PageTabsType<T> = Array<{
     label: string;
     value: T;
     icon: OverridableComponent<SvgIconTypeMap>;
@@ -26,3 +26,13 @@ export type ColorOptions =
     | 'inherit';
 
 export type SizeOptions = 'small' | 'medium' | 'large';
+
+export type SelectConfigType = {
+    name: string;
+    label: string;
+    id: string;
+    options: Array<{
+        name: string;
+        value: string;
+    }>;
+};

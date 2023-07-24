@@ -1,21 +1,18 @@
 import { FC, SyntheticEvent, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { useTypedSelector } from '../store/store';
 import { UserProfile, ProfileFormTypes } from '../features/profile';
-import FlexCenterWrapper from '../components/FlexCenterWrapper';
 import { ProfilePagePropsType } from '../types/props.types';
 import { UserCollections } from '../features/collections';
-import { Box, Tabs, Tab } from '@mui/material';
 import {
     ProfilePageTabs,
-    ProfilePageTabsConfig,
+    profilePageTabsConfig,
 } from '../configs/navigation.config';
+import PageTabsWrapper from '../components/PageTabsWrapper';
+import { Box } from '@mui/material';
 
 const ProfilePage: FC<ProfilePagePropsType> = ({ type }) => {
-    const { t } = useTranslation();
-
-    const [currentTab, setCurrentTab] = useState<ProfilePageTabs>(
+    const [currentTab, setCurrentTab] = useState<number>(
         ProfilePageTabs.profile
     );
 
@@ -31,54 +28,38 @@ const ProfilePage: FC<ProfilePagePropsType> = ({ type }) => {
         [type, currentUser, pageId]
     );
 
-    const handleTabChange = (_evt: SyntheticEvent, newValue: ProfilePageTabs) =>
+    const handleTabChange = (_evt: SyntheticEvent, newValue: number) =>
         setCurrentTab(newValue);
 
     return (
-        <FlexCenterWrapper align="flex-start">
+        <PageTabsWrapper
+            currentTab={currentTab}
+            handleTabChange={handleTabChange}
+            config={profilePageTabsConfig}
+        >
             <Box
                 sx={{
                     width: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    gap: 5,
+                    display:
+                        currentTab === ProfilePageTabs.profile
+                            ? 'flex'
+                            : 'none',
+                    justifyContent: 'center',
                 }}
             >
-                <Box
-                    sx={{
-                        width: '100%',
-                        borderBottom: 1,
-                        borderColor: 'divider',
-                    }}
-                >
-                    <Tabs
-                        value={currentTab}
-                        onChange={handleTabChange}
-                        centered
-                        variant="fullWidth"
-                    >
-                        {ProfilePageTabsConfig.map(
-                            ({ label, icon: Icon, value, iconPosition }) => (
-                                <Tab
-                                    label={t(label)}
-                                    value={value}
-                                    icon={<Icon />}
-                                    iconPosition={iconPosition}
-                                    key={value}
-                                />
-                            )
-                        )}
-                    </Tabs>
-                </Box>
-                {currentTab === ProfilePageTabs.profile && (
-                    <UserProfile userId={userId} />
-                )}
-                {currentTab === ProfilePageTabs.collections && (
-                    <UserCollections userId={userId} />
-                )}
+                <UserProfile userId={userId} />
             </Box>
-        </FlexCenterWrapper>
+            <Box
+                sx={{
+                    display:
+                        currentTab === ProfilePageTabs.collections
+                            ? 'block'
+                            : 'none',
+                }}
+            >
+                <UserCollections userId={userId} />
+            </Box>
+        </PageTabsWrapper>
     );
 };
 

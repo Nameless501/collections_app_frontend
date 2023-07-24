@@ -5,6 +5,8 @@ import CollectionCardImage from './CollectionCardImage';
 import { CollectionInfoPropsType } from '../../types/common.types';
 import { dataCardLabelsConfig } from '../../configs/content.config';
 import { getCollectionSubjectValue } from '../../utils/helpers.util';
+import Markdown from 'marked-react';
+import DOMPurify from 'dompurify';
 
 const CollectionDataCardInfo: FC<CollectionInfoPropsType> = ({
     collection,
@@ -15,8 +17,8 @@ const CollectionDataCardInfo: FC<CollectionInfoPropsType> = ({
     return (
         <Box sx={{ pr: { lg: 3 } }}>
             <Grid container spacing={2}>
-                <Grid item xs={12} sm={4}>
-                    <Box sx={{ aspectRatio: { xs: '3/2', sm: '1/1' } }}>
+                <Grid item xs={12} sm={5}>
+                    <Box sx={{ aspectRatio: { xs: '3/2' } }}>
                         <CollectionCardImage
                             image={collection.image as string}
                         />
@@ -83,23 +85,27 @@ const CollectionDataCardInfo: FC<CollectionInfoPropsType> = ({
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item container alignItems="center" columnGap={1.5}>
-                        <Grid item xs>
-                            <Typography
-                                variant="subtitle1"
-                                component="span"
-                                color="text.secondary"
-                            >
-                                {t(dataCardLabelsConfig.description)}
-                            </Typography>
-                            <Typography
-                                variant="subtitle1"
-                                component="p"
-                                display="inline"
-                            >
-                                {collection.description}
-                            </Typography>
-                        </Grid>
+                </Grid>
+                <Grid
+                    item
+                    container
+                    alignItems="flex-start"
+                    direction="column"
+                    sx={{ mx: 2 }}
+                >
+                    <Grid item xs>
+                        <Typography
+                            variant="subtitle1"
+                            component="span"
+                            color="text.secondary"
+                        >
+                            {t(dataCardLabelsConfig.description)}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs>
+                        <Markdown>
+                            {DOMPurify.sanitize(collection.description)}
+                        </Markdown>
                     </Grid>
                 </Grid>
             </Grid>

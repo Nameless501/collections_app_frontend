@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Box, Grid } from '@mui/material';
 import FormInput from '../../../../components/FormInput';
-import ControlledSelect from './ControlledSelect';
+import ControlledSelect from '../../../../components/ControlledSelect';
 import ButtonWithIcon from '../../../../components/ButtonWithIcon';
 import {
     getFieldTypeSelectConfig,

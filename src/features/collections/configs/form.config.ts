@@ -6,7 +6,8 @@ import {
     CollectionFormSteps,
 } from './enums.config';
 import { FieldTypes, CollectionSubjects } from '../../../configs/common.config';
-import { FileInputConfigType, SelectConfigType } from '../types/common.types';
+import { FileInputConfigType } from '../types/common.types';
+import { SelectConfigType } from '../../../types/common.types';
 import { SortDirections } from '../../../configs/common.config';
 import {
     getCollectionSubjectValue,

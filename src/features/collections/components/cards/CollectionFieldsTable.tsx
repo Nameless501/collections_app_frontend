@@ -6,6 +6,7 @@ import {
     TableRow,
     TableCell,
     TableBody,
+    Typography,
 } from '@mui/material';
 import { CollectionFieldsTablePropsType } from '../../types/common.types';
 import ButtonWithIcon from '../../../../components/ButtonWithIcon';
@@ -36,8 +37,17 @@ const CollectionFieldsTable: FC<CollectionFieldsTablePropsType> = ({
                 flexDirection: 'column',
                 alignItems: 'center',
                 gap: 2,
+                px: 2,
             }}
         >
+            <Typography
+                variant="subtitle1"
+                component="span"
+                color="text.secondary"
+                alignSelf="flex-start"
+            >
+                Fields:
+            </Typography>
             <Table>
                 <TableHead>
                     <TableRow>

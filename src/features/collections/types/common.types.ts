@@ -11,7 +11,6 @@ import {
     SortOptions,
     SortFormInputs,
     FieldsFormInputs,
-    CollectionDataTabs,
 } from '../configs/enums.config';
 import { ChildrenPropsType } from '../../../types/props.types';
 import { CollectionFormInputs } from '../configs/enums.config';
@@ -41,16 +40,6 @@ export type AllCollectionsListPropsType = {
     collections: Array<ICollection>;
     userId: number;
     isAdmin: boolean;
-};
-
-export type SelectConfigType = {
-    name: string;
-    label: string;
-    id: string;
-    options: Array<{
-        name: string;
-        value: string;
-    }>;
 };
 
 export type SortSelectPropsType = {
@@ -98,13 +87,6 @@ export type FileInputConfigType = {
     name: string;
     label: string;
     id: string;
-};
-
-export type ControlledSelectPropsType = {
-    multiple: boolean;
-    control: Control;
-    size?: 'small' | 'medium';
-    config: SelectConfigType;
 };
 
 export type FileInputPropsType = {
@@ -180,11 +162,6 @@ export type CollectionInfoControlWrapperPropsType = {
     isEditable: boolean;
     handleEdit: () => void;
 } & ChildrenPropsType;
-
-export type CollectionDataCardTabsPropsType = {
-    currentTab: CollectionDataTabs;
-    changeTab: (tab: CollectionDataTabs) => void;
-};
 
 export type NewCollectionAndFieldsFormPropsType = {
     handleClose: () => void;

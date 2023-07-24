@@ -13,7 +13,6 @@ const CollectionCard: FC<CollectionCardPropsType> = ({
     id,
     title,
     subject,
-    description,
     image,
     user,
     isOwner,
@@ -26,20 +25,27 @@ const CollectionCard: FC<CollectionCardPropsType> = ({
             sx={{
                 width: { xs: '85vw', md: '50vw', lg: '60vw', xl: '50vw' },
                 display: 'flex',
+                maxWidth: 700,
+                minHeight: 100,
             }}
         >
             <CardActionArea
                 component={RouterLink}
                 to={setRouteParam(AppRoutes.collectionData, id)}
             >
-                <Grid container sx={{ columnGap: 2 }} wrap="nowrap">
+                <Grid
+                    container
+                    sx={{ columnGap: { xs: 1, sm: 2 } }}
+                    wrap="nowrap"
+                    alignItems="center"
+                >
                     <Grid
                         item
                         xs={2}
                         sx={{
-                            minWidth: { xs: 80, md: 100 },
+                            minWidth: { xs: 80, sm: 100 },
                             p: 0.5,
-                            display: { xs: 'none', sm: 'initial' },
+                            height: 100,
                         }}
                     >
                         <CollectionCardImage image={image} />
@@ -101,9 +107,6 @@ const CollectionCard: FC<CollectionCardPropsType> = ({
                                       })}
                             </Typography>
                         </Grid>
-                        <Typography noWrap fontSize={{ xs: 14, lg: 16 }}>
-                            {description}
-                        </Typography>
                     </Grid>
                 </Grid>
             </CardActionArea>

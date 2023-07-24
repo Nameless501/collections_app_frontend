@@ -31,11 +31,11 @@
                 "edit": "Edit field",
                 "add": "New fields"
             }
-        },
-        "tabs": {
-            "info": "Info",
-            "fields": "Fields"
         }
+    },
+    "tabs": {
+        "info": "Info",
+        "items": "Items"
     },
     "form": {
         "new": {
