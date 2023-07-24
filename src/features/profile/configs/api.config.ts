@@ -15,3 +15,8 @@ export const getProfileDataQueryOptions = (id: number) => ({
     url: setRouteParam(ApiRoutes.userData, id),
     method: ApiMethods.get,
 });
+
+export const errorsConfig = {
+    401: 'errors:http.dataAccess',
+    500: 'errors:default',
+};

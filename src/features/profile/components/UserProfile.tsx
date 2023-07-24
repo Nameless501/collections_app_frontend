@@ -7,6 +7,9 @@ import { ProfileForm } from './ProfileForm';
 import { UserProfilePropsType } from '../types/common.types';
 import { IUser } from '../../../types/slices.types';
 import Loader from '../../../components/Loader';
+import useBaseQueryError from '../../../hooks/useBaseQueryError';
+import { useNotificationsContext } from '../../../contexts/NotificationsContext';
+import { errorsConfig } from '../configs/api.config';
 
 export const UserProfile: FC<UserProfilePropsType> = ({ userId }) => {
     const [userData, setUserData] = useState<IUser>();
@@ -17,14 +20,28 @@ export const UserProfile: FC<UserProfilePropsType> = ({ userId }) => {
 
     const dispatch = useTypedDispatch();
 
+    const { apiError, handleBaseQueryError, resetApiError } =
+        useBaseQueryError(errorsConfig);
+
+    const { openErrorNotification } = useNotificationsContext();
+
     const handleGetUserData = useCallback(async () => {
         try {
+            resetApiError();
             const user = await getUserData(userId).unwrap();
             setUserData(user as IUser);
         } catch (err) {
-            console.log(err);
+            handleBaseQueryError(err);
+            openErrorNotification(apiError);
         }
-    }, [userId, getUserData]);
+    }, [
+        userId,
+        getUserData,
+        apiError,
+        handleBaseQueryError,
+        openErrorNotification,
+        resetApiError,
+    ]);
 
     const handleStateUpdate = (data: IUser) => {
         if (userId === currentUser.id) {

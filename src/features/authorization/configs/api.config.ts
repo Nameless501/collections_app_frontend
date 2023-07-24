@@ -12,3 +12,7 @@ export const singOutQueryOptions = {
 };
 
 export const defaultError = 'Needed authentication';
+
+export const errorsConfig = {
+    500: 'errors:default',
+};

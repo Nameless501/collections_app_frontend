@@ -11,7 +11,8 @@ import {
     setIsLoading,
 } from '../../../store/user/userSlice';
 import { ChildrenPropsType } from '../../../types/props.types';
-import { defaultError } from '../configs/api.config';
+import { defaultError, errorsConfig } from '../configs/api.config';
+import useBaseQueryError from '../../../hooks/useBaseQueryError';
 
 export const AuthorizationContextProvider: FC<ChildrenPropsType> = ({
     children,
@@ -22,12 +23,16 @@ export const AuthorizationContextProvider: FC<ChildrenPropsType> = ({
 
     const [signOut] = useSignOutMutation();
 
+    const { handleBaseQueryError, resetApiError } =
+        useBaseQueryError(errorsConfig);
+
     const handleSignOut = async (): Promise<void> => {
         try {
+            resetApiError();
             await signOut({}).unwrap();
             dispatch(clearUserData());
         } catch (err) {
-            console.log(defaultError);
+            handleBaseQueryError(err);
         }
     };
 
