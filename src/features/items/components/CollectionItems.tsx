@@ -5,7 +5,7 @@ import Loader from '../../../components/Loader';
 import { errorsConfig } from '../configs/api.config';
 import useBaseQueryError from '../../../hooks/useBaseQueryError';
 import { useNotificationsContext } from '../../../contexts/NotificationsContext';
-import ItemsList from './ItemsList';
+import { ItemsList } from './ItemsList';
 import { CollectionItemsPropsType } from '../types/common.types';
 import { useTranslation } from 'react-i18next';
 import { collectionItemsContentConfig } from '../configs/content.config';

@@ -94,3 +94,9 @@ export interface IComment {
 export interface IItemCommentsState {
     comments: Array<IComment>;
 }
+
+export interface ISearchResultState {
+    results: Array<IItem>;
+    isLoading: boolean;
+    isEmptyResult: boolean;
+}

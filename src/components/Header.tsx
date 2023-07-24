@@ -5,7 +5,7 @@ import { AppBar, Container, Box, Toolbar, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Logo from './Logo';
 import ProfileInfo from './ProfileInfo';
-import SearchBar from './SearchBar';
+import { SearchBar } from '../features/search';
 import { HeaderPropsType } from '../types/props.types';
 
 const Header: FC<HeaderPropsType> = ({ toggleSideBar }) => {
@@ -36,7 +36,9 @@ const Header: FC<HeaderPropsType> = ({ toggleSideBar }) => {
                                 gap: 1,
                             }}
                         >
-                            <SearchBar />
+                            <Box sx={{ width: '100%', maxWidth: { sm: 300 } }}>
+                                <SearchBar />
+                            </Box>
                             {isMobile ? (
                                 <IconButton
                                     color="inherit"

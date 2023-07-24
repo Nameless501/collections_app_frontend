@@ -22,6 +22,7 @@ export type ColorOptions =
     | 'success'
     | 'info'
     | 'warning'
-    | 'error';
+    | 'error'
+    | 'inherit';
 
 export type SizeOptions = 'small' | 'medium' | 'large';

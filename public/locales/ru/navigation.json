@@ -13,6 +13,7 @@
     },
     "common": {
         "main": "Главная",
-        "collections": "Все коллекции"
+        "collections": "Все коллекции",
+        "search": "Поиск"
     }
 }

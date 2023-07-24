@@ -8,13 +8,10 @@ import { useNotificationsContext } from '../../../contexts/NotificationsContext'
 import { ITag } from '../../../types/slices.types';
 import { useTranslation } from 'react-i18next';
 import { tagsCloudConfig } from '../configs/content.config';
-import { useNavigate } from 'react-router-dom';
-import { AppRoutes } from '../../../configs/routes.config';
+import { useSearchByTag } from '../../search';
 
 export const TagsCloud: FC = () => {
     const { t } = useTranslation();
-
-    const navigate = useNavigate();
 
     const { apiError, handleBaseQueryError, resetApiError } =
         useBaseQueryError(errorsConfig);
@@ -24,6 +21,8 @@ export const TagsCloud: FC = () => {
     const [getAllTags] = useGetAllTagsMutation();
 
     const { openErrorNotification } = useNotificationsContext();
+
+    const { handleSearchByTag } = useSearchByTag();
 
     const getItemsData = useCallback(async () => {
         try {
@@ -35,10 +34,10 @@ export const TagsCloud: FC = () => {
         }
     }, [getAllTags, handleBaseQueryError, resetApiError]);
 
-    const handleRedirect = (data: { value: string }) => {
-        if (tagsList) {
-            const tag = tagsList.find((item) => item.value === data.value);
-            navigate(AppRoutes.search, { state: tag });
+    const handleSearch = async (data: { value: string }) => {
+        const tag = tagsList?.filter((tag) => tag.value === data.value);
+        if (tag) {
+            await handleSearchByTag(tag[0].id);
         }
     };
 
@@ -78,7 +77,7 @@ export const TagsCloud: FC = () => {
                             },
                         },
                     }))}
-                    onClick={handleRedirect}
+                    onClick={handleSearch}
                     disableRandomColor
                 />
             )}

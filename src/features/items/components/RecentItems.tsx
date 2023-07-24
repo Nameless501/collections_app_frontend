@@ -7,7 +7,7 @@ import useBaseQueryError from '../../../hooks/useBaseQueryError';
 import { useNotificationsContext } from '../../../contexts/NotificationsContext';
 import { IItem } from '../../../types/slices.types';
 import { useTranslation } from 'react-i18next';
-import ItemsList from './ItemsList';
+import { ItemsList } from './ItemsList';
 import { recentItemsContentConfig } from '../configs/content.config';
 
 export const RecentItems: FC = () => {

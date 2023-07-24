@@ -38,4 +38,6 @@ export enum ApiRoutes {
     itemComments = '/comments/item/:id',
     leaveComment = '/comments/item/:id',
     deleteComment = '/comments/:id',
+    search = '/search/',
+    searchTag = '/search/tag/:id',
 }

@@ -13,6 +13,7 @@
     },
     "common": {
         "main": "Main",
-        "collections": "All collections"
+        "collections": "All collections",
+        "search": "Search"
     }
 }

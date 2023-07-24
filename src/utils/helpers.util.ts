@@ -18,3 +18,6 @@ export const getFormattedDate = (date: string): string =>
         hour: '2-digit',
         minute: '2-digit',
     });
+
+export const getEncodedSearchQuery = (query: string) =>
+    `?query=${encodeURIComponent(query)}`;

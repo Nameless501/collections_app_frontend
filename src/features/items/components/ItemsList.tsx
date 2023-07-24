@@ -3,7 +3,11 @@ import { ListItem, List } from '@mui/material';
 import ItemCardSmall from './ItemCardSmall';
 import { ItemsListPropsType } from '../types/common.types';
 
-const ItemsList: FC<ItemsListPropsType> = ({ items, showDelete, onSubmit }) => {
+export const ItemsList: FC<ItemsListPropsType> = ({
+    items,
+    showDelete,
+    onSubmit,
+}) => {
     return (
         <List
             sx={{
@@ -28,5 +32,3 @@ const ItemsList: FC<ItemsListPropsType> = ({ items, showDelete, onSubmit }) => {
         </List>
     );
 };
-
-export default ItemsList;

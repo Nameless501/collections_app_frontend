@@ -76,6 +76,7 @@ export type ButtonWithIconProps = {
     disabled?: boolean;
     large?: boolean;
     color?: ColorOptions;
+    isSubmit?: boolean;
 };
 
 export type CustomFabPropsType = {

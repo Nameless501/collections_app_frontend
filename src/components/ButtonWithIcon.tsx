@@ -12,6 +12,7 @@ const ButtonWithIcon: FC<ButtonWithIconProps> = ({
     disabled = false,
     large = false,
     color,
+    isSubmit = false,
 }) => {
     return (
         <Tooltip title={tooltip} arrow>
@@ -22,6 +23,7 @@ const ButtonWithIcon: FC<ButtonWithIconProps> = ({
                     onClick={handleClick}
                     disabled={disabled}
                     color={color}
+                    type={isSubmit ? 'submit' : undefined}
                 >
                     <Icon fontSize={large ? 'large' : 'medium'} />
                 </IconButton>

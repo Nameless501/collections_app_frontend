@@ -7,6 +7,7 @@ import {
     ICollection,
     ICollectionItemsState,
     IItemCommentsState,
+    ISearchResultState,
 } from '../types/slices.types';
 import { CollectionSubjects } from './common.config';
 
@@ -50,4 +51,10 @@ export const collectionItemsInitialState: ICollectionItemsState = {
 
 export const itemCommentsInitialState: IItemCommentsState = {
     comments: [],
+};
+
+export const searchResultInitialState: ISearchResultState = {
+    results: [],
+    isLoading: false,
+    isEmptyResult: false,
 };

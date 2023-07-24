@@ -4,7 +4,7 @@ import {
     getDeleteLikeQueryOptions,
 } from '../configs/api.config';
 
-export const collectionsSlice = apiSlice.injectEndpoints({
+export const likesSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         setLike: builder.mutation({
             query: (itemId: number) => getSetLikeQueryOptions(itemId),
@@ -15,4 +15,4 @@ export const collectionsSlice = apiSlice.injectEndpoints({
     }),
 });
 
-export const { useDeleteLikeMutation, useSetLikeMutation } = collectionsSlice;
+export const { useDeleteLikeMutation, useSetLikeMutation } = likesSlice;

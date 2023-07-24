@@ -1,6 +1,8 @@
 {
     "search": {
-        "placeholder": "Search..."
+        "placeholder": "Search...",
+        "title": "Search results:",
+        "warning": "No results. Try another query."
     },
     "avatar": {
         "badge": "Admin"
