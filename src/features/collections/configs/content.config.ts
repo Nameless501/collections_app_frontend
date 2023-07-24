@@ -7,6 +7,7 @@ export const dataCardLabelsConfig = {
 };
 
 export const dataCardTableConfig = {
+    title: 'collection:card.labels.table.title',
     type: 'collection:card.labels.table.type',
     label: 'collection:card.labels.table.label',
     number: 'collection:card.labels.table.number',

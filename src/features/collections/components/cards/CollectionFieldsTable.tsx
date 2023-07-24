@@ -46,7 +46,7 @@ const CollectionFieldsTable: FC<CollectionFieldsTablePropsType> = ({
                 color="text.secondary"
                 alignSelf="flex-start"
             >
-                Fields:
+                {t(dataCardTableConfig.title)}
             </Typography>
             <Table>
                 <TableHead>

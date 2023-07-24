@@ -17,7 +17,8 @@
             "table": {
                 "type": "Type",
                 "label": "Label",
-                "number": "№"
+                "number": "№",
+                "title": "Fields:"
             }
         },
         "image": "Collection image",

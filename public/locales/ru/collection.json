@@ -17,7 +17,8 @@
             "table": {
                 "type": "Тип",
                 "label": "Название",
-                "number": "№"
+                "number": "№",
+                "title": "Допольнительные поля:"
             }
         },
         "tooltips": {
