@@ -1,5 +1,6 @@
-import { FC, useCallback, useEffect } from 'react';
+import { FC, useCallback, useEffect, useMemo } from 'react';
 import { Box, Typography } from '@mui/material';
+import { FieldValues, useForm } from 'react-hook-form';
 import { useGetCollectionItemsMutation } from '../store/items.slice';
 import Loader from '../../../components/Loader';
 import { errorsConfig } from '../configs/api.config';
@@ -14,11 +15,30 @@ import {
     deleteCollectionItem,
     setCollectionItems,
 } from '../../../store/collectionItems/collectionItemsSlice';
+import ItemsFilterForm from './ItemsFilterForm';
+import {
+    SortFormInputs,
+    SortFormOptions,
+    sortFormDefaultValue,
+} from '../configs/forms.config';
+import { SortDirections } from '../../../configs/common.config';
+import useSort from '../../../hooks/useSort';
+import { IItem } from '../../../types/slices.types';
 
 export const CollectionItems: FC<CollectionItemsPropsType> = ({
     collectionId,
 }) => {
     const { t } = useTranslation();
+
+    const { control, setValue, watch } = useForm<FieldValues>({
+        defaultValues: sortFormDefaultValue,
+    });
+
+    const sortDirection = watch(SortFormInputs.sortDirection);
+
+    const sortedBy = watch(SortFormInputs.sortBy);
+
+    const { handleSort } = useSort(sortDirection === SortDirections.ascending);
 
     const dispatch = useTypedDispatch();
 
@@ -31,6 +51,31 @@ export const CollectionItems: FC<CollectionItemsPropsType> = ({
         useGetCollectionItemsMutation();
 
     const { openErrorNotification } = useNotificationsContext();
+
+    const toggleSortDirection = (): void =>
+        setValue(
+            SortFormInputs.sortDirection,
+            sortDirection === SortDirections.ascending
+                ? SortDirections.descending
+                : SortDirections.ascending
+        );
+
+    const sortItemsList = useCallback(
+        (item1: IItem, item2: IItem) => {
+            if (sortedBy === SortFormOptions.createdAt) {
+                return handleSort(
+                    Date.parse(item1.createdAt),
+                    Date.parse(item2.createdAt)
+                );
+            }
+            return handleSort(item1.title, item2.title);
+        },
+        [sortedBy, handleSort]
+    );
+
+    const sortedItems = useMemo(() => {
+        return [...items].sort(sortItemsList);
+    }, [sortItemsList, items]);
 
     const handleDeleteItem = (itemId: number) =>
         dispatch(deleteCollectionItem(itemId));
@@ -73,14 +118,24 @@ export const CollectionItems: FC<CollectionItemsPropsType> = ({
             <Typography variant="h6" textAlign="center">
                 {t(collectionItemsContentConfig.title)}
             </Typography>
-            {!isLoading && !isError && (
-                <ItemsList
-                    items={items}
-                    showDelete={true}
-                    onSubmit={handleDeleteItem}
-                />
+            <ItemsFilterForm
+                control={control}
+                toggleSortDirection={toggleSortDirection}
+                sortDirection={sortDirection}
+            />
+            {isLoading ? (
+                <Loader />
+            ) : (
+                <>
+                    {!isError && (
+                        <ItemsList
+                            items={sortedItems}
+                            showDelete={true}
+                            onSubmit={handleDeleteItem}
+                        />
+                    )}
+                </>
             )}
-            {isLoading && <Loader />}
         </Box>
     );
 };

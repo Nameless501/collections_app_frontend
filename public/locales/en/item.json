@@ -16,7 +16,8 @@
     "form": {
         "labels": {
             "title": "Title",
-            "tags": "Add tags"
+            "tags": "Add tags",
+            "sort": "Sort"
         },
         "titles": {
             "newItem": "Add new item to collection"
@@ -24,6 +25,10 @@
         "buttons": {
             "create": "Create",
             "add": "Add"
+        },
+        "sort": {
+            "title": "By title",
+            "date": "By date"
         }
     },
     "titles": {

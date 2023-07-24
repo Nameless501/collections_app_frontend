@@ -6,7 +6,7 @@ import SortIcon from '@mui/icons-material/Sort';
 import ControlledSelect from '../../../../components/ControlledSelect';
 import { sortSelectConfig } from '../../configs/form.config';
 
-const SortSelect: FC<SortSelectPropsType> = ({
+const SortDirectionSelect: FC<SortSelectPropsType> = ({
     control,
     sortDirection,
     toggleSortDirection,
@@ -36,4 +36,4 @@ const SortSelect: FC<SortSelectPropsType> = ({
     );
 };
 
-export default SortSelect;
+export default SortDirectionSelect;

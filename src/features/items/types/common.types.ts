@@ -7,6 +7,7 @@ import {
 } from 'react-hook-form';
 import { IField, IFieldValue, IItem } from '../../../types/slices.types';
 import { ObjectSchema } from 'joi';
+import { SortDirections } from '../../../configs/common.config';
 
 export type ItemCardPropsType = {
     item: IItem;
@@ -68,4 +69,10 @@ export type NewItemFormPropsType = {
     disabled: boolean;
     defaultValues: defaultFormValuesType;
     validationSchema: ObjectSchema;
+};
+
+export type ItemsFilterFormPropsType = {
+    control: Control;
+    toggleSortDirection: () => void;
+    sortDirection: SortDirections;
 };

@@ -2,7 +2,7 @@ import { FC, useMemo } from 'react';
 import { Box, Button } from '@mui/material';
 import { FieldValues, useForm } from 'react-hook-form';
 import ControlledSelect from '../../../../components/ControlledSelect';
-import SortSelect from '../inputs/SortSelect';
+import SortDirectionSelect from '../inputs/SortDirectionSelect';
 import CollectionsList from './CollectionsList';
 import { CollectionListWithFiltersPropsType } from '../../types/common.types';
 import { SortDirections } from '../../../../configs/common.config';
@@ -91,7 +91,7 @@ const CollectionListWithFilters: FC<CollectionListWithFiltersPropsType> = ({
                     />
                 </Box>
                 <Box sx={{ width: 200 }}>
-                    <SortSelect
+                    <SortDirectionSelect
                         control={control}
                         sortDirection={sortDirection}
                         toggleSortDirection={toggleSortDirection}
