@@ -36,6 +36,15 @@ export const getCreateItemQueryOptions = (
     body,
 });
 
+export const getUpdateFieldValueQueryOptions = (
+    fieldId: number,
+    value: string
+) => ({
+    url: setRouteParam(ApiRoutes.updateFieldValue, fieldId),
+    method: ApiMethods.patch,
+    body: { value },
+});
+
 export const errorsConfig = {
     401: 'errors:http.dataAccess',
     500: 'errors:default',

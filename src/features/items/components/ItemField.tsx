@@ -1,14 +1,20 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Typography, Box } from '@mui/material';
-import { IFieldValue } from '../../../types/slices.types';
 import {
     CheckboxFieldValues,
     FieldTypes,
 } from '../../../configs/common.config';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import { ItemFieldPropsType } from '../types/common.types';
+import ButtonWithIcon from '../../../components/ButtonWithIcon';
+import EditIcon from '@mui/icons-material/Edit';
+import DialogFormWrapper from '../../../components/DialogFormWrapper';
+import UpdateFieldForm from './UpdateFieldForm';
 
-const ItemField: FC<IFieldValue> = ({ field, value }) => {
+const ItemField: FC<ItemFieldPropsType> = ({ field, value, id, isOwner = false }) => {
+    const [formIsOpen, setFormState] = useState<boolean>(false);
+
     return (
         <Box
             sx={{
@@ -18,6 +24,26 @@ const ItemField: FC<IFieldValue> = ({ field, value }) => {
                 alignItems: 'center',
             }}
         >
+            {isOwner && (
+                <>
+                    <ButtonWithIcon
+                        icon={EditIcon}
+                        handleClick={() => setFormState(true)}
+                    />
+                    <DialogFormWrapper
+                        isOpen={formIsOpen}
+                        handleClose={() => setFormState(false)}
+                    >
+                        <UpdateFieldForm
+                            label={field.label}
+                            id={id}
+                            value={value}
+                            type={field.type}
+                            onSubmit={() => setFormState(false)}
+                        />
+                    </DialogFormWrapper>
+                </>
+            )}
             <Typography
                 variant="subtitle1"
                 color="text.secondary"

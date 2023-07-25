@@ -40,4 +40,5 @@ export enum ApiRoutes {
     deleteComment = '/comments/:id',
     search = '/search/',
     searchTag = '/search/tag/:id',
+    updateFieldValue = '/fields/value/:id',
 }

@@ -8,6 +8,7 @@ import {
     ICollectionItemsState,
     IItemCommentsState,
     ISearchResultState,
+    IItemState,
 } from '../types/slices.types';
 import { CollectionSubjects } from './common.config';
 
@@ -35,6 +36,10 @@ export const userInitialState: IUserState = {
 
 export const collectionInitialState: ICollectionState = {
     data: initialCollectionData,
+};
+
+export const itemInitialState: IItemState = {
+    data: null,
 };
 
 export const allUsersInitialState: IAllUsersState = {

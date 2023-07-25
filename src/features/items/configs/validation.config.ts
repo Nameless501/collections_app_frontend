@@ -1,6 +1,7 @@
 import { ValidationOptions } from '../../../configs/validation.config';
 import {
     getArraySchema,
+    getResolvedValidationSchema,
     getValidationOption,
 } from '../../../utils/validation.util';
 import { FieldTypes } from '../../../configs/common.config';
@@ -21,3 +22,8 @@ export const getFieldSchema = (type: FieldTypes) => ({
     fieldId: getValidationOption(ValidationOptions.number, true),
     value: typeValidationConfig[type],
 });
+
+export const getFieldValueSchema = (type: FieldTypes) =>
+    getResolvedValidationSchema({
+        value: typeValidationConfig[type],
+    });

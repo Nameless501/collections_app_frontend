@@ -1,10 +1,9 @@
 import { FC } from 'react';
-import { Controller } from 'react-hook-form';
-import { FormControlLabel, Checkbox } from '@mui/material';
 import { FieldsInputsPropsType } from '../types/common.types';
 import FormInput from '../../../components/FormInput';
 import { ItemFormInputs, getFieldIndexedName } from '../configs/forms.config';
 import { FieldTypes } from '../../../configs/common.config';
+import CheckboxFormInput from './CheckboxFormInput';
 
 const FieldsInputs: FC<FieldsInputsPropsType> = ({
     fields,
@@ -39,30 +38,11 @@ const FieldsInputs: FC<FieldsInputsPropsType> = ({
                         error={getFieldError(index)}
                     />
                 ) : (
-                    <FormControlLabel
+                    <CheckboxFormInput
                         key={id}
-                        control={
-                            <Controller
-                                name={getFieldIndexedName(index)}
-                                control={control}
-                                render={({ field: props }) => (
-                                    <Checkbox
-                                        {...props}
-                                        checked={props.value}
-                                        onChange={(e) =>
-                                            props.onChange(e.target.checked)
-                                        }
-                                        sx={{
-                                            '& .MuiSvgIcon-root': {
-                                                fontSize: 28,
-                                            },
-                                        }}
-                                    />
-                                )}
-                            />
-                        }
+                        control={control}
                         label={label}
-                        sx={{ width: 'fit-content', alignSelf: 'center' }}
+                        name={getFieldIndexedName(index)}
                     />
                 )
             )}

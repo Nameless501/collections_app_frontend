@@ -10,6 +10,7 @@ import collectionDataReducer from './collectionData/collectionDataSlice';
 import collectionItemsReducer from './collectionItems/collectionItemsSlice';
 import itemCommentsReducer from './itemComments/itemCommentsSlice';
 import searchResultReducer from './searchResult/searchResultSlice';
+import itemDataReducer from './ItemData/itemDataSlice';
 
 export const store = configureStore({
     reducer: {
@@ -22,6 +23,7 @@ export const store = configureStore({
         collectionItems: collectionItemsReducer,
         itemComments: itemCommentsReducer,
         searchResult: searchResultReducer,
+        itemData: itemDataReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(apiSlice.middleware),

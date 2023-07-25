@@ -1,25 +1,27 @@
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import { Box, Card, Grid, Typography, Divider } from '@mui/material';
 import { useGetItemDataMutation } from '../store/items.slice';
 import Loader from '../../../components/Loader';
 import { errorsConfig } from '../configs/api.config';
 import useBaseQueryError from '../../../hooks/useBaseQueryError';
 import { useNotificationsContext } from '../../../contexts/NotificationsContext';
-import { IItem } from '../../../types/slices.types';
 import { ItemDataCardPropsType } from '../types/common.types';
 import ItemInfo from './ItemInfo';
 import ItemField from './ItemField';
 import { LikeButton } from '../../likes/components/LikeButton';
 import { DeleteItemsButton } from './DeleteItemButton';
-import { useTypedSelector } from '../../../store/store';
+import { useTypedDispatch, useTypedSelector } from '../../../store/store';
 import { useNavigate } from 'react-router-dom';
 import { AppRoutes } from '../../../configs/routes.config';
 import { setRouteParam } from '../../../utils/helpers.util';
 import { useTranslation } from 'react-i18next';
 import { itemFieldsContentConfig } from '../configs/content.config';
+import { setItemData } from '../../../store/ItemData/itemDataSlice';
 
 export const ItemDataCard: FC<ItemDataCardPropsType> = ({ itemId }) => {
     const { t } = useTranslation();
+
+    const dispatch = useTypedDispatch();
 
     const { apiError, handleBaseQueryError, resetApiError } =
         useBaseQueryError(errorsConfig);
@@ -28,7 +30,7 @@ export const ItemDataCard: FC<ItemDataCardPropsType> = ({ itemId }) => {
 
     const { data: currentUser } = useTypedSelector((state) => state.user);
 
-    const [itemData, setItemData] = useState<IItem | null>(null);
+    const { data: itemData } = useTypedSelector((state) => state.itemData);
 
     const [getItemData, { isLoading, isError }] = useGetItemDataMutation();
 
@@ -51,11 +53,11 @@ export const ItemDataCard: FC<ItemDataCardPropsType> = ({ itemId }) => {
         try {
             resetApiError();
             const data = await getItemData(itemId).unwrap();
-            setItemData(data);
+            dispatch(setItemData(data));
         } catch (err) {
             handleBaseQueryError(err);
         }
-    }, [getItemData, handleBaseQueryError, resetApiError, itemId]);
+    }, [getItemData, handleBaseQueryError, resetApiError, itemId, dispatch]);
 
     useEffect(() => {
         getItemsData();
@@ -117,7 +119,15 @@ export const ItemDataCard: FC<ItemDataCardPropsType> = ({ itemId }) => {
                         <Grid item xs={12}>
                             {itemData?.fields &&
                                 itemData.fields.map((field) => (
-                                    <ItemField key={field.id} {...field} />
+                                    <ItemField
+                                        key={field.id}
+                                        {...field}
+                                        isOwner={
+                                            itemData.collection.userId ===
+                                                currentUser.id ||
+                                            currentUser.isAdmin
+                                        }
+                                    />
                                 ))}
                         </Grid>
                     </Grid>

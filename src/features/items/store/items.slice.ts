@@ -7,6 +7,7 @@ import {
     getItemDataQueryOptions,
     getItemFieldsQueryOptions,
     getCreateItemQueryOptions,
+    getUpdateFieldValueQueryOptions,
 } from '../configs/api.config';
 
 export const itemSlice = apiSlice.injectEndpoints({
@@ -32,6 +33,10 @@ export const itemSlice = apiSlice.injectEndpoints({
             query: (payload: { id: number; body: FieldValues }) =>
                 getCreateItemQueryOptions(payload.id, payload.body),
         }),
+        updateItemField: builder.mutation({
+            query: (payload: { id: number; value: string }) =>
+                getUpdateFieldValueQueryOptions(payload.id, payload.value),
+        }),
     }),
 });
 
@@ -42,4 +47,5 @@ export const {
     useGetItemFieldsMutation,
     useDeleteItemsMutation,
     useCreateItemMutation,
+    useUpdateItemFieldMutation,
 } = itemSlice;

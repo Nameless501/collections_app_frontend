@@ -45,12 +45,13 @@ export const AdminPanel: FC = () => {
 
     const getUsersData = useCallback(async () => {
         try {
+            resetApiError();
             const users = await getAllUsers({}).unwrap();
             dispatch(setAllUsersData(users));
         } catch (err) {
             handleBaseQueryError(err);
         }
-    }, [getAllUsers, dispatch, handleBaseQueryError]);
+    }, [getAllUsers, dispatch, handleBaseQueryError, resetApiError]);
 
     const toggleUserSelect = (id: number): void =>
         setSelected((current) =>

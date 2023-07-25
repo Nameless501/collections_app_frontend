@@ -49,6 +49,10 @@ export interface ICollectionState {
     data: ICollection;
 }
 
+export interface IItemState {
+    data: IItem | null;
+}
+
 export interface ICollectionsState {
     collections: Array<ICollection>;
 }

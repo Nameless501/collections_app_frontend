@@ -7,7 +7,7 @@ import {
 } from 'react-hook-form';
 import { IField, IFieldValue, IItem } from '../../../types/slices.types';
 import { ObjectSchema } from 'joi';
-import { SortDirections } from '../../../configs/common.config';
+import { FieldTypes, SortDirections } from '../../../configs/common.config';
 
 export type ItemCardPropsType = {
     item: IItem;
@@ -54,6 +54,12 @@ export type FieldsInputsPropsType = {
     control: Control;
 };
 
+export type CheckboxFormInputPropsType = {
+    control: Control;
+    label: string;
+    name: string;
+};
+
 export type defaultFormValuesType = {
     title: string;
     tags: string[];
@@ -75,4 +81,16 @@ export type ItemsFilterFormPropsType = {
     control: Control;
     toggleSortDirection: () => void;
     sortDirection: SortDirections;
+};
+
+export type ItemFieldPropsType = IFieldValue & {
+    isOwner?: boolean;
+};
+
+export type UpdateFieldFormPropsType = {
+    onSubmit: () => void;
+    value: string;
+    id: number;
+    label: string;
+    type: FieldTypes;
 };

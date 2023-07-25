@@ -24,7 +24,8 @@
         },
         "buttons": {
             "create": "Create",
-            "add": "Add"
+            "add": "Add",
+            "update": "Update"
         },
         "sort": {
             "title": "By title",

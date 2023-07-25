@@ -23,6 +23,7 @@ export const tooltipsConfig = {
 
 export const buttonsTextConfig = {
     add: 'item:form.buttons.add',
+    update: 'item:form.buttons.update',
 };
 
 export const fomTitlesConfig = {
